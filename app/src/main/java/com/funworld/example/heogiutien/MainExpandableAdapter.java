@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import com.funworld.example.heogiutien.data.dao.Expense;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -85,8 +87,8 @@ public class MainExpandableAdapter extends BaseExpandableListAdapter {
         TextView tv_row_reason = (TextView) convertView.findViewById(R.id.tv_row_reason);
         TextView tv_row_time = (TextView) convertView.findViewById(R.id.tv_row_time);
 
-        tv_row_reason.setText(((Expense) getChild(groupPosition, childPosition)).getReason());
-        tv_row_time.setText(((Expense) getChild(groupPosition, childPosition)).getTime().toString()); // 2017-06-24 15:30:23 --> 15:30
+        tv_row_reason.setText(((Expense) getChild(groupPosition, childPosition)).getPurpose());
+        tv_row_time.setText(((Expense) getChild(groupPosition, childPosition)).getCreateAt() + ""); // 2017-06-24 15:30:23 --> 15:30
         tv_row_money_amount.setText(String.valueOf(((Expense) getChild(groupPosition, childPosition)).getAmount())+ "k");
         return convertView;
     }
