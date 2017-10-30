@@ -98,3 +98,60 @@ public class MainExpandableAdapter extends BaseExpandableListAdapter {
         return false;
     }
 }
+
+//     HashMap<String, List<Expense>> mData;
+//     private ExpandableListView elv_main;
+
+//    void initRecentExpenseList(){
+//
+//        //init data
+//        mData = new HashMap<>();
+//
+//        final List<String> dates = new ArrayList<>();
+//        dates.add("2017-06-24");
+//        dates.add("2017-06-23");
+//        dates.add("2017-06-22");
+//        dates.add("2017-06-21");
+//
+//        List<Expense> expenses = new ArrayList<>();
+////        for(int i=0; i<5; i++)
+////            expenses.add(new Expense(i, "using", "", i*10+5, "an sang", new java.sql.Date(System.currentTimeMillis()), ""));
+//
+//        for(int i=0; i < dates.size(); i++)
+//            mData.put(dates.get(i), expenses);
+//
+//        //init adapter
+//        MainExpandableAdapter mAdapter = new MainExpandableAdapter(this, dates, mData);
+//        elv_main.setAdapter(mAdapter);
+//
+//        elv_main.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+//            @Override
+//            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+//                Log.e(TAG, "onChildClick: " + dates.get(groupPosition) + ", "
+//                        + mData.get(dates.get(groupPosition)).get(childPosition).getAmount());
+//                return false;
+//            }
+//        });
+//
+//        elv_main.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+//            @Override
+//            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+//                Log.e(TAG, "onGroupClick: " + groupPosition);
+//                return false;
+//            }
+//        });
+//
+//        elv_main.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+//            @Override
+//            public void onGroupCollapse(int groupPosition) {
+//                Log.e(TAG, "onGroupCollapse: " + groupPosition);
+//            }
+//        });
+//
+//        elv_main.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+//            @Override
+//            public void onGroupExpand(int groupPosition) {
+//                Log.e(TAG, "onGroupExpand: " + groupPosition);
+//            }
+//        });
+//    }
