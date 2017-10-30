@@ -38,4 +38,7 @@ dependencies {
 
     //activeAndroid
     compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
+
+    //Joda time - handle time issues
+    compile 'joda-time:joda-time:2.9.9'
 }

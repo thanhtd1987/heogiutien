@@ -78,8 +78,8 @@ import java.util.List;
         dates.add("2017-06-21");
 
         List<Expense> expenses = new ArrayList<>();
-        for(int i=0; i<5; i++)
-            expenses.add(new Expense(i, "using", "", i*10+5, "an sang", new java.sql.Date(System.currentTimeMillis()), ""));
+//        for(int i=0; i<5; i++)
+//            expenses.add(new Expense(i, "using", "", i*10+5, "an sang", new java.sql.Date(System.currentTimeMillis()), ""));
 
         for(int i=0; i < dates.size(); i++)
             mData.put(dates.get(i), expenses);

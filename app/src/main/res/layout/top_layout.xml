@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/iv_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:padding="32dp"
+            android:src="@android:drawable/sym_action_call" />
+
+        <ImageView
+            android:id="@+id/iv_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_expense"
+            android:layout_toRightOf="@+id/iv_expense"
+            android:background="@color/colorPrimary"
+            android:padding="32dp"
+            android:src="@android:drawable/sym_call_incoming" />
+
+        <ImageView
+            android:id="@+id/iv_sumup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/iv_expense"
+            android:layout_below="@+id/iv_expense"
+            android:background="@color/colorPrimary"
+            android:padding="32dp"
+            android:src="@android:drawable/sym_call_missed" />
+
+        <ImageView
+            android:id="@+id/iv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/iv_account"
+            android:layout_below="@+id/iv_expense"
+            android:layout_centerInParent="true"
+            android:background="@color/colorAccent"
+            android:padding="32dp"
+            android:src="@android:drawable/sym_action_email" />
+    </RelativeLayout>
+
+
+    <ImageView
+        android:id="@+id/iv_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:padding="16dp"
+        android:src="@android:drawable/ic_menu_manage" />
+
+    <ImageView
+        android:id="@+id/iv_add_expense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:padding="16dp"
+        android:src="@android:drawable/ic_input_add" />
+
+</RelativeLayout>
