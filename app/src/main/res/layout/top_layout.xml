@@ -27,7 +27,7 @@
             android:src="@android:drawable/sym_call_incoming" />
 
         <ImageView
-            android:id="@+id/iv_sumup"
+            android:id="@+id/iv_sum_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/iv_expense"
