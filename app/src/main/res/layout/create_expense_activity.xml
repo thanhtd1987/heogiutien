@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/tv_title_text"
+        style="@style/text_bold_big_white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/create_expense" />
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_title_text"
+        android:layout_alignTop="@+id/tv_title_text"
+        android:padding="@dimen/gap_small"
+        android:src="@drawable/ic_arrow_back_white_24dp" />
+
+    <ImageView
+        android:id="@+id/iv_save_expense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_title_text"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/tv_title_text"
+        android:padding="@dimen/gap_small"
+        android:src="@drawable/ic_check_white_24dp" />
+
+    <include
+        layout="@layout/expense_quick_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gap_small"
+        android:layout_below="@+id/tv_title_text" />
+</RelativeLayout>

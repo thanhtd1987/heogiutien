@@ -1,209 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.funworld.heogiutien.features.main.MainActivity">
 
-    <TextView
-        android:id="@+id/tv_title_text"
-        style="@style/text_bold_big_white"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        android:text="@string/expense" />
-
-    <ImageView
-        android:id="@+id/iv_back"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tv_title_text"
-        android:layout_alignTop="@+id/tv_title_text"
-        android:padding="@dimen/gap_small"
-        android:src="@drawable/ic_arrow_back_white_24dp" />
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-    <ImageView
-        android:id="@+id/iv_add_expense"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tv_title_text"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/tv_title_text"
-        android:padding="@dimen/gap_small"
-        android:src="@drawable/ic_add_white_24dp" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginLeft="-15dp"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:layout_collapseMode="pin">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/actionbar_height">
+
+                <TextView
+                    android:id="@+id/tv_title_text"
+                    style="@style/text_bold_big_white"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/actionbar_height"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:text="@string/expense" />
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/tv_title_text"
+                    android:layout_alignTop="@+id/tv_title_text"
+                    android:padding="@dimen/gap_small"
+                    android:src="@drawable/ic_arrow_back_white_24dp" />
+
+                <ImageView
+                    android:id="@+id/iv_add_expense"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/tv_title_text"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/tv_title_text"
+                    android:padding="@dimen/gap_small"
+                    android:src="@drawable/ic_add_white_24dp" />
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tv_title_text">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <include layout="@layout/expense_sumup_layout" />
 
-            <RelativeLayout
-                android:id="@+id/rl_quick_add_expense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_margin="@dimen/gap_small"
-                android:background="@color/primary400_light"
-                android:padding="@dimen/gap_normal">
-
-                <EditText
-                    android:id="@+id/et_expense_purpose"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:hint="Mục đích chi tiêu"
-                    android:inputType="text" />
-
-                <EditText
-                    android:id="@+id/et_expense_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/et_expense_purpose"
-                    android:layout_alignStart="@+id/et_expense_purpose"
-                    android:layout_below="@+id/et_expense_purpose"
-                    android:ems="5"
-                    android:hint="Số tiền"
-                    android:inputType="numberDecimal" />
-
-                <TextView
-                    android:id="@+id/tv_expense_account_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/et_expense_amount"
-                    android:layout_alignTop="@+id/et_expense_amount"
-                    android:layout_marginLeft="@dimen/gap_normal"
-                    android:layout_toRightOf="@+id/et_expense_amount"
-                    android:gravity="center_vertical"
-                    android:text="Tài khoản: " />
-
-                <TextView
-                    android:id="@+id/tv_expense_account"
-                    style="@style/text_bold_big_white"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/tv_expense_account_text"
-                    android:layout_alignTop="@+id/tv_expense_account_text"
-                    android:layout_marginLeft="@dimen/gap_normal"
-                    android:layout_toRightOf="@+id/tv_expense_account_text"
-                    android:background="@drawable/rect_corner_primary"
-                    android:fontFamily="cursive"
-                    android:gravity="center_vertical"
-                    android:padding="@dimen/gap_small"
-                    android:text="Tiền mặt" />
-
-                <CheckBox
-                    android:id="@+id/cb_expense_related"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/et_expense_amount"
-                    android:layout_marginTop="@dimen/gap_small"
-                    android:checked="true"
-                    android:text="Liên quan" />
-
-                <RadioGroup
-                    android:id="@+id/toggle_related"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_alignLeft="@+id/tv_expense_account_text"
-                    android:layout_alignTop="@+id/cb_expense_related"
-                    android:background="@drawable/rect_corner_border_pink"
-                    android:checkedButton="@+id/rd_debt"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rd_borrow"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="1dp"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/toggle_selector"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="Borrow"
-                        android:textColor="@color/white" />
-
-                    <RadioButton
-                        android:id="@+id/rd_debt"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="1dp"
-                        android:layout_marginRight="1dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/toggle_selector"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="Debt"
-                        android:textColor="@color/white" />
-                </RadioGroup>
-
-                <EditText
-                    android:id="@+id/et_expense_related_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/toggle_related"
-                    android:layout_below="@+id/cb_expense_related"
-                    android:ems="10"
-                    android:hint="Tên người liên quan"
-                    android:inputType="text" />
-
-                <TextView
-                    android:id="@+id/tv_add_expense"
-                    style="@style/text_bold_big_white"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/et_expense_related_name"
-                    android:layout_below="@id/et_expense_related_name"
-                    android:background="@drawable/rect_corner_primary"
-                    android:ems="4"
-                    android:gravity="center"
-                    android:padding="@dimen/gap_small"
-                    android:text="Thêm" />
-
-                <TextView
-                    android:id="@+id/tv_more_detail"
-                    style="@style/text_bold_big_white"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/tv_add_expense"
-                    android:layout_marginLeft="@dimen/gap_small"
-                    android:layout_toRightOf="@id/tv_add_expense"
-                    android:background="@drawable/rect_corner_primary"
-                    android:ems="4"
-                    android:gravity="center"
-                    android:padding="@dimen/gap_small"
-                    android:text="Chi tiết" />
-
-                <TextView
-                    android:id="@+id/tv_reset_info"
-                    style="@style/text_bold_big_white"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/cb_expense_related"
-                    android:layout_alignTop="@+id/tv_add_expense"
-                    android:layout_marginLeft="@dimen/gap_small"
-                    android:background="@drawable/rect_corner_border_pink"
-                    android:ems="4"
-                    android:gravity="center"
-                    android:padding="@dimen/gap_small"
-                    android:text="Reset" />
-
-            </RelativeLayout>
-
-            <include layout="@layout/expense_sumup_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_quick_add_expense"/>
-
-        </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
