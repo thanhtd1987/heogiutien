@@ -1,4 +1,4 @@
-package com.funworld.example.heogiutien;
+package com.funworld.heogiutien;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.funworld.example.banhbeogiutien", appContext.getPackageName());
+        assertEquals("com.funworld.banhbeogiutien", appContext.getPackageName());
     }
 }

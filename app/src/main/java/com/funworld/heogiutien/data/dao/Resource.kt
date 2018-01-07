@@ -1,4 +1,4 @@
-package com.funworld.example.heogiutien.data.dao
+package com.funworld.heogiutien.data.dao
 
 import com.activeandroid.Model
 import com.activeandroid.annotation.Column

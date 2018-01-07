@@ -1,4 +1,4 @@
-package com.funworld.example.heogiutien;
+package com.funworld.heogiutien;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import com.funworld.example.heogiutien.data.dao.Expense;
+import com.funworld.heogiutien.R;
+import com.funworld.heogiutien.data.dao.Expense;
 
 import java.util.HashMap;
 import java.util.List;

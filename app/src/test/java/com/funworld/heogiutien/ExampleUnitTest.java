@@ -1,4 +1,4 @@
-package com.funworld.example.heogiutien;
+package com.funworld.heogiutien;
 
 import org.junit.Test;
 

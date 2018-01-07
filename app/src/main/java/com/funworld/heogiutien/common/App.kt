@@ -1,4 +1,4 @@
-package com.funworld.example.heogiutien.common
+package com.funworld.heogiutien.common
 
 import com.activeandroid.app.Application
 

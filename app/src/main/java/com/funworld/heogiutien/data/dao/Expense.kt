@@ -1,4 +1,4 @@
-package com.funworld.example.heogiutien.data.dao
+package com.funworld.heogiutien.data.dao
 
 import android.os.Parcel
 import android.os.Parcelable
