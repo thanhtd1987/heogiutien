@@ -9,43 +9,44 @@
         android:layout_centerInParent="true">
 
         <ImageView
-            android:id="@+id/iv_expense"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/iv_expense_report"
+            android:layout_width="@dimen/icon_width"
+            android:layout_height="@dimen/icon_width"
             android:background="@color/colorAccent"
-            android:padding="32dp"
-            android:src="@android:drawable/sym_action_call" />
+            android:padding="@dimen/gap_small"
+            android:src="@drawable/ic_expense_report" />
 
         <ImageView
             android:id="@+id/iv_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/iv_expense"
-            android:layout_toRightOf="@+id/iv_expense"
+            android:layout_width="@dimen/icon_width"
+            android:layout_height="@dimen/icon_width"
+            android:layout_alignTop="@+id/iv_expense_report"
+            android:layout_toRightOf="@+id/iv_expense_report"
             android:background="@color/colorPrimary"
-            android:padding="32dp"
-            android:src="@android:drawable/sym_call_incoming" />
+            android:padding="@dimen/gap_small"
+            android:src="@drawable/ic_resource" />
 
         <ImageView
-            android:id="@+id/iv_sum_up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/iv_expense"
-            android:layout_below="@+id/iv_expense"
+            android:id="@+id/iv_statistic"
+            android:layout_width="@dimen/icon_width"
+            android:layout_height="@dimen/icon_width"
+            android:layout_alignLeft="@+id/iv_expense_report"
+            android:layout_alignRight="@+id/iv_expense_report"
+            android:layout_below="@+id/iv_expense_report"
             android:background="@color/colorPrimary"
-            android:padding="32dp"
-            android:src="@android:drawable/sym_call_missed" />
+            android:padding="@dimen/gap_small"
+            android:src="@drawable/ic_statistic" />
 
         <ImageView
-            android:id="@+id/iv_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/iv_saving"
+            android:layout_width="@dimen/icon_width"
+            android:layout_height="@dimen/icon_width"
             android:layout_alignLeft="@+id/iv_account"
-            android:layout_below="@+id/iv_expense"
+            android:layout_below="@+id/iv_expense_report"
             android:layout_centerInParent="true"
             android:background="@color/colorAccent"
-            android:padding="32dp"
-            android:src="@android:drawable/sym_action_email" />
+            android:padding="@dimen/gap_small"
+            android:src="@drawable/ic_saving" />
     </RelativeLayout>
 
 
@@ -57,8 +58,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
-        android:padding="16dp"
-        android:src="@android:drawable/ic_menu_manage" />
+        android:padding="@dimen/gap_normal"
+        android:src="@drawable/ic_settings_black_24dp" />
 
     <ImageView
         android:id="@+id/iv_add_expense"
