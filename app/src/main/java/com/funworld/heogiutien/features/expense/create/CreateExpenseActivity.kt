@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.funworld.heogiutien.R
+import kotlinx.android.synthetic.main.create_expense_activity.*
 
 
 class CreateExpenseActivity : AppCompatActivity(){
@@ -17,10 +18,11 @@ class CreateExpenseActivity : AppCompatActivity(){
 
     companion object {
         private val INTENT_PARAM = "param"
-        fun newIntent(context: Context): Intent{
+
+        fun startActivity(context: Context){
             val intent = Intent(context, CreateExpenseActivity::class.java)
             intent.putExtra(INTENT_PARAM, "hello")
-            return intent
+            context.startActivity(intent)
         }
     }
 }

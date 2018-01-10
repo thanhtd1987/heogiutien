@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import com.funworld.heogiutien.R
-import com.funworld.heogiutien.features.expense.create.SumUpListExpenseActivity
+import com.funworld.heogiutien.features.expense.create.CreateExpenseActivity
+import com.funworld.heogiutien.features.expense.create.ExpenseReportActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.top_layout.*
 
@@ -20,13 +21,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun intiViewActions(){
-        iv_expense.setOnClickListener({
-            startActivity(Intent(this, SumUpListExpenseActivity::class.java))
+        iv_expense_report.setOnClickListener({
+            ExpenseReportActivity.startActivity(this)
         })
 
+        iv_account.setOnClickListener({})
+
+        iv_statistic.setOnClickListener({})
+
+        iv_saving.setOnClickListener({})
+
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                CreateExpenseActivity.startActivity(this)
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show()
         }
     }
 
