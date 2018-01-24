@@ -6,4 +6,8 @@
     <string name="detail_expense">Expense Detail</string>
     <string name="create_expense">Create</string>
     <string name="current_balance">Số dư hiện tại.</string>
+
+    <!--create expense-->
+    <string name="expense_related_person_hint">Tên người liên quan</string>
+    <string name="expense_note_hint">Note for this expense</string>
 </resources>
