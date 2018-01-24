@@ -4,8 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.CalendarView
 import com.funworld.heogiutien.R
 import kotlinx.android.synthetic.main.expense_activity.*
+import kotlinx.android.synthetic.main.expense_sumup_layout.*
+import java.util.*
 
 
 class ExpenseReportActivity : AppCompatActivity(){
@@ -13,7 +16,16 @@ class ExpenseReportActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.expense_activity)
 
+        initView()
         initViewAction()
+    }
+
+    private fun initView(){
+        clv_month.date = Calendar.getInstance().timeInMillis
+        clv_month.firstDayOfWeek = 2
+        clv_month.setOnDateChangeListener() {view, year, month, dayofmonth -> {
+            // check ngay su dung va hien thi thong tin ngay do ra
+        }}
     }
 
     private fun initViewAction(){
