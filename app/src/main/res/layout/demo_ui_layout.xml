@@ -70,4 +70,172 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rl_week"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rcv_today_expenses"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="@dimen/gap_small"
+            android:layout_marginRight="@dimen/gap_small"
+            android:layout_marginTop="@dimen/gap_small"
+            android:background="@color/primary400_light"
+            android:padding="@dimen/gap_normal">
+
+            <TextView
+                android:id="@+id/tv_current_week"
+                style="@style/text_bold_large_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tuần 1 \n(2 - 8/10)" />
+
+            <TextView
+                android:id="@+id/tv_week_expense_text"
+                style="@style/text_bold_big_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/tv_current_week"
+                android:text="@string/expense" />
+
+            <TextView
+                android:id="@+id/tv_week_expense_amount"
+                style="@style/text_bold_italic_large_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/tv_week_expense_text"
+                android:layout_below="@+id/tv_week_expense_text"
+                android:text="2.500 k₫" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_week"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="@dimen/gap_small"
+            android:layout_marginRight="@dimen/gap_small"
+            android:layout_marginTop="@dimen/gap_small"
+            android:background="@color/primary400_light"
+            android:padding="@dimen/gap_normal">
+
+            <TextView
+                android:id="@+id/tv_current_month"
+                style="@style/text_bold_large_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thang 10" />
+
+            <TextView
+                android:id="@+id/tv_balance_text"
+                style="@style/text_bold_big_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_current_month"
+                android:text="@string/current_balance" />
+
+            <TextView
+                android:id="@+id/tv_balance_amount"
+                style="@style/text_bold_italic_large_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/tv_balance_text"
+                android:layout_below="@+id/tv_balance_text"
+                android:text="2.500 k₫" />
+
+            <TextView
+                android:id="@+id/tv_expense_text"
+                style="@style/text_bold_big_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/tv_balance_text"
+                android:text="@string/expense" />
+
+            <TextView
+                android:id="@+id/tv_expense_amount"
+                style="@style/text_bold_italic_large_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/tv_expense_text"
+                android:layout_below="@+id/tv_expense_text"
+                android:text="1.500 k₫" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_sum_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_month"
+            android:layout_margin="@dimen/gap_small"
+            android:background="@color/primary400_light">
+
+            <Switch
+                android:id="@+id/tgb_debt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/gap_normal"
+                android:padding="@dimen/gap_small"
+                android:switchPadding="@dimen/gap_small"
+                android:text="Debt"
+                android:textColor="@color/white" />
+
+            <Switch
+                android:id="@+id/tgb_borrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1sp"
+                android:layout_toRightOf="@+id/tgb_debt"
+                android:background="@color/primary400_light"
+                android:checked="true"
+                android:padding="@dimen/gap_small"
+                android:switchPadding="@dimen/gap_small"
+                android:text="Borrow"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_debt_amount"
+                style="@style/text_bold_big_primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tgb_debt"
+                android:layout_alignRight="@+id/tgb_debt"
+                android:layout_below="@+id/tgb_debt"
+                android:gravity="center"
+                android:padding="@dimen/gap_small"
+                android:text="500k" />
+
+            <TextView
+                android:id="@+id/tv_borrow_amount"
+                style="@style/text_bold_big_primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tgb_borrow"
+                android:layout_alignRight="@+id/tgb_borrow"
+                android:layout_below="@+id/tgb_debt"
+                android:gravity="center"
+                android:padding="@dimen/gap_small"
+                android:text="500k" />
+
+            <TextView
+                style="@style/text_bold_big_white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_debt_amount"
+                android:background="@color/colorPrimary"
+                android:padding="@dimen/gap_normal"
+                android:text="Sum: 2.510 - 500 -500 = 1.510" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
 </LinearLayout>
