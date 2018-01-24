@@ -42,6 +42,8 @@ class Expense() : Model() {
     // nguoi lien quan den chi tieu muon/cho muon
     @Column(name = "related_person")
     var relatedPerson: String? = null
+    @Column( name = "note")
+    var note: String? = null
 
     var relatedExpense: String? = null // cac chi tieu lien quan, tach chi tieu...
 
