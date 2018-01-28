@@ -195,24 +195,32 @@
             android:hint="Tên người liên quan"
             android:inputType="text" />
 
+        <EditText
+            android:id="@+id/et_expense_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/expense_note_hint"
+            android:layout_marginLeft="@dimen/gap_small"
+            android:layout_below="@+id/et_expense_related_name"/>
+
         <TextView
-            android:id="@+id/tv_add_expense"
+            android:id="@+id/tv_edit_expense"
             style="@style/button_round_primary_text_bold_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/et_expense_related_name"
-            android:layout_below="@id/et_expense_related_name"
+            android:layout_toLeftOf="@+id/tv_more_detail"
+            android:layout_below="@id/et_expense_note"
 
-            android:text="Thêm" />
+            android:text="Sửa" />
 
         <TextView
             android:id="@+id/tv_more_detail"
             style="@style/button_round_primary_text_bold_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv_add_expense"
+            android:layout_alignTop="@+id/tv_edit_expense"
             android:layout_marginLeft="@dimen/gap_small"
-            android:layout_toRightOf="@id/tv_add_expense"
+            android:layout_alignParentRight="true"
 
             android:text="Chi tiết" />
 
@@ -222,7 +230,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/cb_expense_related"
-            android:layout_alignTop="@+id/tv_add_expense"
+            android:layout_alignTop="@+id/tv_edit_expense"
             android:layout_marginLeft="@dimen/gap_small"
             android:background="@drawable/rect_corner_border_pink"
             android:ems="4"
