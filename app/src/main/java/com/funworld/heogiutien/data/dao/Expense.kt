@@ -1,12 +1,11 @@
 package com.funworld.heogiutien.data.dao
 
-import android.os.Parcel
-import android.os.Parcelable
+import android.support.annotation.StringDef
 import com.activeandroid.Model
 import com.activeandroid.annotation.Column
 import com.activeandroid.annotation.Table
 import com.activeandroid.query.Select
-
+import org.joda.time.DateTime
 
 
 /**
@@ -20,7 +19,7 @@ class Expense() : Model() {
 //    var expenseId: Int = 0
     //loai chi tieu: chi (-), them vao(+)
     @Column(name = "type")
-    lateinit var type: String
+    @ExpenseType lateinit var type: String
     //luong tien dung cho chi tieu
     @Column(name = "money_amount")
     var amount: Int = 0
@@ -42,14 +41,28 @@ class Expense() : Model() {
     // nguoi lien quan den chi tieu muon/cho muon
     @Column(name = "related_person")
     var relatedPerson: String? = null
-    @Column( name = "note")
+    @Column(name = "note")
     var note: String? = null
 
     var relatedExpense: String? = null // cac chi tieu lien quan, tach chi tieu...
 
+    fun getCreatedTime(): String {
+        return DateTime(createAt).hourOfDay().toString()
+    }
+
+    fun getCreatedDatTime(): String {
+        return DateTime(createAt).toDateTime().toString()
+    }
 
     companion object {
-        fun get50LatestExpenses(resource: Resource) : MutableList<Expense>{
+        const val DEPOSIT_TYPE = "deposit"
+        const val WITHDRAW_TYPE = "withdraw"
+
+        @StringDef(DEPOSIT_TYPE, WITHDRAW_TYPE)
+        @Retention(AnnotationRetention.SOURCE)
+        annotation class ExpenseType
+
+        fun get50LatestExpenses(resource: Resource): MutableList<Expense> {
             return Select()
                     .from(Expense::class.java)
                     .where("resource = ?", resource.id)
@@ -59,13 +72,17 @@ class Expense() : Model() {
                     .execute()
         }
 
-        fun getExpensesInPeriod(resource: Resource, from: Long, to: Long) : MutableList<Expense>{
+        fun getExpensesInPeriod(resource: Resource, from: Long, to: Long): MutableList<Expense> {
             return Select()
                     .from(Expense::class.java)
                     .where("resource = ?", resource.id)
                     .orderBy("created_at ASC")
                     .limit(50)
                     .execute()
+        }
+
+        fun getExpenseByDate(resource: Resource, date: Long): MutableList<Expense> {
+            return getExpensesInPeriod(resource, date, date + (24 * 60 * 60 * 1000))
         }
 
     }

@@ -44,6 +44,6 @@
         android:layout_toRightOf="@+id/tv_row_money_amount"
         android:gravity="center"
         android:text="an sang"
-        android:textAlignment="viewStart" />
+        />
 
 </RelativeLayout>
