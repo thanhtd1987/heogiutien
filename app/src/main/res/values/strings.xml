@@ -10,4 +10,8 @@
     <!--create expense-->
     <string name="expense_related_person_hint">Tên người liên quan</string>
     <string name="expense_note_hint">Note for this expense</string>
+
+    <!--list expense-->
+    <string name="expense_current_day">%s (%d/%d)</string>
+    <string name="expense_week_of_year">Week %d (%s)</string>
 </resources>
