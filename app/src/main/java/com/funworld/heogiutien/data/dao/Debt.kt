@@ -1,9 +1,11 @@
+package com.funworld.heogiutien.data.dao
+
 import com.activeandroid.Model
 import com.activeandroid.annotation.Column
 import com.activeandroid.annotation.Table
 import com.funworld.heogiutien.data.dao.Expense
 
-@Table(name = "Debt")
+@Table(name = "debt")
 class Debt: Model(){
 
     @Column(name = "debt_type")

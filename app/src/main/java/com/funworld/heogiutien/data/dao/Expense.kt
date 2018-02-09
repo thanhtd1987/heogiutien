@@ -12,7 +12,7 @@ import org.joda.time.DateTime
  * Created by ThanhTD on 6/25/2017.
  */
 
-@Table(name = "Expense")
+@Table(name = "expense")
 class Expense() : Model() {
 
 //    @Column(name = "expense_id", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)

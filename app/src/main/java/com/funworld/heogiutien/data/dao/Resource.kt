@@ -10,7 +10,7 @@ import com.activeandroid.query.Select
  * Created by ThanhTD on 11/2/2017.
  */
 
-@Table(name = "Resource")
+@Table(name = "resource")
 class Resource() : Model() {
 
     //    @Column(name = "resource_id", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
