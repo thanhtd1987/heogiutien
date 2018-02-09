@@ -10,7 +10,7 @@ import com.funworld.heogiutien.R
 import com.funworld.heogiutien.data.dao.Expense
 import com.funworld.heogiutien.data.dao.Resource
 import com.funworld.heogiutien.features.expense.list.ExpenseListAdapter
-import kotlinx.android.synthetic.main.expense_activity.*
+import kotlinx.android.synthetic.main.activity_expense_report.*
 import kotlinx.android.synthetic.main.expense_sumup_layout.*
 import org.joda.time.DateTime
 import org.joda.time.DateTimeConstants
@@ -23,7 +23,7 @@ class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.expense_activity)
+        setContentView(R.layout.activity_expense_report)
 
         initView()
         initViewAction()
