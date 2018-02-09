@@ -122,7 +122,7 @@
         android:layout_below="@+id/et_expense_related_name"/>
 
     <TextView
-        android:id="@+id/tv_edit_expense"
+        android:id="@+id/tv_expense_save"
         style="@style/text_bold_big_white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -139,9 +139,9 @@
         style="@style/text_bold_big_white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tv_edit_expense"
+        android:layout_alignTop="@+id/tv_expense_save"
         android:layout_marginLeft="@dimen/gap_small"
-        android:layout_toRightOf="@id/tv_edit_expense"
+        android:layout_toRightOf="@id/tv_expense_save"
         android:background="@drawable/rect_corner_primary"
         android:ems="4"
         android:gravity="center"
@@ -154,7 +154,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/cb_expense_related"
-        android:layout_alignTop="@+id/tv_edit_expense"
+        android:layout_alignTop="@+id/tv_expense_save"
         android:layout_marginLeft="@dimen/gap_small"
         android:background="@drawable/rect_corner_border_pink"
         android:ems="4"

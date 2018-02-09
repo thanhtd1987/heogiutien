@@ -204,7 +204,7 @@
             android:layout_below="@+id/et_expense_related_name"/>
 
         <TextView
-            android:id="@+id/tv_edit_expense"
+            android:id="@+id/tv_expense_edit"
             style="@style/button_round_primary_text_bold_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -218,7 +218,7 @@
             style="@style/button_round_primary_text_bold_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv_edit_expense"
+            android:layout_alignTop="@+id/tv_expense_edit"
             android:layout_marginLeft="@dimen/gap_small"
             android:layout_alignParentRight="true"
 
@@ -230,7 +230,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/cb_expense_related"
-            android:layout_alignTop="@+id/tv_edit_expense"
+            android:layout_alignTop="@+id/tv_expense_edit"
             android:layout_marginLeft="@dimen/gap_small"
             android:background="@drawable/rect_corner_border_pink"
             android:ems="4"
