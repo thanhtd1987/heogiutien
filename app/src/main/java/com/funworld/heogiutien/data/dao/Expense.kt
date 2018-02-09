@@ -75,9 +75,8 @@ class Expense() : Model() {
         fun getExpensesInPeriod(resource: Resource, from: Long, to: Long): MutableList<Expense> {
             return Select()
                     .from(Expense::class.java)
-                    .where("resource = ?", resource.id)
+                    .where("resource = ? AND created_at > ? AND created_at < ?", resource.id, from, to)
                     .orderBy("created_at ASC")
-                    .limit(50)
                     .execute()
         }
 

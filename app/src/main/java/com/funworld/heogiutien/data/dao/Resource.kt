@@ -53,9 +53,11 @@ class Resource() : Model() {
     companion object {
         fun getResourceByName(name: String): Resource {
             return Select().from(Resource::class.java)
-                    .where("name = ?", name)
+                    .where("name=?", name)
                     .executeSingle()
         }
+
+        fun getAll() = Select().from(Resource::class.java).execute<Resource>()
 
     }
 }
