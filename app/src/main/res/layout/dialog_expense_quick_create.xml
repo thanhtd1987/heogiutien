@@ -33,7 +33,7 @@
         android:src="@drawable/ic_check_white_24dp" />
 
     <include
-        layout="@layout/expense_quick_add"
+        layout="@layout/layout_expense_quick_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/gap_small"
