@@ -13,13 +13,13 @@ import com.funworld.heogiutien.features.expense.list.ExpenseListAdapter
 import kotlinx.android.synthetic.main.expense_activity.*
 import kotlinx.android.synthetic.main.expense_sumup_layout.*
 import org.joda.time.DateTime
-import java.util.*
+import org.joda.time.DateTimeConstants
 
 
 class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeListener {
 
     lateinit var mExpenses: List<Expense>
-    lateinit var mCurrentResource: Resource
+    val mCurrentResource: Resource by lazy { Resource.getResourceByName("CASH") }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,13 +30,16 @@ class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeList
     }
 
     private fun initView() {
+        initListOfExpense()
+
         val dt = DateTime()
         clv_month.date = dt.toDate().time
         clv_month.firstDayOfWeek = 2
         clv_month.setOnDateChangeListener(this)
+        clv_month.minDate = dt.dayOfMonth().withMinimumValue().millis
+        clv_month.maxDate = dt.dayOfMonth().withMaximumValue().millis
 
-        initListOfExpense()
-        onSelectedDayChange(clv_month, dt.year, dt.monthOfYear, dt.dayOfMonth)
+        onSelectedDayChange(clv_month, dt.year, dt.monthOfYear - 1, dt.dayOfMonth)
     }
 
     private fun initViewAction() {
@@ -45,8 +48,7 @@ class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeList
         })
     }
 
-    private fun initListOfExpense(){
-        mCurrentResource = Resource.getResourceByName("CASH")
+    private fun initListOfExpense() {
         mExpenses = Expense.getExpenseByDate(mCurrentResource, DateTime().toDate().time)
         val adapter = ExpenseListAdapter(mExpenses, listener = {
             //TODO go to Expense 's detail
@@ -58,20 +60,33 @@ class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeList
     }
 
     override fun onSelectedDayChange(view: CalendarView, year: Int, month: Int, dayOfMonth: Int) {
-        if(year == 0) return
+        if (year == 0) return
         //TODO update displaying info of date & sum of week
-        val dt = DateTime(year,month, dayOfMonth, 0, 0)
+        val dt = DateTime(year, month + 1, dayOfMonth, 0, 0)
         var periodOfWeek = getSelectWeek(dt)
-        tv_today.text = String.format(getString(R.string.expense_current_day), dt.dayOfWeek().asShortText, dayOfMonth, month)
-        tv_current_week.text = String.format(getString(R.string.expense_week_of_year), dt.weekyear, periodOfWeek)
+        tv_today.text = String.format(getString(R.string.expense_current_day), dt.dayOfWeek().asText, dayOfMonth, month + 1)
+        tv_current_week.text = String.format(getString(R.string.expense_week_of_year), dt.weekOfWeekyear, periodOfWeek)
 
         //TODO update list of expense of day
         mExpenses = Expense.getExpenseByDate(mCurrentResource, dt.toDate().time)
         rcv_today_expenses.adapter.notifyDataSetChanged()
     }
 
-    private fun getSelectWeek(dt: DateTime): String{
-        return dt.weekOfWeekyear().withMaximumValue().toString()
+    private fun getSelectWeek(dt: DateTime): String {
+        val date = dt.toLocalDate()
+        var str = ""
+
+//        var startOfWeek = date.weekOfWeekyear().roundFloorCopy()
+//        var endOfWeek = date.weekOfWeekyear().roundCeilingCopy()
+//        Log.d("DEBUG", "current: "+date)
+//        Log.d("DEBUG", "start: "+startOfWeek)
+//        Log.d("DEBUG", "end: "+endOfWeek)
+        //2
+        var startOfWeek = date.withDayOfWeek(DateTimeConstants.MONDAY)
+        var endOfWeek = date.withDayOfWeek(DateTimeConstants.SUNDAY)
+
+        str = startOfWeek.dayOfMonth.toString() + " - " + endOfWeek.dayOfMonth.toString()
+        return str
     }
 
 
