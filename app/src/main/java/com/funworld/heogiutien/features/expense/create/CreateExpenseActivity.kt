@@ -3,6 +3,7 @@ package com.funworld.heogiutien.features.expense.create
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -35,20 +36,11 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
     }
 
     override fun onClick(view: View?) {
-        when (view?.id){
+        when (view?.id) {
             R.id.iv_close -> {
                 showWarning(getString(R.string.title_alert),
                         getString(R.string.discard_warning),
-                        okListener = onBackPressed())
-//                val alertDialog = AlertDialog.Builder(this)
-//                        .setTitle(getString(R.string.title_alert))
-//                        .setMessage(getString(R.string.discard_warning))
-//                        .setPositiveButton(getString(R.string.ok), { dialogInterface, i ->
-//                            dialogInterface.dismiss()
-//                            onBackPressed()
-//                        })
-//                        .setNegativeButton(getString(R.string.cancel), { dialogInterface, i -> dialogInterface.dismiss() })
-//                        .show()
+                        okListener = { _ -> onBackPressed() })
             }
 
             R.id.tv_expense_time -> {
@@ -57,29 +49,29 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
 
             R.id.tv_expense_account -> {
                 //TODO: open dialog list of account for selecting
-                selectResource(mSelectedResource, listener = {resource -> onSelectedAccountChanged(resource) })
+                selectResource(mSelectedResource, listener = { resource -> onSelectedAccountChanged(resource) })
             }
 
             R.id.tv_expense_to_account -> {
                 //TODO: open dialog list of account for selecting
-                selectResource(mDestinationResource, listener = {resource -> onDestinationAccountChanged(resource) })
+                selectResource(mDestinationResource, listener = { resource -> onDestinationAccountChanged(resource) })
             }
 
             R.id.tv_reset_info -> {
                 //TODO: reset all inputted info to begin
                 showWarning(getString(R.string.title_alert),
                         "Are you sure to reset all info?",
-                        okListener = resetAllView())
+                        okListener = { _ -> resetAllView() })
             }
 
             R.id.tv_expense_save -> {
                 //TODO: save Expense
-                if(verifyExpenseInfo()){
+                if (verifyExpenseInfo()) {
 
                 } else {
                     showWarning(getString(R.string.title_alert),
                             "There is something wrong, please recheck!!!",
-                            okListener = Unit)
+                            okListener = { _ -> Unit })
                 }
             }
 
@@ -152,11 +144,11 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
         dialog.show()
     }
 
-    fun showWarning(title: String, message: String, okListener: Unit){
+    fun showWarning(title: String, message: String, okListener: (dialogInterface: DialogInterface) -> Unit){
         showWarning(title, message, getString(R.string.ok), getString(R.string.cancel), okListener)
     }
 
-    fun showWarning(title: String, message: String, strOk: String, strCancel: String, okListener: Unit) {
+    fun showWarning(title: String, message: String, strOk: String, strCancel: String, okListener: (dialogInterface: DialogInterface) -> Unit) {
         val alertDialog = AlertDialog.Builder(this)
                 .setTitle(title)
                 .setMessage(message)
@@ -168,8 +160,6 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
                     dialogInterface.dismiss()
                 })
                 .create()
-//        if(alertDialog.isShowing)
-//            alertDialog.dismiss()
         alertDialog.show()
     }
 
