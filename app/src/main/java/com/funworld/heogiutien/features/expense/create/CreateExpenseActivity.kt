@@ -24,7 +24,6 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
 
     private lateinit var mSelectedResource: Resource
     private lateinit var mDestinationResource: Resource
-    private val dialog = Dialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,15 +38,10 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
     override fun onClick(view: View?) {
         when (view?.id){
             R.id.iv_close -> {
-                val alertDialog = AlertDialog.Builder(this)
-                alertDialog.setTitle(getString(R.string.title_alert))
-                        .setMessage(getString(R.string.discard_warning))
-                        .setPositiveButton(getString(R.string.ok), { dialogInterface, i ->
-                            dialogInterface.dismiss()
-                            onBackPressed()
-                        })
-                        .setNegativeButton(getString(R.string.cancel), { dialogInterface, i -> dialogInterface.dismiss() })
-                        .show()
+                showWarning(this,
+                        getString(R.string.title_alert),
+                        getString(R.string.discard_warning),
+                        okListener = onBackPressed())
             }
 
             R.id.tv_expense_time -> {
@@ -56,18 +50,32 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
 
             R.id.tv_expense_account -> {
                 //TODO: open dialog list of account for selecting
+                selectResource(mSelectedResource, listener = {resource -> onSelectedAccountChanged(resource) })
             }
 
             R.id.tv_expense_to_account -> {
                 //TODO: open dialog list of account for selecting
+                selectResource(mDestinationResource, listener = {resource -> onDestinationAccountChanged(resource) })
             }
 
             R.id.tv_reset_info -> {
                 //TODO: reset all inputted info to begin
+                showWarning(this,
+                        getString(R.string.title_alert),
+                        "Are you sure to reset all info?",
+                        okListener = resetAllView())
             }
 
             R.id.tv_expense_save -> {
                 //TODO: save Expense
+                if(verifyExpenseInfo()){
+
+                } else {
+                    showWarning(this,
+                            getString(R.string.title_alert),
+                            "There is something wrong, please recheck!!!",
+                            okListener = Unit)
+                }
             }
 
         }
@@ -78,6 +86,8 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
         val dt = DateTime.now()
         tv_expense_time.text = formatter.print(dt)
 
+        onSelectedAccountChanged(accounts[0])
+        onDestinationAccountChanged(accounts[0])
 
     }
 
@@ -99,27 +109,58 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
         }
     }
 
-    private fun initResourceListDialog(textView: TextView, content: String){
+    private fun onSelectedAccountChanged(resource: Resource){
+        mSelectedResource = resource
+        tv_expense_account.text = mSelectedResource.name
+    }
+
+    private fun onDestinationAccountChanged(resource: Resource){
+        mDestinationResource = resource
+        tv_expense_to_account.text = mDestinationResource.name
+    }
+
+    private fun resetAllView(){
+
+    }
+
+    private fun verifyExpenseInfo(): Boolean{
+        return true
+    }
+
+    private fun selectResource(currentResource: Resource, listener: (Resource) -> Unit) {
+        val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.dialog_list_of_resource)
 
         val adapter = ResourceListAdapter(accounts, listener = { resource ->
-            when(textView.id){
-                R.id.tv_expense_account -> {
-                    mSelectedResource = resource
-                }
-
-                R.id.tv_expense_to_account -> {
-                    mDestinationResource = resource
-                }
-            }
-            textView.text = resource.name
+            listener(resource)
+            dialog.dismiss()
         })
+        adapter.mSelectedResource = currentResource
+
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         rcv_dialog_list_resource.layoutManager = layoutManager
         rcv_dialog_list_resource.adapter = adapter
+
+        dialog.show()
+    }
+
+    fun showWarning(context: Context, title: String, message: String, okListener: Unit){
+        showWarning(context, title, message, context.getString(R.string.ok), context.getString(R.string.cancel), okListener)
+    }
+
+    fun showWarning(context: Context, title: String, message: String, strOk: String, strCancel: String, okListener: Unit){
+        val alertDialog = AlertDialog.Builder(context)
+        alertDialog.setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(strOk, { dialogInterface, i ->
+                    dialogInterface.dismiss()
+                    okListener
+                })
+                .setNegativeButton(strCancel, { dialogInterface, i -> dialogInterface.dismiss() })
+                .show()
     }
 
     companion object {
