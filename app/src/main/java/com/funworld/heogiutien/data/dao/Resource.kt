@@ -51,10 +51,14 @@ class Resource() : Model() {
 
 
     companion object {
-        fun getResourceByName(name: String): Resource {
-            return Select().from(Resource::class.java)
+        fun getResourceByName(name: String): Resource? {
+            val list: MutableList<Resource> =  Select().from(Resource::class.java)
                     .where("name=?", name)
-                    .executeSingle()
+                    .execute()
+            if(list.isEmpty())
+                return null
+            else
+                return list[0]
         }
 
         fun getAll() = Select().from(Resource::class.java).execute<Resource>()
