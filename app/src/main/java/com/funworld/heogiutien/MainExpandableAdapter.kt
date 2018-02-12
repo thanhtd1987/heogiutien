@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
 
-import com.funworld.heogiutien.R
 import com.funworld.heogiutien.data.dao.Expense
 
 import java.util.HashMap
@@ -74,7 +73,7 @@ class MainExpandableAdapter(private val mContext: Context,
         val tv_row_time = convertView.findViewById<View>(R.id.tv_row_time) as TextView
 
         tv_row_reason.text = (getChild(groupPosition, childPosition) as Expense).purpose
-        tv_row_time.text = (getChild(groupPosition, childPosition) as Expense).createAt.toString() + "" // 2017-06-24 15:30:23 --> 15:30
+        tv_row_time.text = (getChild(groupPosition, childPosition) as Expense).createdAt.toString() + "" // 2017-06-24 15:30:23 --> 15:30
         tv_row_money_amount.text = (getChild(groupPosition, childPosition) as Expense).amount.toString() + "k"
         return convertView
     }

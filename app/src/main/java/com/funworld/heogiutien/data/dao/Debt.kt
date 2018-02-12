@@ -1,8 +1,9 @@
+package com.funworld.heogiutien.data.dao
+
 import android.support.annotation.StringDef
 import com.activeandroid.Model
 import com.activeandroid.annotation.Column
 import com.activeandroid.annotation.Table
-import com.funworld.heogiutien.data.dao.Expense
 
 @Table(name = "Debt")
 class Debt: Model(){
@@ -13,6 +14,10 @@ class Debt: Model(){
     var amount: Int = 0
     @Column(name = "purpose")
     lateinit var purpose: String
+    @Column(name = "related_person")
+    lateinit var person: String
+    @Column(name = "resource_id")
+    lateinit var resourceId: Resource
     @Column(name = "expensive_id")
     lateinit var expenseId: Expense
     //thoi gian tao chi tieu
@@ -21,8 +26,6 @@ class Debt: Model(){
     //thoi gian cua lan chinh sua cuoi cung
     @Column(name = "updated_at")
     var updatedAt: Long = 0
-    @Column(name = "related_person")
-    var relatedPerson: Long = 0
 
 
     companion object {

@@ -68,10 +68,19 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
             R.id.tv_expense_save -> {
                 //TODO: save Expense
                 if (verifyExpenseInfo()) {
-//                    ExpenseHelper.addExpense(et_expense_purpose.text.toString(),
-//                            et_expense_amount.text.toString().toInt(),
-//                            mSelectedResource,
-//                            )
+                    var isDebt: Boolean? = null
+                    if (toggle_related.isEnabled) {
+                        isDebt = rd_debt.isChecked
+                    }
+
+                    ExpenseHelper.addExpense(et_expense_purpose.text.toString(),
+                            et_expense_amount.text.toString().toInt(),
+                            mSelectedResource,
+                            cb_expense_deposit.isChecked,
+                            et_expense_note.text.toString(),
+                            isDebt,
+                            et_expense_related_name.text.toString()
+                    )
                 } else {
                     showWarning(getString(R.string.title_alert),
                             "There is something wrong, please recheck!!!",

@@ -32,70 +32,82 @@
         android:paddingLeft="@dimen/gap_normal"
         android:text="Thứ 3, 28-10-2017 18:30" />
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="@dimen/gap_small"
+        android:layout_height="match_parent"
         android:layout_below="@+id/tv_expense_time"
-        android:background="@color/white"
-        android:padding="@dimen/gap_normal">
+        android:background="@color/white">
 
-        <EditText
-            android:id="@+id/et_expense_purpose"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:hint="Mục đích chi tiêu"
-            android:inputType="text" />
+            android:layout_margin="@dimen/gap_small"
+            android:padding="@dimen/gap_normal">
 
-        <EditText
-            android:id="@+id/et_expense_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/et_expense_purpose"
-            android:layout_alignStart="@+id/et_expense_purpose"
-            android:layout_below="@+id/et_expense_purpose"
-            android:ems="5"
-            android:hint="Số tiền"
-            android:inputType="numberDecimal" />
+            <EditText
+                android:id="@+id/et_expense_purpose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:hint="Mục đích chi tiêu"
+                android:inputType="text" />
 
-        <TextView
-            android:id="@+id/tv_expense_account_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/et_expense_amount"
-            android:layout_alignTop="@+id/et_expense_amount"
-            android:layout_marginLeft="@dimen/gap_normal"
-            android:layout_toRightOf="@+id/et_expense_amount"
-            android:gravity="center_vertical"
-            android:text="Tài khoản: " />
+            <EditText
+                android:id="@+id/et_expense_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/et_expense_purpose"
+                android:layout_alignStart="@+id/et_expense_purpose"
+                android:layout_below="@+id/et_expense_purpose"
+                android:ems="5"
+                android:hint="Số tiền"
+                android:inputType="numberDecimal" />
 
-        <TextView
-            android:id="@+id/tv_expense_account"
-            style="@style/button_round_primary_text_bold_white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv_expense_account_label"
-            android:layout_marginLeft="@dimen/gap_normal"
-            android:layout_toRightOf="@+id/tv_expense_account_label"
+            <TextView
+                android:id="@+id/tv_expense_account_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/et_expense_amount"
+                android:layout_alignTop="@+id/et_expense_amount"
+                android:layout_marginLeft="@dimen/gap_normal"
+                android:layout_toRightOf="@+id/et_expense_amount"
+                android:gravity="center_vertical"
+                android:text="Tài khoản: " />
 
-            android:text="Tiền mặt" />
+            <TextView
+                android:id="@+id/tv_expense_account"
+                style="@style/button_round_primary_text_bold_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tv_expense_account_label"
+                android:layout_marginLeft="@dimen/gap_normal"
+                android:layout_toRightOf="@+id/tv_expense_account_label"
 
-        <CheckBox
-            android:id="@+id/cb_expense_transfer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/et_expense_amount"
-            android:layout_marginTop="@dimen/gap_small"
-            android:checked="true"
-            android:padding="@dimen/gap_small"
-            android:text="Chuyển tiền" />
+                android:text="Tiền mặt" />
 
-        <!--<TextView-->
+            <CheckBox
+                android:id="@+id/cb_expense_deposit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_expense_amount"
+                android:layout_marginTop="@dimen/gap_small"
+                android:checked="false"
+                android:padding="@dimen/gap_small"
+                android:text="Nop tiền" />
+
+            <CheckBox
+                android:id="@+id/cb_expense_transfer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cb_expense_deposit"
+                android:layout_marginTop="@dimen/gap_small"
+                android:checked="false"
+                android:padding="@dimen/gap_small"
+                android:text="Chuyển tiền" />
+
+            <!--<TextView-->
             <!--android:id="@+id/tv_expense_to_account_text"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
@@ -105,38 +117,38 @@
             <!--android:layout_toRightOf="@+id/et_expense_amount"-->
             <!--android:gravity="center_vertical"-->
             <!--android:text="Tài khoản đến: " />-->
-        <TextView
-            android:id="@+id/tv_expense_to_account_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cb_expense_transfer"
-            android:layout_marginLeft="64dp"
-            android:layout_alignLeft="@+id/et_expense_amount"
-            android:gravity="center_vertical"
-            android:text="Tài khoản đến: " />
+            <TextView
+                android:id="@+id/tv_expense_to_account_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cb_expense_transfer"
+                android:layout_marginLeft="64dp"
+                android:layout_alignLeft="@+id/et_expense_amount"
+                android:gravity="center_vertical"
+                android:text="Tài khoản đến: " />
 
-        <TextView
-            android:id="@+id/tv_expense_to_account"
-            style="@style/button_round_primary_text_bold_white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv_expense_to_account_label"
-            android:layout_marginLeft="@dimen/gap_normal"
-            android:layout_toRightOf="@+id/tv_expense_to_account_label"
+            <TextView
+                android:id="@+id/tv_expense_to_account"
+                style="@style/button_round_primary_text_bold_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tv_expense_to_account_label"
+                android:layout_marginLeft="@dimen/gap_normal"
+                android:layout_toRightOf="@+id/tv_expense_to_account_label"
 
-            android:text="VCB" />
+                android:text="VCB" />
 
-        <CheckBox
-            android:id="@+id/cb_expense_related"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_expense_to_account"
-            android:layout_marginTop="@dimen/gap_small"
-            android:checked="true"
-            android:padding="@dimen/gap_small"
-            android:text="Liên quan" />
+            <CheckBox
+                android:id="@+id/cb_expense_related"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_expense_to_account"
+                android:layout_marginTop="@dimen/gap_small"
+                android:checked="false"
+                android:padding="@dimen/gap_small"
+                android:text="Liên quan" />
 
-        <!--<RadioGroup-->
+            <!--<RadioGroup-->
             <!--android:id="@+id/toggle_related"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="30dp"-->
@@ -145,98 +157,111 @@
             <!--android:background="@drawable/rect_corner_border_pink"-->
             <!--android:checkedButton="@+id/rd_debt"-->
             <!--android:orientation="horizontal">-->
-        <RadioGroup
-            android:id="@+id/toggle_related"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_below="@+id/cb_expense_related"
-            android:layout_marginLeft="64dp"
-            android:background="@drawable/rect_corner_border_pink"
-            android:checkedButton="@+id/rd_debt"
-            android:orientation="horizontal">
+            <RadioGroup
+                android:id="@+id/toggle_related"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/cb_expense_related"
+                android:layout_marginLeft="64dp"
+                android:background="@drawable/rect_corner_border_pink"
+                android:checkedButton="@+id/rd_debt"
+                android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/rd_borrow"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="1dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/toggle_selector"
-                android:button="@null"
+                <RadioButton
+                    android:id="@+id/rd_borrow"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/toggle_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Borrow"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/rd_debt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/toggle_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Debt"
+                    android:textColor="@color/white" />
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/et_expense_related_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/toggle_related"
+                android:layout_below="@+id/toggle_related"
+                android:ems="8"
+                android:hint="Tên người liên quan"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/et_expense_related_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/et_expense_related_name"
+                android:layout_toRightOf="@+id/et_expense_related_name"
+                android:layout_marginLeft="@dimen/gap_small"
+                android:hint="So tien"
+                android:inputType="numberDecimal"/>
+
+            <EditText
+                android:id="@+id/et_expense_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/expense_note_hint"
+                android:layout_marginLeft="@dimen/gap_small"
+                android:layout_below="@+id/et_expense_related_name"/>
+
+            <TextView
+                android:id="@+id/tv_expense_save"
+                style="@style/button_round_primary_text_bold_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/tv_more_detail"
+                android:layout_below="@id/et_expense_note"
+
+                android:text="Lưu" />
+
+            <TextView
+                android:id="@+id/tv_more_detail"
+                style="@style/button_round_primary_text_bold_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tv_expense_save"
+                android:layout_marginLeft="@dimen/gap_small"
+                android:layout_alignParentRight="true"
+
+                android:text="Chi tiết" />
+
+            <TextView
+                android:id="@+id/tv_reset_info"
+                style="@style/text_bold_big_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/cb_expense_related"
+                android:layout_alignTop="@+id/tv_expense_save"
+                android:layout_marginLeft="@dimen/gap_small"
+                android:background="@drawable/rect_corner_border_pink"
+                android:ems="4"
                 android:gravity="center"
-                android:text="Borrow"
-                android:textColor="@color/white" />
+                android:padding="@dimen/gap_small"
+                android:text="Reset" />
 
-            <RadioButton
-                android:id="@+id/rd_debt"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginTop="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/toggle_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:text="Debt"
-                android:textColor="@color/white" />
-        </RadioGroup>
+        </RelativeLayout>
+    </ScrollView>
 
-        <EditText
-            android:id="@+id/et_expense_related_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/toggle_related"
-            android:layout_below="@+id/toggle_related"
-            android:ems="10"
-            android:hint="Tên người liên quan"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/et_expense_note"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/expense_note_hint"
-            android:layout_marginLeft="@dimen/gap_small"
-            android:layout_below="@+id/et_expense_related_name"/>
-
-        <TextView
-            android:id="@+id/tv_expense_save"
-            style="@style/button_round_primary_text_bold_white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/tv_more_detail"
-            android:layout_below="@id/et_expense_note"
-
-            android:text="Lưu" />
-
-        <TextView
-            android:id="@+id/tv_more_detail"
-            style="@style/button_round_primary_text_bold_white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv_expense_save"
-            android:layout_marginLeft="@dimen/gap_small"
-            android:layout_alignParentRight="true"
-
-            android:text="Chi tiết" />
-
-        <TextView
-            android:id="@+id/tv_reset_info"
-            style="@style/text_bold_big_white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/cb_expense_related"
-            android:layout_alignTop="@+id/tv_expense_save"
-            android:layout_marginLeft="@dimen/gap_small"
-            android:background="@drawable/rect_corner_border_pink"
-            android:ems="4"
-            android:gravity="center"
-            android:padding="@dimen/gap_small"
-            android:text="Reset" />
-
-    </RelativeLayout>
 
 </RelativeLayout>

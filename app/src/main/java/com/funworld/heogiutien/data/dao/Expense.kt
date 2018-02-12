@@ -23,35 +23,29 @@ class Expense() : Model() {
     //luong tien dung cho chi tieu
     @Column(name = "money_amount")
     var amount: Int = 0
-    // nguon tien dung cho chi tieu
-    @Column(name = "resource", onUpdate = Column.ForeignKeyAction.CASCADE, onDelete = Column.ForeignKeyAction.CASCADE)
-    lateinit var resourceId: Resource
     //muc dich cua chi tieu
     @Column(name = "purpose")
     lateinit var purpose: String
+    // nguon tien dung cho chi tieu
+    @Column(name = "resource", onUpdate = Column.ForeignKeyAction.CASCADE, onDelete = Column.ForeignKeyAction.CASCADE)
+    lateinit var resourceId: Resource
+    @Column(name = "note")
+    var note: String? = null
     //thoi gian tao chi tieu
     @Column(name = "created_at")
-    var createAt: Long = 0
+    var createdAt: Long = 0
     //thoi gian cua lan chinh sua cuoi cung
     @Column(name = "updated_at")
     var updatedAt: Long = 0
-    // loai chi tieu lien quan den nguoi khac : muon (+), cho muon (-)
-    @Column(name = "related_type") // --> change to Debt object or List<Debt>
-    var relatedType: String? = null
-    // nguoi lien quan den chi tieu muon/cho muon
-    @Column(name = "related_person")
-    var relatedPerson: String? = null
-    @Column(name = "note")
-    var note: String? = null
 
-    var relatedExpense: String? = null // cac chi tieu lien quan, tach chi tieu...
+    var relatedExpense: String = "" // cac chi tieu lien quan, tach chi tieu...
 
     fun getCreatedTime(): String {
-        return DateTime(createAt).hourOfDay().toString()
+        return DateTime(createdAt).hourOfDay().toString()
     }
 
-    fun getCreatedDatTime(): String {
-        return DateTime(createAt).toDateTime().toString()
+    fun getCreatedDateTime(): String {
+        return DateTime(createdAt).toDateTime().toString()
     }
 
     companion object {
@@ -68,7 +62,6 @@ class Expense() : Model() {
                     .where("resource = ?", resource.id)
                     .orderBy("created_at ASC")
                     .limit(50)
-
                     .execute()
         }
 
