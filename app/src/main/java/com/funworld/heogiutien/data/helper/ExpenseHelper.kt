@@ -6,7 +6,7 @@ import com.funworld.heogiutien.data.dao.Resource
 class ExpenseHelper{
 
     companion object {
-        fun quickAddExpense(purpose: String, amount: Int, resource: Resource, relatedType: String,
+        fun addExpense(purpose: String, amount: Int, resource: Resource, relatedType: String,
                             relatedPerson: String, note: String): Expense{
             val expense = Expense()
             expense.purpose = purpose

@@ -1,3 +1,4 @@
+import android.support.annotation.StringDef
 import com.activeandroid.Model
 import com.activeandroid.annotation.Column
 import com.activeandroid.annotation.Table
@@ -7,7 +8,7 @@ import com.funworld.heogiutien.data.dao.Expense
 class Debt: Model(){
 
     @Column(name = "debt_type")
-    lateinit var type: String
+    @DebtType lateinit var type: String
     @Column(name = "amount")
     var amount: Int = 0
     @Column(name = "purpose")
@@ -24,4 +25,12 @@ class Debt: Model(){
     var relatedPerson: Long = 0
 
 
+    companion object {
+        const val BORROW_TYPE = "borrow"
+        const val DEBT_TYPE = "debt"
+
+        @StringDef(BORROW_TYPE, DEBT_TYPE)
+        @Retention(AnnotationRetention.SOURCE)
+        annotation class DebtType
+    }
 }

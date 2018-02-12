@@ -12,6 +12,7 @@ import android.view.View
 import android.view.Window
 import com.funworld.heogiutien.R
 import com.funworld.heogiutien.data.dao.Resource
+import com.funworld.heogiutien.data.helper.ExpenseHelper
 import kotlinx.android.synthetic.main.activity_expense_create.*
 import kotlinx.android.synthetic.main.dialog_list_of_resource.*
 import org.joda.time.DateTime
@@ -67,7 +68,10 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
             R.id.tv_expense_save -> {
                 //TODO: save Expense
                 if (verifyExpenseInfo()) {
-
+//                    ExpenseHelper.addExpense(et_expense_purpose.text.toString(),
+//                            et_expense_amount.text.toString().toInt(),
+//                            mSelectedResource,
+//                            )
                 } else {
                     showWarning(getString(R.string.title_alert),
                             "There is something wrong, please recheck!!!",

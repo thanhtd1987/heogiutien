@@ -36,7 +36,7 @@ class Expense() : Model() {
     @Column(name = "updated_at")
     var updatedAt: Long = 0
     // loai chi tieu lien quan den nguoi khac : muon (+), cho muon (-)
-    @Column(name = "related_type")
+    @Column(name = "related_type") // --> change to Debt object or List<Debt>
     var relatedType: String? = null
     // nguoi lien quan den chi tieu muon/cho muon
     @Column(name = "related_person")
