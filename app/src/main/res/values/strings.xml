@@ -7,9 +7,14 @@
     <string name="create_expense">Create</string>
     <string name="current_balance">Số dư hiện tại.</string>
 
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_alert">Alert!!</string>
+
     <!--create expense-->
     <string name="expense_related_person_hint">Tên người liên quan</string>
     <string name="expense_note_hint">Note for this expense</string>
+    <string name="discard_warning">Are you sure to discard info?</string>
 
     <!--list expense-->
     <string name="expense_current_day">%s (%d/%d)</string>

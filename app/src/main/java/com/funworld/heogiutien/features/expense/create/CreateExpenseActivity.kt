@@ -1,5 +1,6 @@
 package com.funworld.heogiutien.features.expense.create
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -37,6 +38,18 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
 
     override fun onClick(view: View?) {
         when (view?.id){
+            R.id.iv_close -> {
+                val alertDialog = AlertDialog.Builder(this)
+                alertDialog.setTitle(getString(R.string.title_alert))
+                        .setMessage(getString(R.string.discard_warning))
+                        .setPositiveButton(getString(R.string.ok), { dialogInterface, i ->
+                            dialogInterface.dismiss()
+                            onBackPressed()
+                        })
+                        .setNegativeButton(getString(R.string.cancel), { dialogInterface, i -> dialogInterface.dismiss() })
+                        .show()
+            }
+
             R.id.tv_expense_time -> {
                 //TODO: do action change date time
             }
@@ -69,6 +82,7 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
     }
 
     private fun initViewAction(){
+        iv_close.setOnClickListener(this)
         tv_expense_time.setOnClickListener(this)
         tv_expense_account.setOnClickListener(this)
         tv_expense_to_account.setOnClickListener(this)

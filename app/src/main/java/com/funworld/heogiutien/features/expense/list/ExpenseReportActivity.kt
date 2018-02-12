@@ -43,9 +43,8 @@ class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeList
     }
 
     private fun initViewAction() {
-        iv_add_expense.setOnClickListener({
-            CreateExpenseActivity.startActivity(this)
-        })
+        iv_add_expense.setOnClickListener{CreateExpenseActivity.startActivity(this)}
+        iv_back.setOnClickListener{onBackPressed()}
     }
 
     private fun initListOfExpense() {
