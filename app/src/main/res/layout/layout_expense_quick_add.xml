@@ -31,7 +31,7 @@
         android:inputType="numberDecimal" />
 
     <TextView
-        android:id="@+id/tv_expense_account_text"
+        android:id="@+id/tv_expense_account_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/et_expense_amount"
@@ -46,10 +46,10 @@
         style="@style/text_bold_big_white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tv_expense_account_text"
-        android:layout_alignTop="@+id/tv_expense_account_text"
+        android:layout_alignBottom="@+id/tv_expense_account_label"
+        android:layout_alignTop="@+id/tv_expense_account_label"
         android:layout_marginLeft="@dimen/gap_normal"
-        android:layout_toRightOf="@+id/tv_expense_account_text"
+        android:layout_toRightOf="@+id/tv_expense_account_label"
         android:background="@drawable/rect_corner_primary"
         android:fontFamily="cursive"
         android:gravity="center_vertical"
@@ -69,7 +69,7 @@
         android:id="@+id/toggle_related"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_alignLeft="@+id/tv_expense_account_text"
+        android:layout_alignLeft="@+id/tv_expense_account_label"
         android:layout_alignTop="@+id/cb_expense_related"
         android:background="@drawable/rect_corner_border_pink"
         android:checkedButton="@+id/rd_debt"

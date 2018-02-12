@@ -64,7 +64,7 @@
             android:inputType="numberDecimal" />
 
         <TextView
-            android:id="@+id/tv_expense_account_text"
+            android:id="@+id/tv_expense_account_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/et_expense_amount"
@@ -79,9 +79,9 @@
             style="@style/button_round_primary_text_bold_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv_expense_account_text"
+            android:layout_alignTop="@+id/tv_expense_account_label"
             android:layout_marginLeft="@dimen/gap_normal"
-            android:layout_toRightOf="@+id/tv_expense_account_text"
+            android:layout_toRightOf="@+id/tv_expense_account_label"
 
             android:text="Tiền mặt" />
 
@@ -106,7 +106,7 @@
             <!--android:gravity="center_vertical"-->
             <!--android:text="Tài khoản đến: " />-->
         <TextView
-            android:id="@+id/tv_expense_to_account_text"
+            android:id="@+id/tv_expense_to_account_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cb_expense_transfer"
@@ -120,9 +120,9 @@
             style="@style/button_round_primary_text_bold_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv_expense_to_account_text"
+            android:layout_alignTop="@+id/tv_expense_to_account_label"
             android:layout_marginLeft="@dimen/gap_normal"
-            android:layout_toRightOf="@+id/tv_expense_to_account_text"
+            android:layout_toRightOf="@+id/tv_expense_to_account_label"
 
             android:text="VCB" />
 
