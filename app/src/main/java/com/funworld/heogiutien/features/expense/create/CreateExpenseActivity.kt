@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.view.Window
-import android.widget.TextView
 import com.funworld.heogiutien.R
 import com.funworld.heogiutien.data.dao.Resource
 import kotlinx.android.synthetic.main.activity_expense_create.*
@@ -38,10 +37,18 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
     override fun onClick(view: View?) {
         when (view?.id){
             R.id.iv_close -> {
-                showWarning(this,
-                        getString(R.string.title_alert),
+                showWarning(getString(R.string.title_alert),
                         getString(R.string.discard_warning),
                         okListener = onBackPressed())
+//                val alertDialog = AlertDialog.Builder(this)
+//                        .setTitle(getString(R.string.title_alert))
+//                        .setMessage(getString(R.string.discard_warning))
+//                        .setPositiveButton(getString(R.string.ok), { dialogInterface, i ->
+//                            dialogInterface.dismiss()
+//                            onBackPressed()
+//                        })
+//                        .setNegativeButton(getString(R.string.cancel), { dialogInterface, i -> dialogInterface.dismiss() })
+//                        .show()
             }
 
             R.id.tv_expense_time -> {
@@ -60,8 +67,7 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
 
             R.id.tv_reset_info -> {
                 //TODO: reset all inputted info to begin
-                showWarning(this,
-                        getString(R.string.title_alert),
+                showWarning(getString(R.string.title_alert),
                         "Are you sure to reset all info?",
                         okListener = resetAllView())
             }
@@ -71,8 +77,7 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
                 if(verifyExpenseInfo()){
 
                 } else {
-                    showWarning(this,
-                            getString(R.string.title_alert),
+                    showWarning(getString(R.string.title_alert),
                             "There is something wrong, please recheck!!!",
                             okListener = Unit)
                 }
@@ -147,20 +152,25 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
         dialog.show()
     }
 
-    fun showWarning(context: Context, title: String, message: String, okListener: Unit){
-        showWarning(context, title, message, context.getString(R.string.ok), context.getString(R.string.cancel), okListener)
+    fun showWarning(title: String, message: String, okListener: Unit){
+        showWarning(title, message, getString(R.string.ok), getString(R.string.cancel), okListener)
     }
 
-    fun showWarning(context: Context, title: String, message: String, strOk: String, strCancel: String, okListener: Unit){
-        val alertDialog = AlertDialog.Builder(context)
-        alertDialog.setTitle(title)
+    fun showWarning(title: String, message: String, strOk: String, strCancel: String, okListener: Unit) {
+        val alertDialog = AlertDialog.Builder(this)
+                .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(strOk, { dialogInterface, i ->
                     dialogInterface.dismiss()
                     okListener
                 })
-                .setNegativeButton(strCancel, { dialogInterface, i -> dialogInterface.dismiss() })
-                .show()
+                .setNegativeButton(strCancel, { dialogInterface, i ->
+                    dialogInterface.dismiss()
+                })
+                .create()
+//        if(alertDialog.isShowing)
+//            alertDialog.dismiss()
+        alertDialog.show()
     }
 
     companion object {
