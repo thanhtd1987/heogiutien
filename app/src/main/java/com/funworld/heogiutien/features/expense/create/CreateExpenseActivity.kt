@@ -114,8 +114,10 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
         }
 
         cb_expense_related.setOnCheckedChangeListener{_, isChecked ->
-            toggle_related.isEnabled = isChecked
+            rd_borrow.isEnabled = isChecked
+            rd_debt.isEnabled = isChecked
             et_expense_related_name.isEnabled = isChecked
+            et_expense_related_amount.isEnabled = isChecked
         }
     }
 
