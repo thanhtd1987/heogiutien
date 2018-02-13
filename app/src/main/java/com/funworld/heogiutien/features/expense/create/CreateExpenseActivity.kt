@@ -6,15 +6,16 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.Window
 import com.funworld.heogiutien.R
 import com.funworld.heogiutien.data.dao.Resource
 import com.funworld.heogiutien.data.helper.ExpenseHelper
 import kotlinx.android.synthetic.main.activity_expense_create.*
-import kotlinx.android.synthetic.main.dialog_list_of_resource.*
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 
@@ -69,11 +70,11 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
                 //TODO: save Expense
                 if (verifyExpenseInfo()) {
                     var isDebt: Boolean? = null
-                    if (toggle_related.isEnabled) {
+                    if (cb_expense_related.isChecked) {
                         isDebt = rd_debt.isChecked
                     }
 
-                    ExpenseHelper.addExpense(et_expense_purpose.text.toString(),
+                    val expense = ExpenseHelper.addExpense(et_expense_purpose.text.toString(),
                             et_expense_amount.text.toString().toInt(),
                             mSelectedResource,
                             cb_expense_deposit.isChecked,
@@ -81,6 +82,9 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
                             isDebt,
                             et_expense_related_name.text.toString()
                     )
+                    Snackbar.make(view, "Expense ${expense.id} is saved!", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show()
+                    finish()
                 } else {
                     showWarning(getString(R.string.title_alert),
                             "There is something wrong, please recheck!!!",
@@ -144,6 +148,7 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.dialog_list_of_resource)
+        val rcvResources = dialog.findViewById<RecyclerView>(R.id.rcv_dialog_list_resource)
 
         val adapter = ResourceListAdapter(accounts, listener = { resource ->
             listener(resource)
@@ -153,8 +158,8 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
 
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        rcv_dialog_list_resource.layoutManager = layoutManager
-        rcv_dialog_list_resource.adapter = adapter
+        rcvResources.layoutManager = layoutManager
+        rcvResources.adapter = adapter
 
         dialog.show()
     }
