@@ -8,11 +8,19 @@ import com.funworld.heogiutien.data.dao.Expense
 import kotlinx.android.synthetic.main.expense_row_layout.view.*
 import com.funworld.heogiutien.common.inflate
 
-class ExpenseListAdapter(val mExpenses: List<Expense>, val listener: (Expense) -> Unit)
+class ExpenseListAdapter(expenses: List<Expense>, val listener: (Expense) -> Unit)
     : RecyclerView.Adapter<ExpenseListAdapter.ExpenseViewHolder>() {
 
-//    private lateinit var mExpenses: List<Expense>
+    private var mExpenses: List<Expense>
 
+    init {
+        mExpenses = expenses
+    }
+
+    fun setExpenses(expenses: List<Expense>){
+        mExpenses = expenses
+        notifyDataSetChanged()
+    }
 
     override fun getItemCount(): Int {
         return mExpenses.size

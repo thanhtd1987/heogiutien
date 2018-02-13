@@ -19,7 +19,7 @@ import org.joda.time.DateTimeConstants
 class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeListener {
 
     lateinit var mExpenses: List<Expense>
-    val mCurrentResource: Resource? by lazy { Resource.getResourceByName("CASH") }
+    private val mCurrentResource: Resource? by lazy { Resource.getResourceByName("CASH") }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +48,7 @@ class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeList
     }
 
     private fun initListOfExpense() {
-        mExpenses = Expense.getExpenseByDate(mCurrentResource!!, DateTime().toDate().time)
+        mExpenses = Expense.getByDate(mCurrentResource!!, DateTime.now().withTimeAtStartOfDay().millis)
         val adapter = ExpenseListAdapter(mExpenses, listener = {
             //TODO go to Expense 's detail
         })
@@ -67,8 +67,10 @@ class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeList
         tv_current_week.text = String.format(getString(R.string.expense_week_of_year), dt.weekOfWeekyear, periodOfWeek)
 
         //TODO update list of expense of day
-        mExpenses = Expense.getExpenseByDate(mCurrentResource!!, dt.toDate().time)
-        rcv_today_expenses.adapter.notifyDataSetChanged()
+        mExpenses = Expense.getByDate(mCurrentResource!!, dt.withTimeAtStartOfDay().millis)
+        (rcv_today_expenses.adapter as ExpenseListAdapter).setExpenses(mExpenses)
+//        val decoration = DividerItemDecoration(this, LinearLayout.HORIZONTAL)
+//        rcv_today_expenses.addItemDecoration(decoration)
     }
 
     private fun getSelectWeek(dt: DateTime): String {

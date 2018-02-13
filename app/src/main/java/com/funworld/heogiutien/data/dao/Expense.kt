@@ -6,6 +6,7 @@ import com.activeandroid.annotation.Column
 import com.activeandroid.annotation.Table
 import com.activeandroid.query.Select
 import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
 
 
 /**
@@ -40,13 +41,11 @@ class Expense() : Model() {
 
     var relatedExpense: String = "" // cac chi tieu lien quan, tach chi tieu...
 
-    fun getCreatedTime(): String {
-        return DateTime(createdAt).hourOfDay().toString()
-    }
+    fun getCreatedTime()= DateTimeFormat.forPattern("HH:mm").print(createdAt)
 
-    fun getCreatedDateTime(): String {
-        return DateTime(createdAt).toDateTime().toString()
-    }
+    fun getCreatedDateTime() = DateTimeFormat.forPattern("YYYY-MM-dd HH:mm").print(createdAt)
+
+    override fun toString() = "[type: $type, amount: $amount, purpose: $purpose, createdAt: $createdAt, resource id: $resourceId]"
 
     companion object {
         const val DEPOSIT_TYPE = "deposit"
@@ -65,7 +64,7 @@ class Expense() : Model() {
                     .execute()
         }
 
-        fun getExpensesInPeriod(resource: Resource, from: Long, to: Long): MutableList<Expense> {
+        fun getInPeriod(resource: Resource, from: Long, to: Long): MutableList<Expense> {
             return Select()
                     .from(Expense::class.java)
                     .where("resource = ? AND created_at > ? AND created_at < ?", resource.id, from, to)
@@ -73,10 +72,14 @@ class Expense() : Model() {
                     .execute()
         }
 
-        fun getExpenseByDate(resource: Resource, date: Long): MutableList<Expense> {
-            return getExpensesInPeriod(resource, date, date + (24 * 60 * 60 * 1000))
+        fun getByDate(resource: Resource, date: Long): MutableList<Expense> {
+            return getInPeriod(resource, date, DateTime(date).withTime(23, 59, 59, 999).millis)
         }
 
+        fun getAll() = Select().from(Expense::class.java).execute<Expense>()
+
+        fun getByResource(resource: Resource) = Select().from(Expense::class.java)
+                .where("resource=?", resource.id).execute<Expense>()
     }
 
 }
