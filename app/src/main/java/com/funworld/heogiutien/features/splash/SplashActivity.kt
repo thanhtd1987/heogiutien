@@ -8,12 +8,15 @@ import com.funworld.heogiutien.R
 import com.funworld.heogiutien.data.helper.ResourceHelper
 import com.funworld.heogiutien.features.main.MainActivity
 import org.joda.time.DateTime
+import java.util.TimeZone
 
 class SplashActivity: AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Ho_Chi_Minh")) //set default time zone --> may be need to ask & set time zone in 1st time
 
         val currentTime = DateTime.now().millis
         val endTime = initResourceDB()
