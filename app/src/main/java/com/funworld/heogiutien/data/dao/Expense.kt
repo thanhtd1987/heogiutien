@@ -73,7 +73,14 @@ class Expense() : Model() {
         }
 
         fun getByDate(resource: Resource, date: Long): MutableList<Expense> {
-            return getInPeriod(resource, date, DateTime(date).withTime(23, 59, 59, 999).millis)
+            return getInPeriod(resource,
+                    date,
+                    DateTime(date).withTime(23, 59, 59, 999).millis)
+        }
+
+        fun getSumOfPeriod(resource: Resource, from: Long, to: Long): Int{
+//            return getByDate(resource, date).map { it.amount }.sum()
+            return getInPeriod(resource, from, to).sumBy { it.amount }
         }
 
         fun getAll() = Select().from(Expense::class.java).execute<Expense>()

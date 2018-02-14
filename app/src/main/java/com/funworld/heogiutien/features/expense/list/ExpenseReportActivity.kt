@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.expense_sumup_layout.*
 import org.joda.time.DateTime
 import org.joda.time.DateTimeConstants
 
-
 class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeListener {
 
     lateinit var mExpenses: List<Expense>
@@ -71,25 +70,35 @@ class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeList
         (rcv_today_expenses.adapter as ExpenseListAdapter).setExpenses(mExpenses)
 //        val decoration = DividerItemDecoration(this, LinearLayout.HORIZONTAL)
 //        rcv_today_expenses.addItemDecoration(decoration)
+        tv_today_sum.text = asMoneyAmount(mExpenses.sumBy { it.amount })
+        tv_week_expense_amount.text = asMoneyAmount(getSumOfWeek(dt))
+    }
+
+    private fun getDayInWeek(dt: DateTime): Pair<Long, Long> {
+        val startOfWeek = dt.withDayOfWeek(DateTimeConstants.MONDAY).withTimeAtStartOfDay().millis
+        val endOfWeek = dt.withDayOfWeek(DateTimeConstants.SUNDAY).withTimeAtStartOfDay().millis
+        val startOfMonth = dt.withDayOfMonth(1).withTimeAtStartOfDay()
+
+        val start = Math.max(startOfWeek, startOfMonth.millis)
+        var end = Math.min(endOfWeek, startOfMonth.plusMonths(1).minusDays(1).millis)
+        end = DateTime(end).withTime(23, 59, 59, 999).millis
+
+//        Log.d("DEBUG", " start : ${DateTime(start).toString()} ")
+//        Log.d("DEBUG", " end : ${DateTime(end).toString()} ")
+        return Pair<Long, Long>(start, end)
     }
 
     private fun getSelectWeek(dt: DateTime): String {
-        val date = dt.toLocalDate()
-        var str = ""
-
-//        var startOfWeek = date.weekOfWeekyear().roundFloorCopy()
-//        var endOfWeek = date.weekOfWeekyear().roundCeilingCopy()
-//        Log.d("DEBUG", "current: "+date)
-//        Log.d("DEBUG", "start: "+startOfWeek)
-//        Log.d("DEBUG", "end: "+endOfWeek)
-        //2
-        var startOfWeek = date.withDayOfWeek(DateTimeConstants.MONDAY)
-        var endOfWeek = date.withDayOfWeek(DateTimeConstants.SUNDAY)
-
-        str = startOfWeek.dayOfMonth.toString() + " - " + endOfWeek.dayOfMonth.toString()
-        return str
+        val pair = getDayInWeek(dt)
+        return DateTime(pair.first).dayOfMonth.toString() + " - " + DateTime(pair.second).dayOfMonth
     }
 
+    private fun getSumOfWeek(dt: DateTime): Int {
+        val pair = getDayInWeek(dt)
+        return Expense.getSumOfPeriod(mCurrentResource!!, pair.first, pair.second)
+    }
+
+    public fun asMoneyAmount(amount: Int) = amount.toString() + "k"
 
     companion object {
         private val INTENT_PARAM = "param"
