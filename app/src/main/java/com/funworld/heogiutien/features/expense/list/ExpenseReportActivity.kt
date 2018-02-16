@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.CalendarView
 import com.funworld.heogiutien.R
+import com.funworld.heogiutien.common.utils.Utils
 import com.funworld.heogiutien.data.dao.Expense
 import com.funworld.heogiutien.data.dao.Resource
 import com.funworld.heogiutien.features.expense.list.ExpenseListAdapter
@@ -59,19 +60,17 @@ class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeList
 
     override fun onSelectedDayChange(view: CalendarView, year: Int, month: Int, dayOfMonth: Int) {
         if (year == 0) return
-        //TODO update displaying info of date & sum of week
         val dt = DateTime(year, month + 1, dayOfMonth, 0, 0)
         var periodOfWeek = getSelectWeek(dt)
         tv_today.text = String.format(getString(R.string.expense_current_day), dt.dayOfWeek().asText, dayOfMonth, month + 1)
         tv_current_week.text = String.format(getString(R.string.expense_week_of_year), dt.weekOfWeekyear, periodOfWeek)
 
-        //TODO update list of expense of day
         mExpenses = Expense.getByDate(mCurrentResource!!, dt.withTimeAtStartOfDay().millis)
         (rcv_today_expenses.adapter as ExpenseListAdapter).setExpenses(mExpenses)
 //        val decoration = DividerItemDecoration(this, LinearLayout.HORIZONTAL)
 //        rcv_today_expenses.addItemDecoration(decoration)
-        tv_today_sum.text = asMoneyAmount(mExpenses.sumBy { it.amount })
-        tv_week_expense_amount.text = asMoneyAmount(getSumOfWeek(dt))
+        tv_today_sum.text = Utils.asMoneyAmount(mExpenses.sumBy { it.amount })
+        tv_week_expense_amount.text = Utils.asMoneyAmount(getSumOfWeek(dt))
     }
 
     private fun getDayInWeek(dt: DateTime): Pair<Long, Long> {
@@ -83,8 +82,6 @@ class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeList
         var end = Math.min(endOfWeek, startOfMonth.plusMonths(1).minusDays(1).millis)
         end = DateTime(end).withTime(23, 59, 59, 999).millis
 
-//        Log.d("DEBUG", " start : ${DateTime(start).toString()} ")
-//        Log.d("DEBUG", " end : ${DateTime(end).toString()} ")
         return Pair<Long, Long>(start, end)
     }
 
@@ -98,10 +95,8 @@ class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeList
         return Expense.getSumOfPeriod(mCurrentResource!!, pair.first, pair.second)
     }
 
-    public fun asMoneyAmount(amount: Int) = amount.toString() + "k"
-
     companion object {
-        private val INTENT_PARAM = "param"
+        private const val INTENT_PARAM = "param"
 
         fun startActivity(context: Context) {
             val intent = Intent(context, ExpenseReportActivity::class.java)

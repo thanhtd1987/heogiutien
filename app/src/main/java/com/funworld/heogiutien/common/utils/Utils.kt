@@ -1,4 +1,4 @@
-package com.funworld.heogiutien.common.Utils
+package com.funworld.heogiutien.common.utils
 
 import java.text.DecimalFormat
 
