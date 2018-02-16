@@ -1,4 +1,4 @@
-package com.funworld.heogiutien.features.resource
+package com.funworld.heogiutien.features.resource.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.View

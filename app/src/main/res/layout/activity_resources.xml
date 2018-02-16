@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.funworld.heogiutien.features.resource.ResourcesActivity">
+    tools:context="com.funworld.heogiutien.features.resource.list.ResourcesActivity">
 
     <RelativeLayout
         android:id="@+id/rl_top"

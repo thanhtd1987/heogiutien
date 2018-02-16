@@ -1,4 +1,4 @@
-package com.funworld.heogiutien.features.resource
+package com.funworld.heogiutien.features.resource.list
 
 import android.content.Context
 import android.content.Intent

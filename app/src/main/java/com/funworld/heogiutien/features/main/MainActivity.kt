@@ -1,13 +1,12 @@
 package com.funworld.heogiutien.features.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import com.funworld.heogiutien.R
 import com.funworld.heogiutien.features.expense.create.CreateExpenseActivity
 import com.funworld.heogiutien.features.expense.create.ExpenseReportActivity
-import com.funworld.heogiutien.features.resource.ResourcesActivity
+import com.funworld.heogiutien.features.resource.list.ResourcesActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.top_layout.*
 
