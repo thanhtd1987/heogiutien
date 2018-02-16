@@ -18,6 +18,8 @@ class Resource() : Model() {
     //ten cua nguon tien
     @Column(name = "name")
     lateinit var name: String
+    @Column(name = "short_name")
+    var shortName = ""
     // mo ta ve nguon tien
     @Column(name = "description")
     lateinit var description: String
@@ -52,10 +54,10 @@ class Resource() : Model() {
 
     companion object {
         fun getResourceByName(name: String): Resource? {
-            val list: MutableList<Resource> =  Select().from(Resource::class.java)
+            val list: MutableList<Resource> = Select().from(Resource::class.java)
                     .where("name=?", name)
                     .execute()
-            if(list.isEmpty())
+            if (list.isEmpty())
                 return null
             else
                 return list[0]

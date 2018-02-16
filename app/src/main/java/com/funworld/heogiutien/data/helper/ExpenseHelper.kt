@@ -27,6 +27,8 @@ class ExpenseHelper {
                 DebtHelper.addDebt(purpose, amount, isDebt, relatedPerson, resource, expense)
             }
 
+            ResourceHelper.updateBalance(expense)
+
             return expense
         }
     }
