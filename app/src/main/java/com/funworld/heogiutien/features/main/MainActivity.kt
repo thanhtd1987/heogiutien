@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import com.funworld.heogiutien.R
 import com.funworld.heogiutien.features.expense.create.CreateExpenseActivity
 import com.funworld.heogiutien.features.expense.create.ExpenseReportActivity
+import com.funworld.heogiutien.features.resource.ResourcesActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.top_layout.*
 
@@ -25,11 +26,11 @@ class MainActivity : AppCompatActivity() {
             ExpenseReportActivity.startActivity(this)
         })
 
-        iv_account.setOnClickListener({})
+        iv_account.setOnClickListener{ ResourcesActivity.startActivity(this)}
 
-        iv_statistic.setOnClickListener({})
+        iv_statistic.setOnClickListener{}
 
-        iv_saving.setOnClickListener({})
+        iv_saving.setOnClickListener{}
 
         fab.setOnClickListener { view ->
                 CreateExpenseActivity.startActivity(this)

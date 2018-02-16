@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" 
+    android:layout_height="wrap_content"
+    android:padding="@dimen/gap_small"
+    android:background="@color/primary100_disable">
+
+    <TextView
+        android:id="@+id/tv_resource_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/tv_resource_balance"
+        android:padding="@dimen/gap_small"
+        android:text="CASH"/>
+    
+    <TextView
+        android:id="@+id/tv_resource_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/gap_normal"
+        android:padding="@dimen/gap_small"
+        android:minEms="5"
+        android:textSize="16dp"
+        android:text="Current: 450k"/>
+    
+    <TextView
+        android:id="@+id/tv_open_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_resource_name"
+        android:layout_toLeftOf="@id/tv_close_balance"
+        android:padding="@dimen/gap_small"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"
+        android:text="Open: 450k"/>
+
+    <TextView
+        android:id="@+id/tv_close_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_open_balance"
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@id/tv_resource_balance"
+        android:padding="@dimen/gap_small"
+        android:background="@color/primary400_light"
+        android:textColor="@color/white"
+        android:text="Close: 450k"/>
+</RelativeLayout>
