@@ -7,7 +7,8 @@ import org.joda.time.DateTime
 class ResourceHelper {
 
     companion object {
-        fun addResource(name: String, description: String, shortName: String = "", openingBalance: Int = 0) {
+        fun addResource(name: String, description: String, shortName: String = "", openingBalance: Int = 0
+                        , currency: String = "", currencyUnit: String = ""): Resource? {
             var resource = Resource.getResourceByName(name)
             if (resource == null) {
                 resource = Resource(name, description)
@@ -17,11 +18,21 @@ class ResourceHelper {
                         .withTimeAtStartOfDay().withTime(23, 59, 59, 999).millis
                 if (shortName != "")
                     resource.shortName = shortName
-                if (openingBalance > 0)
+                if (openingBalance > 0) {
                     resource.openingBalance = openingBalance
+                    resource.closingBalance = openingBalance
+                    resource.currentBalance = openingBalance
+                }
+
+                if (currency != "")
+                    resource.currency = currency
+                if (currencyUnit != "")
+                    resource.currencyUnit = currencyUnit
 
                 resource.save()
-            }
+                return resource
+            } else
+                return null
         }
 
         fun deleteByName(name: String) {

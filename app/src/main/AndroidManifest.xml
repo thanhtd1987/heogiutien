@@ -32,7 +32,8 @@
             android:name="AA_MODELS"
             android:value="com.funworld.heogiutien.data.dao.Expense,com.funworld.heogiutien.data.dao.Resource,com.funworld.heogiutien.data.dao.Debt" />
 
-        <activity android:name=".features.resource.list.ResourcesActivity"></activity>
+        <activity android:name=".features.resource.list.ResourcesActivity" />
+        <activity android:name=".features.resource.create.CreateResourceActivity"></activity>
     </application>
 
 </manifest>
