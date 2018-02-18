@@ -26,7 +26,7 @@ class ResourceListAdapter(val mResource: List<Resource>, val listener: (Resource
     class ResourceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(currentResource: Resource?, resource: Resource, listener: (Resource) -> Unit) = with(itemView) {
-            tv_item_resource_name.text = resource.name
+            tv_item_resource_name.text = resource.name + " (${resource.shortName})"
             if (currentResource != null && currentResource.name == resource.name )
                 iv_item_resource_check.visibility = View.VISIBLE
             else
