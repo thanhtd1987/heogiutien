@@ -43,9 +43,12 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.iv_close -> {
-                showWarning(getString(R.string.title_alert),
-                        getString(R.string.discard_warning),
-                        okListener = { _ -> onBackPressed() })
+                if( !et_expense_purpose.text.isEmpty() || !et_expense_amount.text.isEmpty())
+                    showWarning(getString(R.string.title_alert),
+                            getString(R.string.discard_warning),
+                            okListener = { _ -> onBackPressed() })
+                else
+                    onBackPressed()
             }
 
             R.id.rl_create_expense -> { Utils.hideKeyboard(this, et_expense_purpose) }
@@ -117,10 +120,12 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
         tv_expense_save.setOnClickListener(this)
 
         cb_expense_transfer.setOnCheckedChangeListener{_, isChecked ->
+            ll_receive_account.visibility = View.VISIBLE
             tv_expense_to_account.isEnabled = isChecked
         }
 
         cb_expense_related.setOnCheckedChangeListener{_, isChecked ->
+            rl_expense_related.visibility = View.VISIBLE
             rd_borrow.isEnabled = isChecked
             rd_debt.isEnabled = isChecked
             et_expense_related_name.isEnabled = isChecked

@@ -54,7 +54,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:hint="Mục đích chi tiêu"
-                android:inputType="text" />
+                android:inputType="textCapSentences" />
 
             <EditText
                 android:id="@+id/et_expense_amount"
@@ -108,109 +108,120 @@
                 android:padding="@dimen/gap_small"
                 android:text="Chuyển tiền" />
 
-            <TextView
-                android:id="@+id/tv_expense_to_account_label"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/ll_receive_account"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/cb_expense_transfer"
-                android:layout_alignBottom="@+id/cb_expense_transfer"
-                android:layout_toRightOf="@+id/cb_expense_transfer"
-                android:layout_marginLeft="@dimen/gap_small"
-                android:gravity="center_vertical"
-                android:text="Tài khoản đến: " />
+                android:layout_below="@+id/cb_expense_transfer"
+                android:layout_marginLeft="@dimen/gap_large"
+                android:visibility="gone">
 
-            <TextView
-                android:id="@+id/tv_expense_to_account"
-                style="@style/button_round_primary_text_bold_white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/tv_expense_to_account_label"
-                android:layout_marginLeft="@dimen/gap_normal"
-                android:layout_toRightOf="@+id/tv_expense_to_account_label"
-                android:enabled="false"
-                android:text="VCB" />
+                <TextView
+                    android:id="@+id/tv_expense_to_account_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Tài khoản đến: " />
+
+                <TextView
+                    android:id="@+id/tv_expense_to_account"
+                    style="@style/button_round_primary_text_bold_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/gap_normal"
+                    android:enabled="false"
+                    android:text="VCB" />
+            </LinearLayout>
 
             <CheckBox
                 android:id="@+id/cb_expense_related"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_expense_to_account"
+                android:layout_below="@+id/ll_receive_account"
                 android:layout_marginTop="@dimen/gap_small"
                 android:checked="false"
                 android:padding="@dimen/gap_small"
                 android:text="Liên quan" />
 
-            <RadioGroup
-                android:id="@+id/toggle_related"
+            <RelativeLayout
+                android:id="@+id/rl_expense_related"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/cb_expense_related"
-                android:layout_marginLeft="64dp"
-                android:background="@drawable/rect_corner_border_pink"
-                android:checkedButton="@+id/rd_debt"
-                android:orientation="horizontal">
+                android:layout_marginLeft="@dimen/gap_large"
+                android:visibility="gone">
 
-                <RadioButton
-                    android:id="@+id/rd_borrow"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/toggle_selector"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="Borrow"
-                    android:textColor="@color/white"
-                    android:enabled="false"/>
+                <RadioGroup
+                    android:id="@+id/toggle_related"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/rect_corner_border_pink"
+                    android:checkedButton="@+id/rd_debt"
+                    android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/rd_debt"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginRight="1dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/toggle_selector"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="Debt"
-                    android:textColor="@color/white"
-                    android:enabled="false"/>
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/rd_borrow"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/toggle_selector"
+                        android:button="@null"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:text="Borrow"
+                        android:textColor="@color/white" />
 
-            <EditText
-                android:id="@+id/et_expense_related_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/toggle_related"
-                android:layout_below="@+id/toggle_related"
-                android:ems="8"
-                android:hint="Tên người liên quan"
-                android:inputType="text"
-                android:enabled="false"/>
+                    <RadioButton
+                        android:id="@+id/rd_debt"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/toggle_selector"
+                        android:button="@null"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:text="Debt"
+                        android:textColor="@color/white" />
+                </RadioGroup>
 
-            <EditText
-                android:id="@+id/et_expense_related_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/et_expense_related_name"
-                android:layout_toRightOf="@+id/et_expense_related_name"
-                android:layout_marginLeft="@dimen/gap_small"
-                android:hint="So tien"
-                android:inputType="numberDecimal"
-                android:enabled="false"/>
+                <EditText
+                    android:id="@+id/et_expense_related_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/toggle_related"
+                    android:layout_below="@+id/toggle_related"
+                    android:ems="8"
+                    android:enabled="false"
+                    android:hint="Tên người liên quan"
+                    android:inputType="textCapWords" />
+
+                <EditText
+                    android:id="@+id/et_expense_related_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/et_expense_related_name"
+                    android:layout_marginLeft="@dimen/gap_small"
+                    android:layout_toRightOf="@+id/et_expense_related_name"
+                    android:enabled="false"
+                    android:hint="So tien"
+                    android:inputType="numberDecimal" />
+            </RelativeLayout>
 
             <EditText
                 android:id="@+id/et_expense_note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/expense_note_hint"
+                android:layout_below="@+id/rl_expense_related"
                 android:layout_marginLeft="@dimen/gap_small"
-                android:layout_below="@+id/et_expense_related_name"/>
+                android:inputType="textCapSentences"
+                android:hint="@string/expense_note_hint" />
 
             <TextView
                 android:id="@+id/tv_expense_save"
@@ -219,7 +230,6 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/tv_more_detail"
                 android:layout_below="@id/et_expense_note"
-
                 android:text="Lưu" />
 
             <TextView
