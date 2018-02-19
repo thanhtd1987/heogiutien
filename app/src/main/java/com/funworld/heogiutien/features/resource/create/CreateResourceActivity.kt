@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.funworld.heogiutien.R
+import com.funworld.heogiutien.common.utils.Utils
 import com.funworld.heogiutien.data.dao.Resource
 import com.funworld.heogiutien.data.helper.ResourceHelper
 import kotlinx.android.synthetic.main.activity_create_resource.*
@@ -70,8 +71,14 @@ class CreateResourceActivity : AppCompatActivity() {
         iv_close.setOnClickListener {
             showWarning(getString(R.string.title_alert),
                     getString(R.string.discard_warning),
-                    okListener = { _ -> onBackPressed() })
+                    okListener = { _ ->
+                        val returnIntent = Intent()
+                        setResult(Activity.RESULT_CANCELED, returnIntent)
+                        finish()
+                    })
         }
+
+        rl_create_resource.setOnClickListener { Utils.hideKeyboard(this, et_resource_name) }
     }
 
     fun verifyResourceInfo(view: View): Boolean {

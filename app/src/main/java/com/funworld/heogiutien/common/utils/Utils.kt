@@ -20,7 +20,7 @@ class Utils {
 
         fun hideKeyboard(activity: Activity, editText: EditText){
             val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromInputMethod(editText.windowToken, InputMethodManager.RESULT_UNCHANGED_SHOWN)
+            imm.hideSoftInputFromWindow(editText.windowToken, InputMethodManager.RESULT_UNCHANGED_SHOWN)
         }
     }
 }

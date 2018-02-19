@@ -49,11 +49,11 @@ class ResourcesActivity : AppCompatActivity() {
         rcv_resources.adapter.notifyDataSetChanged()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         //TODO add resource
         if (requestCode == CreateResourceActivity.ACTIVITY_RESULT_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
                 val resource = data.getParcelableExtra<Resource>(CreateResourceActivity.INTENT_PARAM_RETURN_RESOURCE)
                 addResource(resource)
             }
