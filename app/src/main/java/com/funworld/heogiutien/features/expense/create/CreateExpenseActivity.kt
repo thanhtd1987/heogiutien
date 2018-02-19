@@ -10,9 +10,12 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.Window
 import com.funworld.heogiutien.R
+import com.funworld.heogiutien.common.utils.Utils
 import com.funworld.heogiutien.data.dao.Resource
 import com.funworld.heogiutien.data.helper.ExpenseHelper
 import kotlinx.android.synthetic.main.activity_expense_create.*
@@ -45,17 +48,17 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
                         okListener = { _ -> onBackPressed() })
             }
 
+            R.id.rl_create_expense -> { Utils.hideKeyboard(this, et_expense_purpose) }
+
             R.id.tv_expense_time -> {
                 //TODO: do action change date time
             }
 
             R.id.tv_expense_account -> {
-                //TODO: open dialog list of account for selecting
                 selectResource(mSelectedResource, listener = { resource -> onSelectedAccountChanged(resource) })
             }
 
             R.id.tv_expense_to_account -> {
-                //TODO: open dialog list of account for selecting
                 selectResource(mDestinationResource, listener = { resource -> onDestinationAccountChanged(resource) })
             }
 
@@ -96,9 +99,8 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
     }
 
     private fun initView(){
-        val formatter = DateTimeFormat.forPattern("EEE, yyyy-MM-dd HH:mm:ss")
-        val dt = DateTime.now()
-        tv_expense_time.text = formatter.print(dt)
+        val formatter = DateTimeFormat.forPattern("EEE, dd-MM-yyyy HH:mm")
+        tv_expense_time.text = formatter.print(DateTime.now())
 
         onSelectedAccountChanged(accounts[0])
         onDestinationAccountChanged(accounts[0])
@@ -107,6 +109,7 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
 
     private fun initViewAction(){
         iv_close.setOnClickListener(this)
+        rl_create_expense.setOnClickListener(this)
         tv_expense_time.setOnClickListener(this)
         tv_expense_account.setOnClickListener(this)
         tv_expense_to_account.setOnClickListener(this)
@@ -123,6 +126,20 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
             et_expense_related_name.isEnabled = isChecked
             et_expense_related_amount.isEnabled = isChecked
         }
+
+        et_expense_amount.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun afterTextChanged(view: Editable) {
+                //TODO display number with comma
+            }
+        })
     }
 
     private fun onSelectedAccountChanged(resource: Resource){
