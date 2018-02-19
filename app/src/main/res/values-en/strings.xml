@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Heo giu tien</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="expense">Expenses</string>
+    <string name="resource">Resources</string>
+    <string name="detail_expense">Expense Detail</string>
+    <string name="create_expense">Add Expense</string>
+    <string name="current_balance">Số dư hiện tại.</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_alert">Alert!!</string>
+    <string name="add">Add</string>
+    <string name="save">Save</string>
+
+    <!--create expense-->
+    <string name="expense_related_person_hint">Tên người liên quan</string>
+    <string name="expense_note_hint">Note for this expense</string>
+    <string name="discard_warning">Are you sure to discard info?</string>
+
+    <!--list expense-->
+    <string name="expense_current_day">%s (%d/%d)</string>
+    <string name="expense_week_of_year">Week %d (%s)</string>
+
+    <!--list resource-->
+    <string name="item_current_balance">Current: %s</string>
+    <string name="item_open_balance">Open: %s</string>
+    <string name="item_close_balance">Close: %s</string>
+
+    <!--create resource-->
+    <string name="create_resource">Add Resource</string>
+    <string name="create_resource_name">Resource Name</string>
+    <string name="create_resource_description">Description</string>
+    <string name="create_resource_open_balance">Opening Balance</string>
+    <string name="create_resource_short_name">Short name</string>
+    <string name="create_resource_currency">Currency</string>
+    <string name="create_resource_currency_unit">Currency Unit</string>
+
+</resources>
