@@ -35,7 +35,7 @@ class ExpenseListAdapter(expenses: List<Expense>, val listener: (Expense) -> Uni
     class ExpenseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(expense: Expense, listener: (Expense) -> Unit) = with(itemView) {
-            tv_row_money_amount.text = expense.amount.toString()
+            tv_row_money_amount.text = Math.abs(expense.amount).toString()
             tv_row_reason.text = expense.purpose
             tv_row_time.text = expense.getCreatedTime()
             if (expense.type == Expense.DEPOSIT_TYPE)

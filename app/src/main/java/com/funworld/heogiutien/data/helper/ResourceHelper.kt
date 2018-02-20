@@ -47,11 +47,7 @@ class ResourceHelper {
             if (expense.createdAt > resource.closingDate)
                 openNewPeriod(resource, expense.createdAt)
 
-            if (expense.type == Expense.WITHDRAW_TYPE) {
                 resource.currentBalance -= expense.amount
-            } else {
-                resource.currentBalance += expense.amount
-            }
 
             resource.closingBalance = resource.currentBalance
 

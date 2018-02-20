@@ -9,14 +9,15 @@ class ExpenseHelper {
     companion object {
         fun addExpense(purpose: String, amount: Int, resource: Resource,
                        isDeposit: Boolean, note: String,
-                       isDebt: Boolean?, relatedPerson: String): Expense {
+                       isDebt: Boolean? = null, relatedPerson: String = "", relatedAmount: Int = 0): String {
             val expense = Expense()
             expense.purpose = purpose
             expense.amount = amount
             expense.resourceId = resource
-            if (isDeposit)
+            if (isDeposit) {
                 expense.type = Expense.DEPOSIT_TYPE
-            else
+                expense.amount *= -1
+            } else
                 expense.type = Expense.WITHDRAW_TYPE
             expense.createdAt = DateTime.now().millis
             expense.updatedAt = expense.createdAt
@@ -24,12 +25,20 @@ class ExpenseHelper {
             expense.save()
 
             if (isDebt != null) {
-                DebtHelper.addDebt(purpose, amount, isDebt, relatedPerson, resource, expense)
+                DebtHelper.addDebt(purpose, relatedAmount, isDebt, relatedPerson, resource, expense)
             }
 
             ResourceHelper.updateBalance(expense)
 
-            return expense
+            return expense.id.toString()
+        }
+
+        fun transferMoney(purpose: String, amount: Int, from: Resource, to: Resource, note: String): String{
+            val fromExpenseId = addExpense(purpose, amount, from, false, note)
+
+            val toExpenseId = addExpense(purpose, amount, to, true, note)
+
+            return "Transfer from expense $fromExpenseId -> $toExpenseId"
         }
     }
 }

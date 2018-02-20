@@ -75,21 +75,40 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
             R.id.tv_expense_save -> {
                 //TODO: save Expense
                 if (verifyExpenseInfo()) {
-                    var isDebt: Boolean? = null
-                    if (cb_expense_related.isChecked) {
-                        isDebt = rd_debt.isChecked
+                    if (cb_expense_transfer.isChecked) {
+                        val result = ExpenseHelper.transferMoney(
+                                getString(R.string.transfer_tag) + et_expense_purpose.text.toString(),
+                                et_expense_amount.text.toString().toInt(),
+                                mSelectedResource,
+                                mDestinationResource,
+                                et_expense_note.text.toString()
+                        )
+                        Snackbar.make(view, result, Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show()
+                    } else {
+                        var expenseId = ""
+                        if (cb_expense_related.isChecked) {
+                            expenseId = ExpenseHelper.addExpense(
+                                    et_expense_purpose.text.toString(),
+                                    et_expense_amount.text.toString().toInt(),
+                                    mSelectedResource,
+                                    cb_expense_deposit.isChecked,
+                                    et_expense_note.text.toString(),
+                                    rd_debt.isChecked,
+                                    et_expense_related_name.text.toString(),
+                                    et_expense_related_amount.text.toString().toInt()
+                            )
+                        } else {
+                            expenseId = ExpenseHelper.addExpense(
+                                    et_expense_purpose.text.toString(),
+                                    et_expense_amount.text.toString().toInt(),
+                                    mSelectedResource,
+                                    cb_expense_deposit.isChecked,
+                                    et_expense_note.text.toString())
+                        }
+                        Snackbar.make(view, "Expense $expenseId is saved!", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show()
                     }
-
-                    val expense = ExpenseHelper.addExpense(et_expense_purpose.text.toString(),
-                            et_expense_amount.text.toString().toInt(),
-                            mSelectedResource,
-                            cb_expense_deposit.isChecked,
-                            et_expense_note.text.toString(),
-                            isDebt,
-                            et_expense_related_name.text.toString()
-                    )
-                    Snackbar.make(view, "Expense ${expense.id} is saved!", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show()
                     finish()
                 } else {
                     showWarning(getString(R.string.title_alert),
@@ -162,6 +181,14 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
     }
 
     private fun verifyExpenseInfo(): Boolean{
+        if(et_expense_amount.text.isEmpty()){
+            return false
+        }
+
+        if (cb_expense_related.isChecked && (et_expense_related_amount.text.isEmpty() ||
+                        et_expense_related_amount.text.toString().toInt() > et_expense_amount.text.toString().toInt())){
+            et_expense_related_amount.text = et_expense_amount.text
+        }
         return true
     }
 
