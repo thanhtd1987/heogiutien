@@ -75,8 +75,8 @@ class ExpenseReportActivity : BaseActivity(), CalendarView.OnDateChangeListener 
         mExpenses = Expense.getByDate(mCurrentResource!!, dt.withTimeAtStartOfDay().millis)
         (rcv_today_expenses.adapter as ExpenseListAdapter).setExpenses(mExpenses)
 
-        tv_today_sum.text = Utils.asMoneyAmount(mExpenses.sumBy { it.amount })
-        tv_week_expense_amount.text = Utils.asMoneyAmount(getSumOfWeek(dt))
+        tv_today_sum.text = Utils.asMoneyAmount(mExpenses.sumBy { it.amount }, mCurrentResource!!.currencyUnit)
+        tv_week_expense_amount.text = Utils.asMoneyAmount(getSumOfWeek(dt), mCurrentResource!!.currencyUnit)
     }
 
     private fun getDayInWeek(dt: DateTime): Pair<Long, Long> {

@@ -36,11 +36,11 @@ class ResourceListAdapter(resources: MutableList<Resource>, private val listener
         fun bind(resource: Resource, listener: (Resource) -> Unit) = with(itemView) {
             tv_resource_name.text = resource.name
             tv_resource_balance.text = String.format(context.getString(R.string.item_current_balance),
-                    Utils.asMoneyAmount(resource.currentBalance))
+                    Utils.asMoneyAmount(resource.currentBalance, resource.currencyUnit))
             tv_open_balance.text = String.format(context.getString(R.string.item_open_balance),
-                    Utils.asMoneyAmount(resource.openingBalance))
+                    Utils.asMoneyAmount(resource.openingBalance, resource.currencyUnit))
             tv_close_balance.text = String.format(context.getString(R.string.item_close_balance),
-                    Utils.asMoneyAmount(resource.closingBalance))
+                    Utils.asMoneyAmount(resource.closingBalance, resource.currencyUnit))
 
             setOnClickListener { listener(resource) }
         }

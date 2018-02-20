@@ -13,9 +13,9 @@ class Utils {
 
     companion object {
 
-        fun asMoneyAmount(amount: Int): String{
+        fun asMoneyAmount(amount: Int, unit: String): String{
             val formatter = DecimalFormat("#,###,###")
-            return formatter.format(amount)+ "k"
+            return formatter.format(amount)+ unit
         }
 
         fun hideKeyboard(activity: Activity, editText: EditText){

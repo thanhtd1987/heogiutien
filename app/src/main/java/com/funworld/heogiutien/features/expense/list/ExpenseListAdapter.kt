@@ -7,6 +7,7 @@ import com.funworld.heogiutien.R
 import com.funworld.heogiutien.data.dao.Expense
 import kotlinx.android.synthetic.main.expense_row_layout.view.*
 import com.funworld.heogiutien.common.inflate
+import com.funworld.heogiutien.common.utils.Utils
 
 class ExpenseListAdapter(expenses: List<Expense>, val listener: (Expense) -> Unit)
     : RecyclerView.Adapter<ExpenseListAdapter.ExpenseViewHolder>() {
@@ -35,7 +36,7 @@ class ExpenseListAdapter(expenses: List<Expense>, val listener: (Expense) -> Uni
     class ExpenseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(expense: Expense, listener: (Expense) -> Unit) = with(itemView) {
-            tv_row_money_amount.text = Math.abs(expense.amount).toString()
+            tv_row_money_amount.text = Utils.asMoneyAmount(Math.abs(expense.amount), expense.resourceId.currencyUnit)
             tv_row_reason.text = expense.purpose
             tv_row_time.text = expense.getCreatedTime()
             if (expense.type == Expense.DEPOSIT_TYPE)
