@@ -3,16 +3,16 @@ package com.funworld.heogiutien.features.resource.list
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
 import com.funworld.heogiutien.R
+import com.funworld.heogiutien.base.BaseActivity
 import com.funworld.heogiutien.data.dao.Resource
 import com.funworld.heogiutien.features.resource.create.CreateResourceActivity
 import kotlinx.android.synthetic.main.activity_resources.*
 
-class ResourcesActivity : AppCompatActivity() {
+class ResourcesActivity : BaseActivity() {
 
     private val mResources by lazy { Resource.getAll() }
 
@@ -24,7 +24,9 @@ class ResourcesActivity : AppCompatActivity() {
         initViewAction()
     }
 
-    private fun initView() {
+    override fun initView() {
+        super.initView()
+
         val adapter = ResourceListAdapter(mResources, listener = { resource ->
             //TODO open detail of resource
             CreateResourceActivity.startActivity(this, resource)
@@ -35,7 +37,9 @@ class ResourcesActivity : AppCompatActivity() {
         rcv_resources.adapter = adapter
     }
 
-    private fun initViewAction() {
+    override fun initViewAction() {
+        super.initViewAction()
+
         iv_add_resouce.setOnClickListener {
             //TODO start activity for result Add resource
             CreateResourceActivity.startActivityForResult(this)

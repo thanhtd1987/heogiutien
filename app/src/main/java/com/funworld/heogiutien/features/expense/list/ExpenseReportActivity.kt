@@ -3,10 +3,10 @@ package com.funworld.heogiutien.features.expense.create
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.CalendarView
 import com.funworld.heogiutien.R
+import com.funworld.heogiutien.base.BaseActivity
 import com.funworld.heogiutien.common.utils.Utils
 import com.funworld.heogiutien.data.dao.Expense
 import com.funworld.heogiutien.data.dao.Resource
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.expense_sumup_layout.*
 import org.joda.time.DateTime
 import org.joda.time.DateTimeConstants
 
-class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeListener {
+class ExpenseReportActivity : BaseActivity(), CalendarView.OnDateChangeListener {
 
     lateinit var mExpenses: List<Expense>
     private val mCurrentResource: Resource? by lazy { Resource.getResourceByName(getString(R.string.default_cash)) }
@@ -29,7 +29,9 @@ class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeList
         initViewAction()
     }
 
-    private fun initView() {
+    override fun initView() {
+        super.initView()
+
         initListOfExpense()
 
         val dt = DateTime()
@@ -42,7 +44,9 @@ class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeList
         onSelectedDayChange(clv_month, dt.year, dt.monthOfYear - 1, dt.dayOfMonth)
     }
 
-    private fun initViewAction() {
+    override fun initViewAction() {
+        super.initViewAction()
+
         iv_add_expense.setOnClickListener{CreateExpenseActivity.startActivity(this)}
         iv_back.setOnClickListener{onBackPressed()}
     }

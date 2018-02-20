@@ -1,13 +1,10 @@
 package com.funworld.heogiutien.features.expense.create
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
@@ -15,6 +12,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.Window
 import com.funworld.heogiutien.R
+import com.funworld.heogiutien.base.BaseActivity
 import com.funworld.heogiutien.common.utils.Utils
 import com.funworld.heogiutien.data.dao.Resource
 import com.funworld.heogiutien.data.helper.ExpenseHelper
@@ -23,7 +21,7 @@ import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 
 
-class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
+class CreateExpenseActivity : BaseActivity(), View.OnClickListener{
 
     private val accounts by lazy { Resource.getAll() }
 
@@ -120,7 +118,9 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
         }
     }
 
-    private fun initView(){
+    override fun initView(){
+        super.initView()
+
         val formatter = DateTimeFormat.forPattern("EEE, dd-MM-yyyy HH:mm")
         tv_expense_time.text = formatter.print(DateTime.now())
 
@@ -129,7 +129,9 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
 
     }
 
-    private fun initViewAction(){
+    override fun initViewAction(){
+        super.initViewAction()
+
         iv_close.setOnClickListener(this)
         rl_create_expense.setOnClickListener(this)
         tv_expense_time.setOnClickListener(this)
@@ -211,25 +213,6 @@ class CreateExpenseActivity : AppCompatActivity(), View.OnClickListener{
         rcvResources.adapter = adapter
 
         dialog.show()
-    }
-
-    fun showWarning(title: String, message: String, okListener: (dialogInterface: DialogInterface) -> Unit){
-        showWarning(title, message, getString(R.string.ok), getString(R.string.cancel), okListener)
-    }
-
-    fun showWarning(title: String, message: String, strOk: String, strCancel: String, okListener: (dialogInterface: DialogInterface) -> Unit) {
-        val alertDialog = AlertDialog.Builder(this)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton(strOk, { dialogInterface, i ->
-                    dialogInterface.dismiss()
-                    okListener(dialogInterface)
-                })
-                .setNegativeButton(strCancel, { dialogInterface, i ->
-                    dialogInterface.dismiss()
-                })
-                .create()
-        alertDialog.show()
     }
 
     companion object {
