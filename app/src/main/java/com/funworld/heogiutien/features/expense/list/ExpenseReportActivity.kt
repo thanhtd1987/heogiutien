@@ -3,6 +3,7 @@ package com.funworld.heogiutien.features.expense.create
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.CalendarView
 import com.funworld.heogiutien.R
@@ -60,6 +61,8 @@ class ExpenseReportActivity : BaseActivity(), CalendarView.OnDateChangeListener 
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         rcv_today_expenses.layoutManager = layoutManager
         rcv_today_expenses.adapter = adapter
+        val decoration = DividerItemDecoration(this, layoutManager.orientation)
+        rcv_today_expenses.addItemDecoration(decoration)
     }
 
     override fun onSelectedDayChange(view: CalendarView, year: Int, month: Int, dayOfMonth: Int) {
@@ -71,8 +74,7 @@ class ExpenseReportActivity : BaseActivity(), CalendarView.OnDateChangeListener 
 
         mExpenses = Expense.getByDate(mCurrentResource!!, dt.withTimeAtStartOfDay().millis)
         (rcv_today_expenses.adapter as ExpenseListAdapter).setExpenses(mExpenses)
-//        val decoration = DividerItemDecoration(this, LinearLayout.HORIZONTAL)
-//        rcv_today_expenses.addItemDecoration(decoration)
+
         tv_today_sum.text = Utils.asMoneyAmount(mExpenses.sumBy { it.amount })
         tv_week_expense_amount.text = Utils.asMoneyAmount(getSumOfWeek(dt))
     }

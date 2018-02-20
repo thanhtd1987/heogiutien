@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
 import com.funworld.heogiutien.R
@@ -29,12 +30,14 @@ class ResourcesActivity : BaseActivity() {
 
         val adapter = ResourceListAdapter(mResources, listener = { resource ->
             //TODO open detail of resource
-            CreateResourceActivity.startActivity(this, resource)
+            CreateResourceActivity.startActivity(this, resource) //temporary
         })
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayout.VERTICAL
         rcv_resources.layoutManager = layoutManager
         rcv_resources.adapter = adapter
+        val decoration = DividerItemDecoration(this, layoutManager.orientation)
+        rcv_resources.addItemDecoration(decoration)
     }
 
     override fun initViewAction() {
