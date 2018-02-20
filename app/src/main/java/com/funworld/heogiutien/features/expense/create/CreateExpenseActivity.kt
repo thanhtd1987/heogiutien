@@ -3,8 +3,10 @@ package com.funworld.heogiutien.features.expense.create
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
@@ -211,6 +213,11 @@ class CreateExpenseActivity : BaseActivity(), View.OnClickListener{
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         rcvResources.layoutManager = layoutManager
         rcvResources.adapter = adapter
+        val decoration = DividerItemDecoration(this, layoutManager.orientation)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            decoration.setDrawable(baseContext.getDrawable(R.drawable.rcv_line_devider))
+        }
+        rcvResources.addItemDecoration(decoration)
 
         dialog.show()
     }
