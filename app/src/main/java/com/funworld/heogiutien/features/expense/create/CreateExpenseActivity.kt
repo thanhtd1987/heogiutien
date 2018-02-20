@@ -172,16 +172,25 @@ class CreateExpenseActivity : BaseActivity(), View.OnClickListener{
 
     private fun onSelectedAccountChanged(resource: Resource){
         mSelectedResource = resource
-        tv_expense_account.text = mSelectedResource.name
+        tv_expense_account.text = mSelectedResource.shortName
     }
 
     private fun onDestinationAccountChanged(resource: Resource){
         mDestinationResource = resource
-        tv_expense_to_account.text = mDestinationResource.name
+        tv_expense_to_account.text = mDestinationResource.shortName
     }
 
     private fun resetAllView(){
-
+        et_expense_purpose.setText("")
+        et_expense_amount.setText("")
+        et_expense_note.setText("")
+        et_expense_related_name.setText("")
+        et_expense_related_amount.setText("")
+        onSelectedAccountChanged(accounts[0])
+        onDestinationAccountChanged(accounts[0])
+        cb_expense_deposit.isChecked = false
+        cb_expense_transfer.isChecked = false
+        cb_expense_related.isChecked = false
     }
 
     private fun verifyExpenseInfo(): Boolean{
