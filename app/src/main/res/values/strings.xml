@@ -18,6 +18,7 @@
     <string name="expense_related_person_hint">Tên người liên quan</string>
     <string name="expense_note_hint">Note for this expense</string>
     <string name="discard_warning">Are you sure to discard info?</string>
+    <string name="transfer_tag">[Chuyển tiền] </string>
 
     <!--list expense-->
     <string name="expense_current_day">%s (%d/%d)</string>
@@ -29,6 +30,9 @@
     <string name="item_close_balance">Close: %s</string>
 
     <!--create resource-->
+    <string name="default_cash">Tiền mặt</string>
+    <string name="default_cash_des">Chi tiêu tiền mặt</string>
+    <string name="default_cash_short">CASH</string>
     <string name="create_resource">Add Resource</string>
     <string name="create_resource_name">Resource Name</string>
     <string name="create_resource_description">Description</string>

@@ -19,7 +19,7 @@ import org.joda.time.DateTimeConstants
 class ExpenseReportActivity : AppCompatActivity(), CalendarView.OnDateChangeListener {
 
     lateinit var mExpenses: List<Expense>
-    private val mCurrentResource: Resource? by lazy { Resource.getResourceByName("CASH") }
+    private val mCurrentResource: Resource? by lazy { Resource.getResourceByName(getString(R.string.default_cash)) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
