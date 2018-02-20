@@ -12,16 +12,7 @@ import com.funworld.heogiutien.data.dao.Resource
 class ResourceListAdapter(resources: MutableList<Resource>, private val listener: (Resource) -> Unit)
     : RecyclerView.Adapter<ResourceListAdapter.ResourceViewHolder>() {
 
-    private var mResources: List<Resource>
-
-    init {
-        mResources = resources
-    }
-
-//    fun addResource(resource: Resource){
-//        mResources.add(resource)
-//        notifyDataSetChanged()
-//    }
+    private var mResources: List<Resource> = resources
 
     override fun getItemCount(): Int {
         return mResources.size
@@ -36,11 +27,11 @@ class ResourceListAdapter(resources: MutableList<Resource>, private val listener
         fun bind(resource: Resource, listener: (Resource) -> Unit) = with(itemView) {
             tv_resource_name.text = resource.name
             tv_resource_balance.text = String.format(context.getString(R.string.item_current_balance),
-                    Utils.asMoneyAmount(resource.currentBalance, resource.currencyUnit))
+                    Utils.asMoneyAmount(Math.abs(resource.currentBalance), resource.currencyUnit))
             tv_open_balance.text = String.format(context.getString(R.string.item_open_balance),
-                    Utils.asMoneyAmount(resource.openingBalance, resource.currencyUnit))
+                    Utils.asMoneyAmount(Math.abs(resource.openingBalance), resource.currencyUnit))
             tv_close_balance.text = String.format(context.getString(R.string.item_close_balance),
-                    Utils.asMoneyAmount(resource.closingBalance, resource.currencyUnit))
+                    Utils.asMoneyAmount(Math.abs(resource.closingBalance), resource.currencyUnit))
 
             setOnClickListener { listener(resource) }
         }
