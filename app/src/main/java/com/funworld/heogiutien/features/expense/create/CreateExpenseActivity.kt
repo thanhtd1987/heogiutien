@@ -66,14 +66,12 @@ class CreateExpenseActivity : BaseActivity(), View.OnClickListener{
             }
 
             R.id.tv_reset_info -> {
-                //TODO: reset all inputted info to begin
                 showWarning(getString(R.string.title_alert),
                         "Are you sure to reset all info?",
                         okListener = { _ -> resetAllView() })
             }
 
             R.id.tv_expense_save -> {
-                //TODO: save Expense
                 if (verifyExpenseInfo()) {
                     if (cb_expense_transfer.isChecked) {
                         val result = ExpenseHelper.transferMoney(
@@ -157,11 +155,9 @@ class CreateExpenseActivity : BaseActivity(), View.OnClickListener{
 
         et_expense_amount.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                // TODO Auto-generated method stub
             }
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                // TODO Auto-generated method stub
             }
 
             override fun afterTextChanged(view: Editable) {

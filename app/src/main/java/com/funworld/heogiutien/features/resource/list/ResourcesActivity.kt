@@ -44,7 +44,6 @@ class ResourcesActivity : BaseActivity() {
         super.initViewAction()
 
         iv_add_resouce.setOnClickListener {
-            //TODO start activity for result Add resource
             CreateResourceActivity.startActivityForResult(this)
         }
 
@@ -58,7 +57,7 @@ class ResourcesActivity : BaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        //TODO add resource
+
         if (requestCode == CreateResourceActivity.ACTIVITY_RESULT_CODE) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 val resource = data.getParcelableExtra<Resource>(CreateResourceActivity.INTENT_PARAM_RETURN_RESOURCE)
