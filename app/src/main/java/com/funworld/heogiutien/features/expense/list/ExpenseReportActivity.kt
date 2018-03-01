@@ -2,6 +2,7 @@ package com.funworld.heogiutien.features.expense.create
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -12,8 +13,9 @@ import com.funworld.heogiutien.common.utils.Utils
 import com.funworld.heogiutien.data.dao.Expense
 import com.funworld.heogiutien.data.dao.Resource
 import com.funworld.heogiutien.features.expense.list.ExpenseListAdapter
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import kotlinx.android.synthetic.main.activity_expense_report.*
-import kotlinx.android.synthetic.main.expense_sumup_layout.*
 import org.joda.time.DateTime
 import org.joda.time.DateTimeConstants
 
@@ -33,23 +35,47 @@ class ExpenseReportActivity : BaseActivity(), CalendarView.OnDateChangeListener 
     override fun initView() {
         super.initView()
 
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+//        main_collapsing.expandedTitleGravity = Gravity.CENTER or Gravity.BOTTOM
+//        main_collapsing.expandedTitleMarginStart = resources.getDimensionPixelSize(R.dimen.gap_normal)
+        main_collapsing.expandedTitleMarginBottom = resources.getDimensionPixelSize(R.dimen.gap_small)
+
         initListOfExpense()
 
-        val dt = DateTime()
-        clv_month.date = dt.toDate().time
-        clv_month.firstDayOfWeek = 2
-        clv_month.setOnDateChangeListener(this)
-        clv_month.minDate = dt.dayOfMonth().withMinimumValue().millis
-        clv_month.maxDate = dt.dayOfMonth().withMaximumValue().millis
+        initCalendarView()
 
-        onSelectedDayChange(clv_month, dt.year, dt.monthOfYear - 1, dt.dayOfMonth)
+
     }
 
     override fun initViewAction() {
         super.initViewAction()
 
-        iv_add_expense.setOnClickListener{CreateExpenseActivity.startActivity(this)}
-        iv_back.setOnClickListener{onBackPressed()}
+//        iv_add_expense.setOnClickListener{CreateExpenseActivity.startActivity(this)}
+    }
+
+    private fun initCalendarView() {
+        val dt = DateTime()
+        //material calendar
+        clv_month.selectedDate = CalendarDay.from(dt.toDate())
+        clv_month.currentDate = CalendarDay.from(dt.toDate())
+        clv_month.leftArrowMask = null
+        clv_month.rightArrowMask = null
+        clv_month.setOnDateChangedListener(OnDateSelectedListener(function = { widget, date, selected ->
+            onSelectedDayChange(null, date.year, date.month, date.day)
+        }))
+        clv_month.selectionColor = Color.RED
+        clv_month.setBackgroundColor(Color.GRAY)
+
+        // default calendar
+//        clv_month11.date = dt.toDate().time
+//        clv_month11.firstDayOfWeek = 2
+//        clv_month11.setOnDateChangeListener(this)
+//        clv_month11.minDate = dt.dayOfMonth().withMinimumValue().millis
+//        clv_month11.maxDate = dt.dayOfMonth().withMaximumValue().millis
+//
+        onSelectedDayChange(null, dt.year, dt.monthOfYear - 1, dt.dayOfMonth)
     }
 
     private fun initListOfExpense() {
@@ -65,17 +91,24 @@ class ExpenseReportActivity : BaseActivity(), CalendarView.OnDateChangeListener 
         rcv_today_expenses.addItemDecoration(decoration)
     }
 
-    override fun onSelectedDayChange(view: CalendarView, year: Int, month: Int, dayOfMonth: Int) {
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    override fun onSelectedDayChange(view: CalendarView?, year: Int, month: Int, dayOfMonth: Int) {
         if (year == 0) return
         val dt = DateTime(year, month + 1, dayOfMonth, 0, 0)
         var periodOfWeek = getSelectWeek(dt)
-        tv_today.text = String.format(getString(R.string.expense_current_day), dt.dayOfWeek().asText, dayOfMonth, month + 1)
+//        tv_today.text = String.format(getString(R.string.expense_current_day), dt.dayOfWeek().asText, dayOfMonth, month + 1)
         tv_current_week.text = String.format(getString(R.string.expense_week_of_year), dt.weekOfWeekyear, periodOfWeek)
 
         mExpenses = Expense.getByDate(mCurrentResource!!, dt.withTimeAtStartOfDay().millis)
         (rcv_today_expenses.adapter as ExpenseListAdapter).setExpenses(mExpenses)
 
-        tv_today_sum.text = Utils.asMoneyAmount(mExpenses.sumBy { it.amount }, mCurrentResource!!.currencyUnit)
+        main_collapsing.title = String.format(getString(R.string.expense_current_day), dt.dayOfWeek().asShortText, dayOfMonth, month + 1) + " " + Utils.asMoneyAmount(mExpenses.sumBy { it.amount }, mCurrentResource!!.currencyUnit)
+
+//        tv_today_sum.text = Utils.asMoneyAmount(mExpenses.sumBy { it.amount }, mCurrentResource!!.currencyUnit)
         tv_week_expense_amount.text = Utils.asMoneyAmount(getSumOfWeek(dt), mCurrentResource!!.currencyUnit)
     }
 

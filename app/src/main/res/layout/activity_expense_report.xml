@@ -4,68 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context="com.funworld.heogiutien.features.main.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/main.collapsing"
+            android:id="@+id/main_collapsing"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
+            android:layout_height="wrap_content"
+            app:contentScrim="?attr/colorAccent"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/clv_month"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mcv_calendarMode="month"
+                app:mcv_firstDayOfWeek="monday"
+                app:mcv_selectionColor="#00FFFF"
+                app:mcv_showOtherDates="decorated_disabled" />
+            <!--<CalendarView-->
+            <!---->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="300dp"-->
+            <!--app:layout_collapseMode="parallax"/>-->
+            <!--android:layout_marginTop="@dimen/actionbar_height"-->
+
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:layout_marginLeft="-15dp"
-                android:background="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:layout_collapseMode="none">
+                app:layout_collapseMode="pin" />
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/actionbar_height">
-
-                    <TextView
-                        android:id="@+id/tv_title_text"
-                        style="@style/text_bold_big_white"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/actionbar_height"
-                        android:background="@color/colorPrimary"
-                        android:gravity="center"
-                        android:text="@string/expense" />
-
-                    <ImageView
-                        android:id="@+id/iv_back"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/tv_title_text"
-                        android:layout_alignTop="@+id/tv_title_text"
-                        android:padding="@dimen/gap_small"
-                        android:src="@drawable/ic_arrow_back_white_24dp" />
-
-                    <ImageView
-                        android:id="@+id/iv_add_expense"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/tv_title_text"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignTop="@+id/tv_title_text"
-                        android:padding="@dimen/gap_small"
-                        android:src="@drawable/ic_add_white_24dp" />
-                </RelativeLayout>
-            </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
-
 
     </android.support.design.widget.AppBarLayout>
 
@@ -74,7 +51,55 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <include layout="@layout/expense_sumup_layout" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rl_week"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:layout_marginTop="@dimen/gap_small"
+                android:background="@color/primary400_light"
+                android:padding="@dimen/gap_normal">
+
+                <TextView
+                    android:id="@+id/tv_current_week"
+                    style="@style/text_bold_large_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tuần 1 (2 - 8/10)" />
+
+                <TextView
+                    android:id="@+id/tv_week_expense_text"
+                    style="@style/text_bold_big_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_current_week"
+                    android:text="(2 - 8/10)"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_week_expense_amount"
+                    style="@style/text_bold_italic_large_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignRight="@+id/tv_week_expense_text"
+                    android:text="0k" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcv_today_expenses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_week"
+                android:layout_marginLeft="@dimen/gap_small"
+                android:layout_marginRight="@dimen/gap_small"
+                android:visibility="visible" />
+
+        </RelativeLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
