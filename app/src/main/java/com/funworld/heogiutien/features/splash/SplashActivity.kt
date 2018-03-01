@@ -30,16 +30,12 @@ class SplashActivity : AppCompatActivity() {
 
     private fun initResourceDB(): Long {
         ResourceHelper.addResource(getString(R.string.default_cash),
-                getString(R.string.default_cash_des), getString(R.string.default_cash_des))
+                getString(R.string.default_cash_des), getString(R.string.default_cash_short))
         return DateTime.now().millis
     }
 
     inner class AsyncTaskInitResourceDB : AsyncTask<String, Long, Long>() {
-        private var start = 0L
-        override fun onPreExecute() {
-            super.onPreExecute()
-            start = DateTime.now().millis
-        }
+        private val start = DateTime.now().millis
 
         override fun doInBackground(vararg p0: String?): Long {
             return initResourceDB()
