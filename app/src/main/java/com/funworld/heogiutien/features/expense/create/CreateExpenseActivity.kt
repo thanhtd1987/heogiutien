@@ -29,6 +29,7 @@ class CreateExpenseActivity : BaseActivity(), View.OnClickListener{
 
     private lateinit var mSelectedResource: Resource
     private lateinit var mDestinationResource: Resource
+    private var mCreatedTime = DateTime.now().millis
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,89 +41,10 @@ class CreateExpenseActivity : BaseActivity(), View.OnClickListener{
         initViewAction()
     }
 
-    override fun onClick(view: View?) {
-        when (view?.id) {
-            R.id.iv_close -> {
-                if( !et_expense_purpose.text.isEmpty() || !et_expense_amount.text.isEmpty())
-                    showWarning(getString(R.string.title_alert),
-                            getString(R.string.discard_warning),
-                            okListener = { _ -> onBackPressed() })
-                else
-                    onBackPressed()
-            }
-
-            R.id.rl_create_expense -> { Utils.hideKeyboard(this, et_expense_purpose) }
-
-            R.id.tv_expense_time -> {
-                //TODO: do action change date time
-            }
-
-            R.id.tv_expense_account -> {
-                selectResource(mSelectedResource, listener = { resource -> onSelectedAccountChanged(resource) })
-            }
-
-            R.id.tv_expense_to_account -> {
-                selectResource(mDestinationResource, listener = { resource -> onDestinationAccountChanged(resource) })
-            }
-
-            R.id.tv_reset_info -> {
-                showWarning(getString(R.string.title_alert),
-                        "Are you sure to reset all info?",
-                        okListener = { _ -> resetAllView() })
-            }
-
-            R.id.tv_expense_save -> {
-                if (verifyExpenseInfo()) {
-                    if (cb_expense_transfer.isChecked) {
-                        val result = ExpenseHelper.transferMoney(
-                                getString(R.string.transfer_tag) + et_expense_purpose.text.toString(),
-                                et_expense_amount.text.toString().toInt(),
-                                mSelectedResource,
-                                mDestinationResource,
-                                et_expense_note.text.toString()
-                        )
-                        Snackbar.make(view, result, Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show()
-                    } else {
-                        var expenseId = ""
-                        if (cb_expense_related.isChecked) {
-                            expenseId = ExpenseHelper.addExpense(
-                                    et_expense_purpose.text.toString(),
-                                    et_expense_amount.text.toString().toInt(),
-                                    mSelectedResource,
-                                    cb_expense_deposit.isChecked,
-                                    et_expense_note.text.toString(),
-                                    rd_debt.isChecked,
-                                    et_expense_related_name.text.toString(),
-                                    et_expense_related_amount.text.toString().toInt()
-                            )
-                        } else {
-                            expenseId = ExpenseHelper.addExpense(
-                                    et_expense_purpose.text.toString(),
-                                    et_expense_amount.text.toString().toInt(),
-                                    mSelectedResource,
-                                    cb_expense_deposit.isChecked,
-                                    et_expense_note.text.toString())
-                        }
-                        Snackbar.make(view, "Expense $expenseId is saved!", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show()
-                    }
-                    finish()
-                } else {
-                    showWarning(getString(R.string.title_alert),
-                            "There is something wrong, please recheck!!!",
-                            okListener = { _ -> Unit })
-                }
-            }
-
-        }
-    }
-
     override fun initView(){
         super.initView()
 
-        val formatter = DateTimeFormat.forPattern("EEE, dd-MM-yyyy HH:mm")
-        tv_expense_time.text = formatter.print(DateTime.now())
+        onDateTimeChanged()
 
         onSelectedAccountChanged(accounts[0])
         onDestinationAccountChanged(accounts[0])
@@ -166,6 +88,90 @@ class CreateExpenseActivity : BaseActivity(), View.OnClickListener{
         })
     }
 
+    override fun onClick(view: View?) {
+        when (view?.id) {
+            R.id.iv_close -> {
+                if( !et_expense_purpose.text.isEmpty() || !et_expense_amount.text.isEmpty())
+                    showWarning(getString(R.string.title_alert),
+                            getString(R.string.discard_warning),
+                            okListener = { _ -> onBackPressed() })
+                else
+                    onBackPressed()
+            }
+
+            R.id.rl_create_expense -> { Utils.hideKeyboard(this, et_expense_purpose) }
+
+            R.id.tv_expense_time -> {
+                Utils.showDateTimePicker( this, mCreatedTime, listener = { time ->
+                    mCreatedTime = time
+                    onDateTimeChanged()
+                })
+            }
+
+            R.id.tv_expense_account -> {
+                selectResource(mSelectedResource, listener = { resource -> onSelectedAccountChanged(resource) })
+            }
+
+            R.id.tv_expense_to_account -> {
+                selectResource(mDestinationResource, listener = { resource -> onDestinationAccountChanged(resource) })
+            }
+
+            R.id.tv_reset_info -> {
+                showWarning(getString(R.string.title_alert),
+                        "Are you sure to reset all info?",
+                        okListener = { _ -> resetAllView() })
+            }
+
+            R.id.tv_expense_save -> {
+                if (verifyExpenseInfo()) {
+                    if (cb_expense_transfer.isChecked) {
+                        val result = ExpenseHelper.transferMoney(
+                                getString(R.string.transfer_tag) + et_expense_purpose.text.toString(),
+                                et_expense_amount.text.toString().toInt(),
+                                mSelectedResource,
+                                mDestinationResource,
+                                et_expense_note.text.toString(),
+                                mCreatedTime
+                        )
+                        Snackbar.make(view, result, Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show()
+                    } else {
+                        var expenseId = ""
+                        if (cb_expense_related.isChecked) {
+                            expenseId = ExpenseHelper.addExpense(
+                                    et_expense_purpose.text.toString(),
+                                    et_expense_amount.text.toString().toInt(),
+                                    mSelectedResource,
+                                    cb_expense_deposit.isChecked,
+                                    et_expense_note.text.toString(),
+                                    mCreatedTime,
+                                    rd_debt.isChecked,
+                                    et_expense_related_name.text.toString(),
+                                    et_expense_related_amount.text.toString().toInt()
+                            )
+                        } else {
+                            expenseId = ExpenseHelper.addExpense(
+                                    et_expense_purpose.text.toString(),
+                                    et_expense_amount.text.toString().toInt(),
+                                    mSelectedResource,
+                                    cb_expense_deposit.isChecked,
+                                    et_expense_note.text.toString(),
+                                    mCreatedTime)
+                        }
+                        Snackbar.make(view, "Expense $expenseId is saved!", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show()
+                    }
+                    finish()
+                } else {
+                    showWarning(getString(R.string.title_alert),
+                            "There is something wrong, please recheck!!!",
+                            okListener = { _ -> Unit })
+                }
+            }
+
+        }
+    }
+
     private fun onSelectedAccountChanged(resource: Resource){
         mSelectedResource = resource
         tv_expense_account.text = mSelectedResource.shortName
@@ -174,6 +180,11 @@ class CreateExpenseActivity : BaseActivity(), View.OnClickListener{
     private fun onDestinationAccountChanged(resource: Resource){
         mDestinationResource = resource
         tv_expense_to_account.text = mDestinationResource.shortName
+    }
+
+    private fun onDateTimeChanged(){
+        val formatter = DateTimeFormat.forPattern("EEE, dd-MM-yyyy HH:mm")
+        tv_expense_time.text = formatter.print(mCreatedTime)
     }
 
     private fun resetAllView(){

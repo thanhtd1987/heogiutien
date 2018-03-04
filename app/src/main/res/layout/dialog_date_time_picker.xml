@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:gravity="center">
+
+    <RadioGroup
+        android:id="@+id/toggle_date_time"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        android:background="@drawable/rect_corner_border_pink"
+        android:checkedButton="@+id/rd_date"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rd_date"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="Date"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_large" />
+
+        <RadioButton
+            android:id="@+id/rd_time"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="Time"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_large" />
+    </RadioGroup>
+
+    <DatePicker
+        android:id="@+id/date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="true"
+        android:spinnersShown="false"
+        android:headerBackground="@color/colorPrimary"
+        />
+
+    <TimePicker
+        android:id="@+id/time_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:headerBackground="@color/colorPrimary"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_set_datetime"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+
+        android:text="Set" />
+
+</LinearLayout>

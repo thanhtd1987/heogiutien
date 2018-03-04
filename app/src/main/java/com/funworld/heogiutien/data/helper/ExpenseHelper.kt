@@ -8,7 +8,7 @@ class ExpenseHelper {
 
     companion object {
         fun addExpense(purpose: String, amount: Int, resource: Resource,
-                       isDeposit: Boolean, note: String,
+                       isDeposit: Boolean, note: String, time: Long,
                        isDebt: Boolean? = null, relatedPerson: String = "", relatedAmount: Int = 0): String {
             val expense = Expense()
             expense.purpose = purpose
@@ -19,7 +19,8 @@ class ExpenseHelper {
                 expense.amount *= -1
             } else
                 expense.type = Expense.WITHDRAW_TYPE
-            expense.createdAt = DateTime.now().millis
+
+            expense.createdAt = time
             expense.updatedAt = expense.createdAt
             expense.note = note
             expense.save()
@@ -33,10 +34,10 @@ class ExpenseHelper {
             return expense.id.toString()
         }
 
-        fun transferMoney(purpose: String, amount: Int, from: Resource, to: Resource, note: String): String{
-            val fromExpenseId = addExpense(purpose, amount, from, false, note)
+        fun transferMoney(purpose: String, amount: Int, from: Resource, to: Resource, note: String, time: Long): String{
+            val fromExpenseId = addExpense(purpose, amount, from, false, note, time)
 
-            val toExpenseId = addExpense(purpose, amount, to, true, note)
+            val toExpenseId = addExpense(purpose, amount, to, true, note, time)
 
             return "Transfer from expense $fromExpenseId -> $toExpenseId"
         }
