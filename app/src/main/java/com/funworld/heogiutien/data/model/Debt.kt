@@ -29,10 +29,10 @@ class Debt: Model(){
 
 
     companion object {
-        const val BORROW_TYPE = "borrow"
-        const val DEBT_TYPE = "debt"
+        const val TYPE_BORROW = "borrow"
+        const val TYPE_LEND = "lend"
 
-        @StringDef(BORROW_TYPE, DEBT_TYPE)
+        @StringDef(TYPE_BORROW, TYPE_LEND)
         @Retention(AnnotationRetention.SOURCE)
         annotation class DebtType
     }

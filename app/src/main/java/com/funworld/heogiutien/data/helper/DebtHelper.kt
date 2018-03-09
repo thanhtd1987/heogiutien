@@ -8,17 +8,17 @@ import org.joda.time.DateTime
 class DebtHelper {
 
     companion object {
-        fun addDebt(purpose: String, amount: Int, isDebt: Boolean,
+        fun addDebt(purpose: String, amount: Int, isLendMoney: Boolean,
                     relatedPerson: String, resource: Resource, expense: Expense): Debt {
             val debt = Debt()
             debt.purpose = purpose
             debt.amount = amount
             debt.resourceId = resource
             debt.expenseId = expense
-            if (isDebt)
-                debt.type = Debt.DEBT_TYPE
+            if (isLendMoney)
+                debt.type = Debt.TYPE_LEND
             else
-                debt.type = Debt.BORROW_TYPE
+                debt.type = Debt.TYPE_BORROW
             debt.person = relatedPerson
             debt.createdAt = DateTime.now().millis
             debt.updatedAt = debt.createdAt

@@ -8,7 +8,7 @@ class ExpenseHelper {
     companion object {
         fun addExpense(purpose: String, amount: Int, resource: Resource,
                        isDeposit: Boolean, note: String, time: Long,
-                       isDebt: Boolean? = null, relatedPerson: String = "", relatedAmount: Int = 0): String {
+                       isLendMoney: Boolean? = null, relatedPerson: String = "", relatedAmount: Int = 0): String {
             val expense = Expense()
             expense.purpose = purpose
             expense.amount = amount
@@ -24,8 +24,8 @@ class ExpenseHelper {
             expense.note = note
             expense.save()
 
-            if (isDebt != null) {
-                DebtHelper.addDebt(purpose, relatedAmount, isDebt, relatedPerson, resource, expense)
+            if (isLendMoney != null) {
+                DebtHelper.addDebt(purpose, relatedAmount, isLendMoney, relatedPerson, resource, expense)
             }
 
             ResourceHelper.updateBalance(expense)
