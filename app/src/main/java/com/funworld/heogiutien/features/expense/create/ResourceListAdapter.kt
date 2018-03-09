@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.funworld.heogiutien.R
 import com.funworld.heogiutien.common.inflate
-import com.funworld.heogiutien.data.dao.Resource
+import com.funworld.heogiutien.data.model.Resource
 import kotlinx.android.synthetic.main.item_dialog_resource_list.view.*
 
 class ResourceListAdapter(val mResource: List<Resource>, val listener: (Resource) -> Unit)

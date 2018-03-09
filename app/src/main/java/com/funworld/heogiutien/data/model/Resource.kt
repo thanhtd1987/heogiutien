@@ -1,4 +1,4 @@
-package com.funworld.heogiutien.data.dao
+package com.funworld.heogiutien.data.model
 
 import android.annotation.SuppressLint
 import android.os.Parcel

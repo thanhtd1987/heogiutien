@@ -9,7 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
 import com.funworld.heogiutien.R
 import com.funworld.heogiutien.base.BaseActivity
-import com.funworld.heogiutien.data.dao.Resource
+import com.funworld.heogiutien.data.model.Resource
 import com.funworld.heogiutien.features.resource.create.CreateResourceActivity
 import kotlinx.android.synthetic.main.activity_resources.*
 

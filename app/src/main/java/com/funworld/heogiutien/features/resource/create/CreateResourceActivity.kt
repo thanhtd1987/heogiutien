@@ -9,7 +9,7 @@ import android.view.View
 import com.funworld.heogiutien.R
 import com.funworld.heogiutien.base.BaseActivity
 import com.funworld.heogiutien.common.utils.Utils
-import com.funworld.heogiutien.data.dao.Resource
+import com.funworld.heogiutien.data.model.Resource
 import com.funworld.heogiutien.data.helper.ResourceHelper
 import kotlinx.android.synthetic.main.activity_create_resource.*
 

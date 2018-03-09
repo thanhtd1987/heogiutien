@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.funworld.heogiutien.R
-import com.funworld.heogiutien.data.dao.Expense
+import com.funworld.heogiutien.data.model.Expense
 import kotlinx.android.synthetic.main.expense_row_layout.view.*
 import com.funworld.heogiutien.common.inflate
 import com.funworld.heogiutien.common.utils.Utils

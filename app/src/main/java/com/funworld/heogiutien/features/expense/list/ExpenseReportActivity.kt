@@ -10,8 +10,8 @@ import android.widget.CalendarView
 import com.funworld.heogiutien.R
 import com.funworld.heogiutien.base.BaseActivity
 import com.funworld.heogiutien.common.utils.Utils
-import com.funworld.heogiutien.data.dao.Expense
-import com.funworld.heogiutien.data.dao.Resource
+import com.funworld.heogiutien.data.model.Expense
+import com.funworld.heogiutien.data.model.Resource
 import com.funworld.heogiutien.features.expense.list.ExpenseListAdapter
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener

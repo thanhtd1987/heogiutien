@@ -1,8 +1,7 @@
 package com.funworld.heogiutien.data.helper
 
-import com.funworld.heogiutien.data.dao.Expense
-import com.funworld.heogiutien.data.dao.Resource
-import org.joda.time.DateTime
+import com.funworld.heogiutien.data.model.Expense
+import com.funworld.heogiutien.data.model.Resource
 
 class ExpenseHelper {
 

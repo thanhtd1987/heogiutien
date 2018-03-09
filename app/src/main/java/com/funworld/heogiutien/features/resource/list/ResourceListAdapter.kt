@@ -7,7 +7,7 @@ import com.funworld.heogiutien.R
 import com.funworld.heogiutien.common.utils.Utils
 import kotlinx.android.synthetic.main.item_resouce_list.view.*
 import com.funworld.heogiutien.common.inflate
-import com.funworld.heogiutien.data.dao.Resource
+import com.funworld.heogiutien.data.model.Resource
 
 class ResourceListAdapter(resources: MutableList<Resource>, private val listener: (Resource) -> Unit)
     : RecyclerView.Adapter<ResourceListAdapter.ResourceViewHolder>() {

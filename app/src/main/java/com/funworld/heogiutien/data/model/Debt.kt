@@ -1,4 +1,4 @@
-package com.funworld.heogiutien.data.dao
+package com.funworld.heogiutien.data.model
 
 import android.support.annotation.StringDef
 import com.activeandroid.Model
