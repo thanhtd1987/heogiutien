@@ -1,44 +1,46 @@
 <resources>
     <string name="app_name">Heo giu tien</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Cài đặt</string>
 
-    <string name="expense">Expenses</string>
-    <string name="resource">Resources</string>
-    <string name="detail_expense">Expense Detail</string>
-    <string name="create_expense">Add Expense</string>
+    <string name="expense">Chi tiêu</string>
+    <string name="resource">Nguồn tiền</string>
+    <string name="detail_expense">Chi tiết chi tiêu</string>
+    <string name="create_expense">Thêm chi tiêu</string>
     <string name="current_balance">Số dư hiện tại.</string>
 
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="title_alert">Alert!!</string>
-    <string name="add">Add</string>
-    <string name="save">Save</string>
+    <string name="add">Thêm</string>
+    <string name="save">Lưu</string>
 
     <!--create expense-->
     <string name="expense_related_person_hint">Tên người liên quan</string>
-    <string name="expense_note_hint">Note for this expense</string>
-    <string name="discard_warning">Are you sure to discard info?</string>
+    <string name="expense_note_hint">Ghi chú cho chi tiêu này</string>
+    <string name="discard_warning">Bạn có chắc là muốn hủy những thay đổi không?</string>
     <string name="transfer_tag">[Chuyển tiền] </string>
+    <string name="lend">Cho mượn</string>
+    <string name="borrow">Mượn</string>
 
     <!--list expense-->
     <string name="expense_current_day">%s (%d/%d)</string>
-    <string name="expense_week_of_year">Week %d (%s)</string>
+    <string name="expense_week_of_year">Tuần %d (%s)</string>
 
     <!--list resource-->
-    <string name="item_current_balance">Current: %s</string>
-    <string name="item_open_balance">Open: %s</string>
-    <string name="item_close_balance">Close: %s</string>
+    <string name="item_current_balance">Hiện tại: %s</string>
+    <string name="item_open_balance">Đầu kì: %s</string>
+    <string name="item_close_balance">Cuối kì: %s</string>
 
     <!--create resource-->
     <string name="default_cash">Tiền mặt</string>
     <string name="default_cash_des">Chi tiêu tiền mặt</string>
     <string name="default_cash_short">CASH</string>
-    <string name="create_resource">Add Resource</string>
-    <string name="create_resource_name">Resource Name</string>
-    <string name="create_resource_description">Description</string>
-    <string name="create_resource_open_balance">Opening Balance</string>
-    <string name="create_resource_short_name">Short name</string>
-    <string name="create_resource_currency">Currency</string>
-    <string name="create_resource_currency_unit">Currency Unit</string>
+    <string name="create_resource">Thêm nguồn tiền</string>
+    <string name="create_resource_name">Tên nguồn tiền</string>
+    <string name="create_resource_description">Mô tả về nguồn tiền</string>
+    <string name="create_resource_open_balance">Số dư đầu kì</string>
+    <string name="create_resource_short_name">Tên vắn tắt của nguồn tiền</string>
+    <string name="create_resource_currency">Loại tiền tệ</string>
+    <string name="create_resource_currency_unit">Đơn vị tiền tệ</string>
 
 </resources>

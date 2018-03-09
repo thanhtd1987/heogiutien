@@ -153,7 +153,7 @@
             android:layout_below="@+id/cb_expense_related"
             android:layout_marginLeft="64dp"
             android:background="@drawable/rect_corner_border_pink"
-            android:checkedButton="@+id/rd_debt"
+            android:checkedButton="@+id/rd_lend"
             android:orientation="horizontal">
 
             <RadioButton
@@ -171,7 +171,7 @@
                 android:textColor="@color/white" />
 
             <RadioButton
-                android:id="@+id/rd_debt"
+                android:id="@+id/rd_lend"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="1dp"

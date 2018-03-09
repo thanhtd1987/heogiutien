@@ -156,7 +156,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="@drawable/rect_corner_border_pink"
-                    android:checkedButton="@+id/rd_debt"
+                    android:checkedButton="@+id/rd_borrow"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -171,11 +171,11 @@
                         android:button="@null"
                         android:enabled="false"
                         android:gravity="center"
-                        android:text="Borrow"
+                        android:text="@string/borrow"
                         android:textColor="@color/white" />
 
                     <RadioButton
-                        android:id="@+id/rd_debt"
+                        android:id="@+id/rd_lend"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="1dp"
@@ -186,7 +186,7 @@
                         android:button="@null"
                         android:enabled="false"
                         android:gravity="center"
-                        android:text="Debt"
+                        android:text="@string/lend"
                         android:textColor="@color/white" />
                 </RadioGroup>
 

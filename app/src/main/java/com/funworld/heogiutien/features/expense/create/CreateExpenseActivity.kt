@@ -70,7 +70,7 @@ class CreateExpenseActivity : BaseActivity(), View.OnClickListener{
         cb_expense_related.setOnCheckedChangeListener{_, isChecked ->
             rl_expense_related.visibility = View.VISIBLE
             rd_borrow.isEnabled = isChecked
-            rd_debt.isEnabled = isChecked
+            rd_lend.isEnabled = isChecked
             et_expense_related_name.isEnabled = isChecked
             et_expense_related_amount.isEnabled = isChecked
         }
@@ -145,7 +145,7 @@ class CreateExpenseActivity : BaseActivity(), View.OnClickListener{
                                     cb_expense_deposit.isChecked,
                                     et_expense_note.text.toString(),
                                     mCreatedTime,
-                                    rd_debt.isChecked,
+                                    rd_lend.isChecked,
                                     et_expense_related_name.text.toString(),
                                     et_expense_related_amount.text.toString().toInt()
                             )

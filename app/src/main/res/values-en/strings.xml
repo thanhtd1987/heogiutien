@@ -18,6 +18,8 @@
     <string name="expense_related_person_hint">Tên người liên quan</string>
     <string name="expense_note_hint">Note for this expense</string>
     <string name="discard_warning">Are you sure to discard info?</string>
+    <string name="lend">Lend</string>
+    <string name="borrow">Borrow</string>
 
     <!--list expense-->
     <string name="expense_current_day">%s (%d/%d)</string>
