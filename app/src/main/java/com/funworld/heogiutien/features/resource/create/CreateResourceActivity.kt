@@ -11,14 +11,14 @@ import com.funworld.heogiutien.base.BaseActivity
 import com.funworld.heogiutien.common.utils.Utils
 import com.funworld.heogiutien.data.model.Resource
 import com.funworld.heogiutien.data.helper.ResourceHelper
-import kotlinx.android.synthetic.main.activity_create_resource.*
+import kotlinx.android.synthetic.main.activity_resource_create.*
 
 
 class CreateResourceActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_resource)
+        setContentView(R.layout.activity_resource_create)
 
         val resource = intent.getParcelableExtra<Resource>(INTENT_PARAM_RESOURCE)
 
