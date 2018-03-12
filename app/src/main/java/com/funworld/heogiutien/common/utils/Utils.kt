@@ -41,25 +41,30 @@ class Utils {
                 setContentView(R.layout.dialog_date_time_picker)
 
                 //fixme : can not call Ondatechange listener for android below api 26
-                date_picker.init(dateTime.year, dateTime.monthOfYear - 1, dateTime.dayOfMonth,
-                        { _, year, month, dayOfMonth ->
-                            Log.d("DEBUG", "month: $month ")
-                            val formatter = DateTimeFormat.forPattern("EEE, dd-MM-yyyy")
-                            rd_date.text = formatter.print(DateTime(year, month, dayOfMonth, 0, 0))
-                        })
+                date_picker.init(dateTime.year, dateTime.monthOfYear - 1, dateTime.dayOfMonth, { _, year, month, dayOfMonth ->
+                    Log.d("DEBUG", "month: $month ")
+                    val formatter = DateTimeFormat.forPattern("EEE, dd-MM-yyyy")
+                    rd_date.text = formatter.print(DateTime(year, month, dayOfMonth, 0, 0))
+                })
 
                 time_picker.currentHour = dateTime.hourOfDay
                 time_picker.currentMinute = dateTime.minuteOfHour
+
+                rd_date.text = DateTimeFormat.forPattern("EEE, dd-MM-yyyy").print(dateTime)
+                rd_time.text = DateTimeFormat.forPattern("HH:mm").print(dateTime)
 
                 toggle_date_time.setOnCheckedChangeListener { radioGroup, id ->
                     when (id) {
                         R.id.rd_date -> {
                             time_picker.visibility = View.GONE
                             date_picker.visibility = View.VISIBLE
+                            rd_time.text = time_picker.currentHour.toString() + ":" + time_picker.currentMinute
                         }
                         R.id.rd_time -> {
                             date_picker.visibility = View.GONE
                             time_picker.visibility = View.VISIBLE
+                            rd_date.text = DateTimeFormat.forPattern("EEE, dd-MM-yyyy")
+                                    .print(DateTime(date_picker.year, date_picker.month, date_picker.dayOfMonth, 0, 0))
                         }
 
                     }
