@@ -19,8 +19,17 @@
     <string name="expense_note_hint">Ghi chú cho chi tiêu này</string>
     <string name="discard_warning">Bạn có chắc là muốn hủy những thay đổi không?</string>
     <string name="transfer_tag">[Chuyển tiền] </string>
+    <string name="deposit_tag">[Nộp tiền] </string>
+    <string name="payback_tag">[Trả nợ] </string>
     <string name="lend">Cho mượn</string>
     <string name="borrow">Mượn</string>
+
+    <!--expense detail-->
+    <string name="expense_purpose">Mục đích : </string>
+    <string name="expense_amount">Số tiền : </string>
+    <string name="expense_resource">Nguồn tiền : </string>
+    <string name="expense_transfer">Chuyển tiền : </string>
+    <string name="expense_borrow_lend">Mượn/Cho mượn : </string>
 
     <!--list expense-->
     <string name="expense_current_day">%s (%d/%d)</string>
