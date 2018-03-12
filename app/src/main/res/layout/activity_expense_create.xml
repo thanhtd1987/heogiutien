@@ -68,15 +68,25 @@
                 android:inputType="numberDecimal" />
 
             <TextView
+                android:id="@+id/tv_expense_currency_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/et_expense_amount"
+                android:layout_alignBottom="@+id/et_expense_amount"
+                android:layout_toRightOf="@id/et_expense_amount"
+                android:gravity="center"
+                android:text="k VND"/>
+
+            <TextView
                 android:id="@+id/tv_expense_account_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/et_expense_amount"
                 android:layout_alignTop="@+id/et_expense_amount"
                 android:layout_marginLeft="@dimen/gap_normal"
-                android:layout_toRightOf="@+id/et_expense_amount"
+                android:layout_toRightOf="@+id/tv_expense_currency_unit"
                 android:gravity="center_vertical"
-                android:text="Tài khoản: " />
+                android:text="@string/resource" />
 
             <TextView
                 android:id="@+id/tv_expense_account"
@@ -96,17 +106,54 @@
                 android:layout_marginTop="@dimen/gap_small"
                 android:checked="false"
                 android:padding="@dimen/gap_small"
-                android:text="Nop tiền" />
+                android:text="@string/deposit_tag" />
 
             <CheckBox
-                android:id="@+id/cb_expense_transfer"
+                android:id="@+id/cb_expense_payback"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/cb_expense_deposit"
                 android:layout_marginTop="@dimen/gap_small"
                 android:checked="false"
                 android:padding="@dimen/gap_small"
-                android:text="Chuyển tiền" />
+                android:text="@string/payback_tag" />
+
+            <LinearLayout
+                android:id="@+id/ll_payback_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cb_expense_payback"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/gap_large"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tv_expense_debt_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hãy chọn khoản nợ"
+                    android:padding="@dimen/gap_small"
+                    android:background="@drawable/background_bottom_border"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_black"/>
+
+                <EditText
+                    android:id="@+id/et_expense_payback_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"
+                    android:hint="Số tiền trả"
+                    />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/cb_expense_transfer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_payback_info"
+                android:layout_marginTop="@dimen/gap_small"
+                android:checked="false"
+                android:padding="@dimen/gap_small"
+                android:text="@string/transfer_tag" />
 
             <LinearLayout
                 android:id="@+id/ll_receive_account"
@@ -141,7 +188,7 @@
                 android:layout_marginTop="@dimen/gap_small"
                 android:checked="false"
                 android:padding="@dimen/gap_small"
-                android:text="Liên quan" />
+                android:text="@string/expense_borrow_lend" />
 
             <RelativeLayout
                 android:id="@+id/rl_expense_related"
