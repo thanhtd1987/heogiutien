@@ -1,5 +1,7 @@
 package com.funworld.heogiutien.data.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import android.support.annotation.StringDef
 import com.activeandroid.Model
 import com.activeandroid.annotation.Column
@@ -14,7 +16,7 @@ import org.joda.time.format.DateTimeFormat
  */
 
 @Table(name = "Expense")
-class Expense() : Model() {
+class Expense() : Model(), Parcelable {
 
 //    @Column(name = "expense_id", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
 //    var expenseId: Int = 0
@@ -41,13 +43,47 @@ class Expense() : Model() {
 
     var relatedExpense: String = "" // cac chi tieu lien quan, tach chi tieu...
 
+    constructor(parcel: Parcel) : this() {
+        type = parcel.readString()
+        amount = parcel.readInt()
+        purpose = parcel.readString()
+        resourceId = parcel.readParcelable(Resource::class.java.classLoader)
+        note = parcel.readString()
+        createdAt = parcel.readLong()
+        updatedAt = parcel.readLong()
+        relatedExpense = parcel.readString()
+    }
+
     fun getCreatedTime()= DateTimeFormat.forPattern("HH:mm").print(createdAt)
 
     fun getCreatedDateTime() = DateTimeFormat.forPattern("YYYY-MM-dd HH:mm").print(createdAt)
 
     override fun toString() = "[type: $type, amount: $amount, purpose: $purpose, createdAt: $createdAt, resource id: $resourceId]"
 
-    companion object {
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(type)
+        parcel.writeInt(amount)
+        parcel.writeString(purpose)
+        parcel.writeParcelable(resourceId, flags)
+        parcel.writeString(note)
+        parcel.writeLong(createdAt)
+        parcel.writeLong(updatedAt)
+        parcel.writeString(relatedExpense)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Expense> {
+        override fun createFromParcel(parcel: Parcel): Expense {
+            return Expense(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Expense?> {
+            return arrayOfNulls(size)
+        }
+
         const val DEPOSIT_TYPE = "deposit"
         const val WITHDRAW_TYPE = "withdraw"
 
@@ -88,5 +124,4 @@ class Expense() : Model() {
         fun getByResource(resource: Resource) = Select().from(Expense::class.java)
                 .where("resource=?", resource.id).execute<Expense>()
     }
-
 }

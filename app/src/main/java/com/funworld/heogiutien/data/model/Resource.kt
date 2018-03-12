@@ -46,7 +46,7 @@ class Resource() : Model(), Parcelable {
     @Column(name = "currency")
     var currency: String = "Vietnam Dong"
     @Column(name = "currency_unit")
-    var currencyUnit: String = "k"
+    var currencyUnit: String = "k VND"
     // chi tieu cuoi cung
     @Column(name = "last_expense")
     var lastExpense: Expense? = null
