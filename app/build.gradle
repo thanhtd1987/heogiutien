@@ -3,15 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion COMPILE_SDK
+    buildToolsVersion BUILD_TOOLS
     defaultConfig {
         applicationId "com.funworld.heogiutien"
-        minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        minSdkVersion MIN_SDK
+        targetSdkVersion TARGET_SDK
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
     }
     buildTypes {
         release {
@@ -20,9 +19,17 @@ android {
         }
     }
 
+    dexOptions {
+        javaMaxHeapSize = "4g"
+        preDexLibraries = true
+    }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 
@@ -31,20 +38,15 @@ repositories {
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
 
-
-def androidSupportVersion = "26.0.0"
-
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile "com.android.support:appcompat-v7:$androidSupportVersion"
-    compile "com.android.support:design:$androidSupportVersion"
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation "com.android.support:appcompat-v7:$SUPPORT_VERSION"
+    implementation "com.android.support:design:$SUPPORT_VERSION"
+    testImplementation 'junit:junit:4.12'
     //activeAndroid
-    compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
-    //    //Joda time - handle time issues
-    //    compile 'joda-time:joda-time:2.9.9'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
+
 }
