@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion COMPILE_SDK
@@ -42,11 +43,22 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
 
-    implementation "com.android.support:appcompat-v7:$SUPPORT_VERSION"
-    implementation "com.android.support:design:$SUPPORT_VERSION"
+    //material design
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+
+    //Room
+    implementation "androidx.room:room-runtime:$ROOM_VERSION"
+    implementation "androidx.room:room-ktx:$ROOM_VERSION"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    kapt "androidx.room:room-compiler:$ROOM_VERSION"
+
     testImplementation 'junit:junit:4.12'
-    //activeAndroid
-    implementation 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
-
 }

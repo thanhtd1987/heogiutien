@@ -1,6 +1,7 @@
 package com.funworld.heogiutien.common
 
-import com.activeandroid.app.Application
+import android.app.Application
+
 
 /**
  * Created by ThanhTD on 6/25/2017.

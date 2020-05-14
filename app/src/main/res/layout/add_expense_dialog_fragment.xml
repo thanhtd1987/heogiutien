@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:menu="@menu/add_expense_app_bar"
+            app:navigationIcon="@drawable/ic_close"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/title_add_expense" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/dialog_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@color/white"
+        android:padding="@dimen/gap_small">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_resource"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/actionbar_height"
+            android:padding="@dimen/gap_small"
+            android:spinnerMode="dropdown"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/rgr_type"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="@dimen/gap_normal"
+            android:background="@drawable/rect_corner_border_pri"
+            android:checkedButton="@id/rdb_expense"
+            android:orientation="horizontal"
+            android:padding="@dimen/gap_normal"
+            android:weightSum="2"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_resource">
+
+            <RadioButton
+                android:id="@+id/rdb_expense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/expense" />
+
+            <RadioButton
+                android:id="@+id/rdb_deposit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deposit" />
+        </RadioGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_amount"
+            style="@style/Widget.Design.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gap_normal"
+            android:hint="@string/expense_money_amount"
+            app:layout_constraintTop_toBottomOf="@+id/rgr_type">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_money_amount"
+                style="@style/Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:nextFocusDown="@id/edt_purpose"
+                android:textSize="@dimen/text_size_xxlarge" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_purpose"
+            style="@style/Widget.Design.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gap_normal"
+            android:hint="@string/expense_purpose"
+            app:layout_constraintTop_toBottomOf="@+id/til_amount">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_purpose"
+                style="@style/Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_xlarge" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/title_created"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gap_normal"
+            android:text="@string/expense_created_time"
+            android:textSize="@dimen/text_size_big"
+            app:layout_constraintStart_toStartOf="@+id/til_purpose"
+            app:layout_constraintTop_toBottomOf="@+id/til_purpose" />
+
+        <LinearLayout
+            android:id="@+id/ll_time"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            app:layout_constraintTop_toBottomOf="@+id/title_created">
+
+            <TextView
+                android:id="@+id/tv_created_date"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:textSize="@dimen/text_size_large" />
+
+            <TextView
+                android:id="@+id/tv_created_time"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_size_large" />
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

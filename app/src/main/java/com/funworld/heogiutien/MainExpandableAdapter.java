@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import com.funworld.heogiutien.R;
-import com.funworld.heogiutien.data.dao.Expense;
+import com.funworld.heogiutien.model.Expense;
 
 import java.util.HashMap;
 import java.util.List;
@@ -71,8 +70,8 @@ public class MainExpandableAdapter extends BaseExpandableListAdapter {
             convertView = li.inflate(R.layout.group_layout, parent, false);
         }
 
-        TextView tvHeader = (TextView) convertView.findViewById(R.id.tv_grp_name);
-        TextView tv_grp_total = (TextView) convertView.findViewById(R.id.tv_grp_total);
+        TextView tvHeader = convertView.findViewById(R.id.tv_grp_name);
+        TextView tv_grp_total = convertView.findViewById(R.id.tv_grp_total);
         tvHeader.setText(mHeaderGroup.get(groupPosition));
         return convertView;
     }
@@ -84,13 +83,13 @@ public class MainExpandableAdapter extends BaseExpandableListAdapter {
             convertView = li.inflate(R.layout.expense_row_layout, parent, false);
         }
 
-        TextView tv_row_money_amount = (TextView) convertView.findViewById(R.id.tv_row_money_amount);
-        TextView tv_row_reason = (TextView) convertView.findViewById(R.id.tv_row_reason);
-        TextView tv_row_time = (TextView) convertView.findViewById(R.id.tv_row_time);
+        TextView tv_row_money_amount = convertView.findViewById(R.id.tv_row_money_amount);
+        TextView tv_row_reason = convertView.findViewById(R.id.tv_row_reason);
+        TextView tv_row_time = convertView.findViewById(R.id.tv_row_time);
 
         tv_row_reason.setText(((Expense) getChild(groupPosition, childPosition)).getPurpose());
         tv_row_time.setText(((Expense) getChild(groupPosition, childPosition)).getCreateAt() + ""); // 2017-06-24 15:30:23 --> 15:30
-        tv_row_money_amount.setText(String.valueOf(((Expense) getChild(groupPosition, childPosition)).getAmount())+ "k");
+        tv_row_money_amount.setText(((Expense) getChild(groupPosition, childPosition)).getAmount() + "k");
         return convertView;
     }
 

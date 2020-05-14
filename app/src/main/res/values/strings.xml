@@ -1,7 +1,22 @@
 <resources>
     <string name="app_name">Heo giu tien</string>
     <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="action_more">More</string>
+    <string name="action_save">Save</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
     <string name="expense">Expense</string>
+    <string name="deposit">Deposit</string>
     <string name="current_balance">Số dư hiện tại.</string>
+
+    <string name="title_add_expense">Adding Expense</string>
+    <string name="title_add_resource">Adding Resource</string>
+
+    <string name="expense_money_amount">Money amount</string>
+    <string name="expense_purpose">Purpose</string>
+    <string name="expense_created_time">Created time:</string>
+
+    <string name="mess_dialog_confirm_add_resource">There is no resource. Do you want to add one?</string>
 </resources>
