@@ -22,15 +22,17 @@ class ExpenseAdapter internal constructor(context: Context) :
         val amount: TextView = itemView.findViewById(R.id.tv_row_money_amount)
         val purpose: TextView = itemView.findViewById(R.id.tv_row_reason)
         val time: TextView = itemView.findViewById(R.id.tv_row_time)
+        val resource: TextView = itemView.findViewById(R.id.tv_row_money_source)
 
         fun bind(expense: Expense) {
-            val ic_type = if (expense.type == "+") R.drawable.ic_add else R.drawable.ic_remove
+            val iconType = if (expense.type == "+") R.drawable.ic_add else R.drawable.ic_remove
 //            val tint = if (expense.type == "+") R.color.colorAccent else R.color.colorPrimary
-            type.setImageResource(ic_type)
+            type.setImageResource(iconType)
 //            type.setColorFilter(tint)
-            amount.text = expense.amount.toString() + "k VND"
+            amount.text = expense.amount.toString() + itemView.context.getString(R.string.vnd_unit)
             purpose.text = expense.purpose
             time.text = expense.getShortCreatedTime()
+            resource.text = expense.resourceId.toString() //todo: get resource name to display
         }
     }
 
