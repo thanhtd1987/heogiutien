@@ -1,31 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:menu="@menu/add_expense_app_bar"
-            app:navigationIcon="@drawable/ic_close"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="@string/title_add_resource" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
+        android:id="@+id/adding_layout"
         android:background="@color/white"
         android:padding="@dimen/gap_small">
 
@@ -34,8 +12,8 @@
             style="@style/Widget.Design.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/gap_normal"
-            android:hint="Ten nguon tien"
+            android:layout_marginTop="@dimen/gap_small"
+            android:hint="@string/adding_resource_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -44,7 +22,8 @@
                 style="@style/Widget.AppCompat.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_xxlarge" />
+                android:nextFocusDown="@id/edt_money_amount"
+                android:textSize="@dimen/text_size_xlarge" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -54,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/gap_normal"
-            android:hint="So tien(K VND)"
+            android:hint="@string/adding_resource_money_amount"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/til_name">
 
@@ -64,7 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
-                android:textSize="@dimen/text_size_xxlarge" />
+                android:nextFocusDown="@id/edt_description"
+                android:textSize="@dimen/text_size_xlarge" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/gap_normal"
-            android:hint="Mo ta"
+            android:hint="@string/adding_resource_describtion"
             app:layout_constraintTop_toBottomOf="@+id/til_amount">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -82,10 +62,8 @@
                 style="@style/Widget.AppCompat.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_xlarge" />
+                android:textSize="@dimen/text_size_large" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
     </android.support.constraint.ConstraintLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>

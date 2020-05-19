@@ -32,6 +32,9 @@ fun Fragment.toast(text: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(context, text, duration).show()
 }
 
+/**
+ * hide keyboard
+ */
 fun Fragment.hideKeyboard() {
     view?.let { activity?.hideKeyboard(it) }
 }
@@ -44,6 +47,15 @@ fun Context.hideKeyboard(view: View) {
     val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
     inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
 }
+
+/**
+ * return result from fragment
+ */
+//fun Fragment.getNavigationResult(key: String = "result") =
+//   findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(key)
+
+//fun Fragment.setNavigationResult(result: String, key: String = "result") {
+//    findNavController().previousBackStackEntry?.savedStateHandle?.set(key, result)
 
 /**
  * https://medium.com/@AjahnCharles/wrap-callbacks-as-coroutines-kotlin-android-bf4aa79024c5

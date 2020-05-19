@@ -7,67 +7,112 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentTransaction
+import androidx.appcompat.widget.Toolbar
+import androidx.core.os.bundleOf
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.funworld.heogiutien.R
-import com.funworld.heogiutien.features.add.AddExpenseDialogFragment
-import com.funworld.heogiutien.features.add.AddResourceDialogFragment
+import com.funworld.heogiutien.common.toast
 import com.funworld.heogiutien.model.Expense
 import com.funworld.heogiutien.model.Resource
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
+import com.funworld.heogiutien.ui.home.HomeViewModel
+import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlin.properties.Delegates
 
-class MainActivity : AppCompatActivity(), AddResourceDialogFragment.Callback,
-    AddExpenseDialogFragment.Callback {
+class MainActivity : AppCompatActivity(){
 
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initView()
+        setupAppbarConfig()
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.top_app_bar, menu)
+        return true
+    }
+
+    private fun setupAppbarConfig() {
+        val drawer: DrawerLayout = findViewById(R.id.main_drawer_layout)
+        val navView: NavigationView = findViewById(R.id.main_navigation)
+        navController = findNavController(R.id.nav_host_fragment)
+
+        appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.nav_expenses, R.id.nav_resources, R.id.nav_expense_pattern), drawer
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->  //3
+            if (destination.id in arrayOf(
+                    R.id.addExpenseDialogFragment,
+                    R.id.addResourceDialogFragment
+                )
+            ) {
+                fab.hide()
+            } else {
+                fab.show()
+            }
+
+//            if (destination.id == R.id.presentationFragment) {
+//                toolbar.visibility = View.GONE
+//            } else {
+//                toolbar.visibility = View.VISIBLE
+//            }
+        }
+    }
+
+    lateinit var homeViewModel: HomeViewModel
     private fun initView() {
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         fab.setOnClickListener {
             if (mainViewModel.resources.value.isNullOrEmpty()) {
-//                MaterialAlertDialogBuilder(baseContext)
-//                    .setMessage(R.string.mess_dialog_confirm_add_resource)
-//                    .setPositiveButton(R.string.ok) { _, _ -> showAddResourceDialog() }
-//                    .setNegativeButton(R.string.cancel) { _, _ -> }
-//                    .show()
-                showAddResourceDialog()
+                showAddResourceFragment()
             } else {
-                showAddExpenseDialog()
+                showAddExpenseFragment()
             }
         }
 
-        toolbar.setNavigationOnClickListener {
+//        toolbar.setOnMenuItemClickListener { item ->
+//            when (item.itemId) {
+//                R.id.action_search -> {
+//                    //click search
+//                    toast("search")
+//                    true
+//                }
+//                R.id.action_more -> {
+//                    //click more
+//                    toast("more")
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
 
-        }
-
-        toolbar.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
-                R.id.action_search -> {
-                    //click search
-                    true
-                }
-                R.id.action_more -> {
-                    //click more
-                    true
-                }
-                else -> false
-            }
-        }
-
-        val adapter = ExpenseAdapter(this)
-        rcv_latest_expense.adapter = adapter
-        rcv_latest_expense.layoutManager = LinearLayoutManager(this)
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mainViewModel.resources.observe(this, Observer { resources ->
@@ -75,33 +120,52 @@ class MainActivity : AppCompatActivity(), AddResourceDialogFragment.Callback,
                 resources.let { Log.d("DEBUG", "resource: " + it.last().name) }
         })
         mainViewModel.expenses.observe(this, Observer { expenses ->
-            expenses?.let { adapter.setExpenses(it) }
+            expenses?.let { homeViewModel.expenses.postValue(it) }
+        })
+
+        homeViewModel.addedExpenese.observe(this, Observer { expense ->
+            expense?.let { onAddedExpense(it) }
+        })
+        homeViewModel.addedResource.observe(this, Observer { resource ->
+            resource?.let { onAddedResource(it) }
         })
     }
 
-    companion object {
-        private val TAG = "MainActivity"
+    private fun showAddResourceFragment() {
+        findNavController(R.id.nav_host_fragment).navigate(R.id.addResourceDialogFragment)
     }
 
-    private fun showAddDialog(dialogFragment: DialogFragment) {
-        val fragmentManager = supportFragmentManager
-        val transaction = fragmentManager.beginTransaction()
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-        transaction
-            .add(R.id.frg_container, dialogFragment)
-            .addToBackStack(null)
-            .commit()
+    private fun showAddExpenseFragment() {
+        val bundle = bundleOf(
+            "resource_ids" to mainViewModel.resources.value!!.map { it.id }.toIntArray(),
+            "resource_names" to mainViewModel.resources.value!!.map { it.name }.toTypedArray()
+        )
+        findNavController(R.id.nav_host_fragment).navigate(R.id.addExpenseDialogFragment, bundle)
     }
 
-    private fun showAddResourceDialog() {
-        val addResource = AddResourceDialogFragment(this)
-        showAddDialog(addResource)
+    private fun onAddedResource(resource: Resource) {
+        toast("Added ${resource.name} Resource")
+        mainViewModel.insert(resource)
     }
 
-    private fun showAddExpenseDialog() {
-        val addExpenseDialogFragment = AddExpenseDialogFragment(this)
-        addExpenseDialogFragment.setResources(mainViewModel.resources.value!!)
-        showAddDialog(addExpenseDialogFragment)
+    private fun onAddedExpense(expense: Expense) {
+        mainViewModel.insert(expense)
+    }
+
+    interface NavigationResult {
+        fun onNavigationResult(result: Bundle)
+    }
+
+    fun navigateBackWithResult(result: Bundle) {
+        val childFragmentManager =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.childFragmentManager
+        var backStackListener: FragmentManager.OnBackStackChangedListener by Delegates.notNull()
+        backStackListener = FragmentManager.OnBackStackChangedListener {
+            (childFragmentManager?.fragments?.get(0) as NavigationResult).onNavigationResult(result)
+            childFragmentManager.removeOnBackStackChangedListener(backStackListener)
+        }
+        childFragmentManager?.addOnBackStackChangedListener(backStackListener)
+        navController.popBackStack()
     }
 
     val addActionModeCallback = object : ActionMode.Callback {
@@ -135,14 +199,4 @@ class MainActivity : AppCompatActivity(), AddResourceDialogFragment.Callback,
         }
 
     }
-
-    override fun onAddedResource(resource: Resource) {
-        Log.d("DEBUG", "Insert resource")
-        mainViewModel.insert(resource)
-    }
-
-    override fun onAddedExpense(expense: Expense) {
-        mainViewModel.insert(expense)
-    }
-
 }

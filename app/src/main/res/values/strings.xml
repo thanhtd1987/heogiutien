@@ -8,15 +8,31 @@
     <string name="cancel">Cancel</string>
 
     <string name="expense">Expense</string>
+    <string name="resource">Money Resource</string>
+    <string name="expense_pattern">Expense Pattern</string>
     <string name="deposit">Deposit</string>
     <string name="current_balance">Số dư hiện tại.</string>
 
     <string name="title_add_expense">Adding Expense</string>
     <string name="title_add_resource">Adding Resource</string>
 
-    <string name="expense_money_amount">Money amount</string>
+    <string name="expense_money_amount">Amount (1000đ)</string>
     <string name="expense_purpose">Purpose</string>
     <string name="expense_created_time">Created time:</string>
 
     <string name="mess_dialog_confirm_add_resource">There is no resource. Do you want to add one?</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="adding_resource_name">Resource name</string>
+    <string name="adding_resource_describtion">Describtion</string>
+    <string name="adding_resource_money_amount">Money\'s amount(1000đ)</string>
+    <string name="vnd_unit">.000đ</string>
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_expenses"
+        android:title="@string/expense"
+        android:icon="@drawable/ic_expenses"/>
+
+    <item
+        android:id="@+id/nav_resources"
+        android:title="@string/resource"
+        android:icon="@drawable/ic_resources"/>
+
+    <item
+        android:id="@+id/nav_expense_pattern"
+        android:title="@string/expense_pattern"
+        android:icon="@drawable/ic_expense_patterns"/>
+
+
+</menu>

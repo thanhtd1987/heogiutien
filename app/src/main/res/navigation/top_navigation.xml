@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/top_navigation"
+    app:startDestination="@id/nav_expenses">
+
+    <fragment
+        android:id="@+id/nav_expenses"
+        android:name="com.funworld.heogiutien.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_expenses_to_addExpenseFragment"
+            app:destination="@id/addExpenseFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_expenses_to_addResourceFragment"
+            app:destination="@id/addResourceFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_resources"
+        android:name="com.funworld.heogiutien.ui.resource.ResourceFragment"
+        android:label="fragment_resource"
+        tools:layout="@layout/fragment_resource" />
+    <fragment
+        android:id="@+id/nav_expense_pattern"
+        android:name="com.funworld.heogiutien.ui.pattern.PatternFragment"
+        android:label="fragment_pattern"
+        tools:layout="@layout/fragment_pattern" />
+    <fragment
+        android:id="@+id/addExpenseFragment"
+        android:name="com.funworld.heogiutien.ui.add_expense.AddExpenseFragment"
+        android:label="AddExpenseFragment" />
+    <fragment
+        android:id="@+id/addResourceFragment"
+        android:name="com.funworld.heogiutien.ui.add_resource.AddResourceFragment"
+        android:label="AddResourceFragment" />
+</navigation>
