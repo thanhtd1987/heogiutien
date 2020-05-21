@@ -9,12 +9,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.funworld.heogiutien.R
 import com.funworld.heogiutien.model.Expense
+import com.funworld.heogiutien.model.Resource
 
 class ExpenseAdapter internal constructor(context: Context) :
     RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var expenses = emptyList<Expense>()
+    private var resources = emptyList<Resource>()
 
 
     inner class ExpenseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -32,7 +34,7 @@ class ExpenseAdapter internal constructor(context: Context) :
             amount.text = expense.amount.toString() + itemView.context.getString(R.string.vnd_unit)
             purpose.text = expense.purpose
             time.text = expense.getShortCreatedTime()
-            resource.text = expense.resourceId.toString() //todo: get resource name to display
+            resource.text = resources.first { it.id == expense.resourceId }.name
         }
     }
 
@@ -50,6 +52,11 @@ class ExpenseAdapter internal constructor(context: Context) :
 
     internal fun setExpenses(expenses: List<Expense>) {
         this.expenses = expenses
+        notifyDataSetChanged()
+    }
+
+    internal fun setResourceNames(resources: List<Resource>) {
+        this.resources = resources
         notifyDataSetChanged()
     }
 }

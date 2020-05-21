@@ -116,7 +116,13 @@ class MainActivity : AppCompatActivity() {
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mainViewModel.resources.observe(this, Observer { resources ->
             if (!resources.isNullOrEmpty())
-                resources.let { Log.d("DEBUG", "resource: " + it.last().name) }
+                resources?.let {
+                    homeViewModel.resources.postValue(it)
+                    with(it.first { it.id == mTopResourceId }) {
+                        tv_top_balance_name.text = this.name
+                        tv_top_current_balance.text = moneyInVnd(this.currentBalance)
+                    }
+                }
         })
         mainViewModel.expenses.observe(this, Observer { expenses ->
             expenses?.let { homeViewModel.expenses.postValue(it) }
