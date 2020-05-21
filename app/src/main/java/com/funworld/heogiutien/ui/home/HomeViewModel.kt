@@ -13,7 +13,9 @@ class HomeViewModel : ViewModel() {
     }
     val expenses = MutableLiveData<List<Expense>>()
 
-    val addedExpenese = MutableLiveData<Expense>()
+    val resources = MutableLiveData<List<Resource>>()
+
+    val addedExpense = MutableLiveData<Expense>()
 
     val addedResource = MutableLiveData<Resource>()
 

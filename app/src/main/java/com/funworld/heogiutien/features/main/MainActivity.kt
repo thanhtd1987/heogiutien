@@ -1,7 +1,6 @@
 package com.funworld.heogiutien.features.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuInflater
@@ -28,7 +27,7 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlin.properties.Delegates
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
     private lateinit var mainViewModel: MainViewModel
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -66,8 +65,8 @@ class MainActivity : AppCompatActivity(){
 
         navController.addOnDestinationChangedListener { _, destination, _ ->  //3
             if (destination.id in arrayOf(
-                    R.id.addExpenseDialogFragment,
-                    R.id.addResourceDialogFragment
+                    R.id.addExpenseFragment,
+                    R.id.addResourceFragment
                 )
             ) {
                 fab.hide()
@@ -123,7 +122,7 @@ class MainActivity : AppCompatActivity(){
             expenses?.let { homeViewModel.expenses.postValue(it) }
         })
 
-        homeViewModel.addedExpenese.observe(this, Observer { expense ->
+        homeViewModel.addedExpense.observe(this, Observer { expense ->
             expense?.let { onAddedExpense(it) }
         })
         homeViewModel.addedResource.observe(this, Observer { resource ->
@@ -132,7 +131,7 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun showAddResourceFragment() {
-        findNavController(R.id.nav_host_fragment).navigate(R.id.addResourceDialogFragment)
+        findNavController(R.id.nav_host_fragment).navigate(R.id.addResourceFragment)
     }
 
     private fun showAddExpenseFragment() {
@@ -140,7 +139,7 @@ class MainActivity : AppCompatActivity(){
             "resource_ids" to mainViewModel.resources.value!!.map { it.id }.toIntArray(),
             "resource_names" to mainViewModel.resources.value!!.map { it.name }.toTypedArray()
         )
-        findNavController(R.id.nav_host_fragment).navigate(R.id.addExpenseDialogFragment, bundle)
+        findNavController(R.id.nav_host_fragment).navigate(R.id.addExpenseFragment, bundle)
     }
 
     private fun onAddedResource(resource: Resource) {

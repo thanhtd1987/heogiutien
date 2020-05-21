@@ -149,7 +149,7 @@ class AddExpenseFragment : Fragment(),
     }
 
     private fun onSaved() {
-        homeViewModel.addedExpenese.postValue(getAddedExpense())
+        homeViewModel.addedExpense.postValue(getAddedExpense())
     }
 }
 
