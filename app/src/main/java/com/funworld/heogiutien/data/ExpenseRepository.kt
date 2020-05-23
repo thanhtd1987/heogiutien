@@ -14,6 +14,15 @@ class ExpenseRepository(private val expenseDao: ExpenseDao, private val resource
 
     suspend fun insertExpense(expense: Expense) {
         expenseDao.insert(expense)
+        //update Resource with expense
+        updateResourceByExpense(expense)
+    }
+
+    private suspend fun updateResourceByExpense(expense: Expense) {
+        val resource = allResources.value?.first { it.id == expense.resourceId }
+        val amount = if (expense.type == "-") expense.amount else -expense.amount
+        resource!!.currentBalance -= amount
+        resourceDao.update(resource!!)
     }
 
     suspend fun insertResource(resource: Resource) {

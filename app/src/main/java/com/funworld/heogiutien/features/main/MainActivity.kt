@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
+    private val mTopResourceId = 1 //temporary get fix id
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -125,7 +127,7 @@ class MainActivity : AppCompatActivity() {
                 }
         })
         mainViewModel.expenses.observe(this, Observer { expenses ->
-            expenses?.let { homeViewModel.expenses.postValue(it) }
+            expenses?.let { homeViewModel.expenses.postValue(it.reversed()) }
         })
 
         homeViewModel.addedExpense.observe(this, Observer { expense ->
@@ -156,6 +158,8 @@ class MainActivity : AppCompatActivity() {
     private fun onAddedExpense(expense: Expense) {
         mainViewModel.insert(expense)
     }
+
+    private fun moneyInVnd(amount: Int) = amount.toString() + getString(R.string.vnd_unit)
 
     interface NavigationResult {
         fun onNavigationResult(result: Bundle)

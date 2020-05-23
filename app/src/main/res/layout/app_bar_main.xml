@@ -9,7 +9,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="182dp"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay"
         app:liftOnScroll="true">
@@ -18,27 +18,55 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:expandedTitleMarginBottom="@dimen/gap_big"
-            app:expandedTitleMarginStart="@dimen/gap_big">
+            app:collapsedTitleTextAppearance="@color/colorAccent"
+            app:contentScrim="@color/colorAccent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-<!--            <ImageView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="182dp"-->
-<!--                android:fitsSystemWindows="true"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                android:src="@drawable/rect_corner_primary" />-->
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="182dp"
+                    android:src="@drawable/side_nav_bar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_top_current_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/gap_normal"
+                    android:layout_marginBottom="@dimen/gap_small"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_large"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_top_balance_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/gap_small"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_large"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_top_current_balance"
+                    app:layout_constraintRight_toRightOf="@+id/tv_top_current_balance" />
+
+            </android.support.constraint.ConstraintLayout>
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
+                app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_menu"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:subtitle="app"
-                app:title="@string/app_name" />
+                app:subtitle="app" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
