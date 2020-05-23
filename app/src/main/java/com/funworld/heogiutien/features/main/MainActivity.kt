@@ -23,6 +23,7 @@ import com.funworld.heogiutien.common.toast
 import com.funworld.heogiutien.model.Expense
 import com.funworld.heogiutien.model.Resource
 import com.funworld.heogiutien.ui.home.HomeViewModel
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlin.properties.Delegates
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAppbarConfig() {
+        val appBarLayout = findViewById<AppBarLayout>(R.id.app_bar_layout)
         val drawer: DrawerLayout = findViewById(R.id.main_drawer_layout)
         val navView: NavigationView = findViewById(R.id.main_navigation)
         navController = findNavController(R.id.nav_host_fragment)
@@ -76,11 +78,12 @@ class MainActivity : AppCompatActivity() {
                 fab.show()
             }
 
-//            if (destination.id == R.id.presentationFragment) {
+            if (destination.id == R.id.nav_expenses) {
 //                toolbar.visibility = View.GONE
-//            } else {
-//                toolbar.visibility = View.VISIBLE
-//            }
+                appBarLayout.setExpanded(true, true)
+            } else {
+                appBarLayout.setExpanded(false, true)
+            }
         }
     }
 
