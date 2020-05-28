@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:background="@color/primary400_light"
-    android:padding="@dimen/gap_xsmall">
+    android:padding="@dimen/gap_xsmall"
+    android:layout_marginBottom="@dimen/gap_xsmall">
 
     <ImageView
         android:id="@+id/iv_row_ic_type"
@@ -15,7 +16,7 @@
         android:id="@+id/tv_row_money_amount"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginLeft="@dimen/gap_small"
         android:layout_marginRight="@dimen/gap_small"
         android:gravity="center"
@@ -27,8 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/gap_small"
         android:layout_marginRight="@dimen/gap_small"
-        android:layout_toLeftOf="@+id/tv_row_money_amount"
-        android:layout_toRightOf="@+id/iv_row_ic_type"
+        android:layout_toStartOf="@+id/tv_row_money_amount"
+        android:layout_toEndOf="@+id/iv_row_ic_type"
         android:gravity="center"
         android:maxLines="1"
         android:text="an sang"
@@ -42,7 +43,7 @@
         android:layout_below="@+id/tv_row_reason"
         android:layout_marginLeft="@dimen/gap_small"
         android:layout_marginRight="@dimen/gap_small"
-        android:layout_toRightOf="@id/iv_row_ic_type"
+        android:layout_toEndOf="@id/iv_row_ic_type"
         android:gravity="center"
         android:textColor="@android:color/darker_gray"
         android:text="tien mat" />
@@ -52,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignTop="@+id/tv_row_money_source"
-        android:layout_toRightOf="@id/tv_row_money_source"
+        android:layout_toEndOf="@id/tv_row_money_source"
         android:gravity="center"
         android:textColor="@android:color/darker_gray"
         android:text="20-05 08:15" />
