@@ -1,10 +1,10 @@
-package com.funworld.heogiutien.data
+package com.funworld.heogiutien.data.repository
 
 import androidx.lifecycle.LiveData
-import com.funworld.heogiutien.data.dao.ExpenseDao
-import com.funworld.heogiutien.data.dao.ResourceDao
-import com.funworld.heogiutien.model.Expense
-import com.funworld.heogiutien.model.Resource
+import com.funworld.heogiutien.data.local.dao.ExpenseDao
+import com.funworld.heogiutien.data.local.dao.ResourceDao
+import com.funworld.heogiutien.model.entity.Expense
+import com.funworld.heogiutien.model.entity.Resource
 
 class ExpenseRepository(private val expenseDao: ExpenseDao, private val resourceDao: ResourceDao) {
 

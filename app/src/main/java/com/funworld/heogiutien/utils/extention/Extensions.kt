@@ -1,4 +1,4 @@
-package com.funworld.heogiutien.common
+package com.funworld.heogiutien.utils.extention
 
 import android.app.Activity
 import android.content.Context

@@ -1,13 +1,13 @@
-package com.funworld.heogiutien.data
+package com.funworld.heogiutien.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.funworld.heogiutien.data.dao.ExpenseDao
-import com.funworld.heogiutien.data.dao.ResourceDao
-import com.funworld.heogiutien.model.Expense
-import com.funworld.heogiutien.model.Resource
+import com.funworld.heogiutien.data.local.dao.ExpenseDao
+import com.funworld.heogiutien.data.local.dao.ResourceDao
+import com.funworld.heogiutien.model.entity.Expense
+import com.funworld.heogiutien.model.entity.Resource
 import kotlinx.coroutines.CoroutineScope
 
 @Database(entities = [Expense::class, Resource::class], version = 1, exportSchema = false)
@@ -48,7 +48,11 @@ abstract class LocalDatabase : RoomDatabase() {
                     LocalDatabase::class.java,
                     "heogiutien_db"
                 )
-                    .addCallback(LocalDatabaseCallback(scope))
+                    .addCallback(
+                        LocalDatabaseCallback(
+                            scope
+                        )
+                    )
                     .build()
                 instance = instance1
                 return instance1

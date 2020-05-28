@@ -1,4 +1,4 @@
-package com.funworld.heogiutien.features.main
+package com.funworld.heogiutien.ui.main
 
 import android.os.Bundle
 import android.view.ActionMode
@@ -19,9 +19,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.funworld.heogiutien.R
-import com.funworld.heogiutien.common.toast
-import com.funworld.heogiutien.model.Expense
-import com.funworld.heogiutien.model.Resource
+import com.funworld.heogiutien.utils.extention.toast
+import com.funworld.heogiutien.model.entity.Expense
+import com.funworld.heogiutien.model.entity.Resource
 import com.funworld.heogiutien.ui.home.HomeViewModel
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.navigation.NavigationView

@@ -3,8 +3,8 @@ package com.funworld.heogiutien.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.funworld.heogiutien.model.Expense
-import com.funworld.heogiutien.model.Resource
+import com.funworld.heogiutien.model.entity.Expense
+import com.funworld.heogiutien.model.entity.Resource
 
 class HomeViewModel : ViewModel() {
 

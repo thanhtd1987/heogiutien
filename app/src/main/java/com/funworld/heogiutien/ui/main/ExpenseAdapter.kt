@@ -1,4 +1,4 @@
-package com.funworld.heogiutien.features.main
+package com.funworld.heogiutien.ui.main
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,8 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.funworld.heogiutien.R
-import com.funworld.heogiutien.model.Expense
-import com.funworld.heogiutien.model.Resource
+import com.funworld.heogiutien.model.entity.Expense
+import com.funworld.heogiutien.model.entity.Resource
 
 class ExpenseAdapter internal constructor(context: Context) :
     RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() {

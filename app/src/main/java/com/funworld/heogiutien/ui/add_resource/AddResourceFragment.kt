@@ -8,9 +8,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import com.funworld.heogiutien.R
-import com.funworld.heogiutien.common.hideKeyboard
-import com.funworld.heogiutien.common.toast
-import com.funworld.heogiutien.model.Resource
+import com.funworld.heogiutien.utils.extention.hideKeyboard
+import com.funworld.heogiutien.utils.extention.toast
+import com.funworld.heogiutien.model.entity.Resource
 import com.funworld.heogiutien.ui.home.HomeViewModel
 import kotlinx.android.synthetic.main.add_resource_fragment.*
 
@@ -68,11 +68,12 @@ class AddResourceFragment : Fragment(R.layout.add_resource_fragment) {
                 || edt_description.text!!.isEmpty()
                 || edt_money_amount.text!!.isEmpty()
 
-    private fun getAddedResource() = Resource(
-        edt_resource_name.text.toString(),
-        edt_description.text.toString(),
-        edt_money_amount.text.toString().toInt()
-    )
+    private fun getAddedResource() =
+        Resource(
+            edt_resource_name.text.toString(),
+            edt_description.text.toString(),
+            edt_money_amount.text.toString().toInt()
+        )
 
     private fun onSaved() {
         homeViewModel.addedResource.postValue(getAddedResource())

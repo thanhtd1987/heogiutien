@@ -1,11 +1,11 @@
-package com.funworld.heogiutien.model
+package com.funworld.heogiutien.model.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.funworld.heogiutien.common.getAsPattern
-import com.funworld.heogiutien.utils.DateTimeConverter
+import com.funworld.heogiutien.utils.extention.getAsPattern
+import com.funworld.heogiutien.model.converter.DateTimeConverter
 import java.time.LocalDateTime
 
 

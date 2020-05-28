@@ -1,13 +1,13 @@
-package com.funworld.heogiutien.features.main
+package com.funworld.heogiutien.ui.main
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.funworld.heogiutien.data.ExpenseRepository
-import com.funworld.heogiutien.data.LocalDatabase
-import com.funworld.heogiutien.model.Expense
-import com.funworld.heogiutien.model.Resource
+import com.funworld.heogiutien.data.repository.ExpenseRepository
+import com.funworld.heogiutien.data.local.LocalDatabase
+import com.funworld.heogiutien.model.entity.Expense
+import com.funworld.heogiutien.model.entity.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -21,7 +21,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     init {
         val expenseDao = LocalDatabase.getDatabase(application, viewModelScope).expenseDao()
         val resourceDao = LocalDatabase.getDatabase(application, viewModelScope).resourceDao()
-        repository = ExpenseRepository(expenseDao, resourceDao)
+        repository = ExpenseRepository(
+            expenseDao,
+            resourceDao
+        )
         resources = repository.allResources
         expenses = repository.latestExpenses
     }

@@ -1,11 +1,11 @@
-package com.funworld.heogiutien.data.dao
+package com.funworld.heogiutien.data.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.funworld.heogiutien.model.Expense
+import com.funworld.heogiutien.model.entity.Expense
 
 @Dao
 interface ExpenseDao {

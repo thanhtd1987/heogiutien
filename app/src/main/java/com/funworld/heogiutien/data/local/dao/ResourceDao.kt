@@ -1,8 +1,8 @@
-package com.funworld.heogiutien.data.dao
+package com.funworld.heogiutien.data.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.funworld.heogiutien.model.Resource
+import com.funworld.heogiutien.model.entity.Resource
 
 @Dao
 interface ResourceDao {

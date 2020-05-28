@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.funworld.heogiutien.R
-import com.funworld.heogiutien.features.main.ExpenseAdapter
+import com.funworld.heogiutien.ui.main.ExpenseAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {

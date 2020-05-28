@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import com.funworld.heogiutien.model.Expense;
+import com.funworld.heogiutien.model.entity.Expense;
 
 import java.util.HashMap;
 import java.util.List;

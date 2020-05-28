@@ -1,4 +1,4 @@
-package com.funworld.heogiutien.utils
+package com.funworld.heogiutien.model.converter
 
 import androidx.room.TypeConverter
 import java.time.LocalDateTime
