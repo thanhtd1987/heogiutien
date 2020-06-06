@@ -7,7 +7,6 @@ import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import com.funworld.heogiutien.R
@@ -15,6 +14,7 @@ import com.funworld.heogiutien.model.entity.Expense
 import com.funworld.heogiutien.ui.home.HomeViewModel
 import com.funworld.heogiutien.utils.extention.*
 import kotlinx.android.synthetic.main.add_expense_fragment.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.time.LocalDateTime
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -25,7 +25,7 @@ class AddExpenseFragment : Fragment(),
     private lateinit var listOfResourceId: IntArray
     private lateinit var listOfResourceName: Array<String>
     private lateinit var createdDateTime: LocalDateTime
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel by sharedViewModel<HomeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,10 +44,6 @@ class AddExpenseFragment : Fragment(),
         initResource()
         initCreatedTime()
         adding_layout.setOnClickListener { hideKeyboard() }
-
-        activity!!.let {
-            homeViewModel = ViewModelProviders.of(it).get(HomeViewModel::class.java)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

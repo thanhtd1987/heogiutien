@@ -60,6 +60,7 @@ dependencies {
     //Room
     implementation "androidx.room:room-runtime:$ROOM_VERSION"
     implementation "androidx.room:room-ktx:$ROOM_VERSION"
+    kapt "androidx.room:room-compiler:$ROOM_VERSION"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     //navigation controller
@@ -67,7 +68,11 @@ dependencies {
     implementation "androidx.navigation:navigation-ui:$ANDROIDX_NAVI_VERSION"
     implementation "androidx.navigation:navigation-fragment-ktx:$ANDROIDX_NAVI_VERSION"
     implementation "androidx.navigation:navigation-ui-ktx:$ANDROIDX_NAVI_VERSION"
-    kapt "androidx.room:room-compiler:$ROOM_VERSION"
+
+    //Koin Dependency Injection
+    implementation "org.koin:koin-android:$KOIN_VERSION"
+    implementation "org.koin:koin-androidx-scope:$KOIN_VERSION"
+    implementation "org.koin:koin-androidx-viewmodel:$KOIN_VERSION"
 
     testImplementation 'junit:junit:4.12'
 }

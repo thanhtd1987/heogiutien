@@ -11,7 +11,6 @@ import androidx.core.os.bundleOf
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -19,18 +18,20 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.funworld.heogiutien.R
-import com.funworld.heogiutien.utils.extention.toast
 import com.funworld.heogiutien.model.entity.Expense
 import com.funworld.heogiutien.model.entity.Resource
 import com.funworld.heogiutien.ui.home.HomeViewModel
+import com.funworld.heogiutien.utils.extention.toast
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.app_bar_main.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mainViewModel: MainViewModel
+    private val mainViewModel by viewModel<MainViewModel>()
+    private val homeViewModel by viewModel<HomeViewModel>()
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
@@ -87,7 +88,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    lateinit var homeViewModel: HomeViewModel
     private fun initView() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -116,9 +116,6 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-
-        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mainViewModel.resources.observe(this, Observer { resources ->
             if (!resources.isNullOrEmpty())
                 resources?.let {

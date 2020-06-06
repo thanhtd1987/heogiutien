@@ -6,15 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.funworld.heogiutien.R
 import com.funworld.heogiutien.ui.main.ExpenseAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel by sharedViewModel<HomeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,17 +38,14 @@ class HomeFragment : Fragment() {
         rcv_latest_expense.adapter = adapter
         rcv_latest_expense.layoutManager = LinearLayoutManager(context)
 
-        activity!!.let { it ->
-            homeViewModel = ViewModelProviders.of(it).get(HomeViewModel::class.java)
-            homeViewModel.expenses.observe(viewLifecycleOwner, Observer { expenses ->
-                expenses.let { adapter.setExpenses(it) }
-            })
-            homeViewModel.resources.observe(viewLifecycleOwner, Observer { resources ->
-                resources.let { adapter.setResourceNames(it) }
-            })
-            homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        homeViewModel.expenses.observe(viewLifecycleOwner, Observer { expenses ->
+            expenses.let { adapter.setExpenses(it) }
+        })
+        homeViewModel.resources.observe(viewLifecycleOwner, Observer { resources ->
+            resources.let { adapter.setResourceNames(it) }
+        })
+        homeViewModel.text.observe(viewLifecycleOwner, Observer {
 //            text_home.text = it
-            })
-        }
+        })
     }
 }
