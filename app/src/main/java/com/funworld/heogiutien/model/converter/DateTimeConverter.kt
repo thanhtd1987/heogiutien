@@ -8,14 +8,14 @@ class DateTimeConverter {
     private val formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
 
     @TypeConverter
-    fun toOffsetDateTime(value: String?): LocalDateTime? {
+    fun toLocalDateTime(value: String?): LocalDateTime? {
         return value?.let {
             return formatter.parse(value, LocalDateTime::from)
         }
     }
 
     @TypeConverter
-    fun fromOffsetDateTime(date: LocalDateTime?): String? {
+    fun fromLocalDateTime(date: LocalDateTime?): String? {
         return date?.format(formatter)
     }
 }

@@ -8,11 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.funworld.heogiutien.R
-import com.funworld.heogiutien.ui.main.ExpenseAdapter
+import com.funworld.heogiutien.utils.extention.toast
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ExpenseDelegateAdapter.ViewSelectedListener {
 
     private val homeViewModel by sharedViewModel<HomeViewModel>()
 
@@ -34,18 +34,22 @@ class HomeFragment : Fragment() {
 
     private fun initView() {
 
-        val adapter = ExpenseAdapter(context!!)
+        val adapter = ExpenseAdapter(this)
         rcv_latest_expense.adapter = adapter
         rcv_latest_expense.layoutManager = LinearLayoutManager(context)
 
         homeViewModel.expenses.observe(viewLifecycleOwner, Observer { expenses ->
-            expenses.let { adapter.setExpenses(it) }
+            expenses.let { adapter.setExpenses(it, homeViewModel.resources.value!!) }
         })
         homeViewModel.resources.observe(viewLifecycleOwner, Observer { resources ->
-            resources.let { adapter.setResourceNames(it) }
+//            resources.let { adapter.setResourceNames(it) }
         })
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
 //            text_home.text = it
         })
+    }
+
+    override fun onItemSelected(expenseId: Int) {
+        toast("Click on Expense Id: ${expenseId}")
     }
 }
