@@ -33,9 +33,8 @@ class ExpenseDelegateAdapter(val listener: ViewTypeDelegateAdapter.ViewSelectedL
         fun bind(item: ExpenseItem) {
             val iconType = if (item.type == "+") R.drawable.ic_add else R.drawable.ic_remove
             type.setImageResource(iconType)
-//            val tint = if (expense.type == "+") R.color.colorAccent else R.color.colorPrimary
-//            type.setColorFilter(tint)
-            amount.text = item.amount.toString() + itemView.context.getString(R.string.vnd_unit)
+            amount.text =
+                String.format(itemView.context.getString(R.string.vnd_unit), item.amount)
             purpose.text = item.purpose
             time.text = item.time
             resource.text = item.resourceName

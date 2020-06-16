@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     private val mTopResourceId = 1 //temporary get fix id
+    private var isAddingExpense = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() {
                 fab.hide()
             } else {
                 fab.show()
+                isAddingExpense = destination.id == R.id.nav_expenses
             }
 
             if (destination.id == R.id.nav_expenses) {
@@ -93,10 +95,10 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener {
-            if (mainViewModel.resources.value.isNullOrEmpty()) {
-                showAddResourceFragment()
-            } else {
+            if (isAddingExpense) {
                 showAddExpenseFragment()
+            } else {
+                showAddResourceFragment()
             }
         }
 
@@ -159,7 +161,7 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.insert(expense)
     }
 
-    private fun moneyInVnd(amount: Int) = amount.toString() + getString(R.string.vnd_unit)
+    private fun moneyInVnd(amount: Int) = String.format(getString(R.string.vnd_unit), amount)
 
     interface NavigationResult {
         fun onNavigationResult(result: Bundle)

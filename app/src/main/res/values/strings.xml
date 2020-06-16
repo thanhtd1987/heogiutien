@@ -34,5 +34,7 @@
     <string name="adding_resource_name">Resource name</string>
     <string name="adding_resource_describtion">Describtion</string>
     <string name="adding_resource_money_amount">Money\'s amount(1000đ)</string>
-    <string name="vnd_unit">.000đ</string>
+    <string name="vnd_unit">%d.000đ</string>
+    <string name="item_resource_current_balance">Current: %s.000đ</string>
+    <string name="item_resource_open_balance">Open: %s.000đ</string>
 </resources>

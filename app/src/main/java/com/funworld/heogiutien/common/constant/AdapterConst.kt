@@ -4,4 +4,5 @@ object AdapterConst {
 
     val LOADING = 1
     val EXPENSE = 2
+    val RESOURCE = 3
 }
