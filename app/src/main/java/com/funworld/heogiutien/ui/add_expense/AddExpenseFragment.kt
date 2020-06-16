@@ -58,7 +58,7 @@ class AddExpenseFragment : Fragment(),
                 if (!isInvalidateInput()) {
                     onSaved()
                     hideKeyboard()
-                    parentFragmentManager.popBackStack()
+                    findNavController().popBackStack()
                     true
                 } else {
                     toast("Invalid input")

@@ -4,19 +4,19 @@ import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import com.funworld.heogiutien.R
-import com.funworld.heogiutien.utils.extention.hideKeyboard
-import com.funworld.heogiutien.utils.extention.toast
 import com.funworld.heogiutien.model.entity.Resource
 import com.funworld.heogiutien.ui.home.HomeViewModel
+import com.funworld.heogiutien.utils.extention.hideKeyboard
+import com.funworld.heogiutien.utils.extention.toast
 import kotlinx.android.synthetic.main.add_resource_fragment.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class AddResourceFragment : Fragment(R.layout.add_resource_fragment) {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel by sharedViewModel<HomeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,9 +27,6 @@ class AddResourceFragment : Fragment(R.layout.add_resource_fragment) {
         rootView.findViewById<ConstraintLayout>(R.id.adding_layout)
             .setOnClickListener { hideKeyboard() }
 
-        activity!!.let {
-            homeViewModel = ViewModelProviders.of(it).get(HomeViewModel::class.java)
-        }
         setHasOptionsMenu(true)
         return rootView
     }
@@ -45,7 +42,7 @@ class AddResourceFragment : Fragment(R.layout.add_resource_fragment) {
                 toast("Save Resource")
                 if (!isInvalidateInput()) {
                     onSaved()
-                    parentFragmentManager.popBackStack()
+                    findNavController().popBackStack()
                     hideKeyboard()
                     true
                 } else {
