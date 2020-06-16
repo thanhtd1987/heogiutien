@@ -8,11 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.funworld.heogiutien.R
+import com.funworld.heogiutien.common.base.adapter.ViewTypeDelegateAdapter
 import com.funworld.heogiutien.utils.extention.toast
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class HomeFragment : Fragment(), ExpenseDelegateAdapter.ViewSelectedListener {
+class HomeFragment : Fragment(), ViewTypeDelegateAdapter.ViewSelectedListener {
 
     private val homeViewModel by sharedViewModel<HomeViewModel>()
 

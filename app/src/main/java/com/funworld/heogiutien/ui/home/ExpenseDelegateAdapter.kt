@@ -11,12 +11,8 @@ import com.funworld.heogiutien.model.ExpenseItem
 import com.funworld.heogiutien.utils.extention.inflate
 import kotlinx.android.synthetic.main.expense_row_layout.view.*
 
-class ExpenseDelegateAdapter(val listener: ViewSelectedListener) :
+class ExpenseDelegateAdapter(val listener: ViewTypeDelegateAdapter.ViewSelectedListener) :
     ViewTypeDelegateAdapter {
-
-    interface ViewSelectedListener {
-        fun onItemSelected(expenseId: Int)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup) = ExpenseViewHolder(parent)
 
