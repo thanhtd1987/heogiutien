@@ -18,7 +18,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginTop="@dimen/gap_normal"
-            android:background="@drawable/rect_corner_border_pink"
+            android:background="@drawable/rect_corner_black_border_primary"
             android:orientation="horizontal">
 
             <RadioButton
