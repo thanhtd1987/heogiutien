@@ -42,12 +42,6 @@ class HomeFragment : Fragment(), ViewTypeDelegateAdapter.ViewSelectedListener {
         homeViewModel.expenses.observe(viewLifecycleOwner, Observer { expenses ->
             expenses.let { adapter.setExpenses(it, homeViewModel.resources.value!!) }
         })
-        homeViewModel.resources.observe(viewLifecycleOwner, Observer { resources ->
-//            resources.let { adapter.setResourceNames(it) }
-        })
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-//            text_home.text = it
-        })
     }
 
     override fun onItemSelected(expenseId: Int) {
