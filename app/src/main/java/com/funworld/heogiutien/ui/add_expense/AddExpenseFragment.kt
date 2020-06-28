@@ -14,13 +14,16 @@ import com.funworld.heogiutien.model.entity.Expense
 import com.funworld.heogiutien.ui.home.HomeViewModel
 import com.funworld.heogiutien.utils.extention.*
 import kotlinx.android.synthetic.main.add_expense_fragment.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.time.LocalDateTime
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class AddExpenseFragment : Fragment(),
-    DatePickerDialog.OnDateSetListener {
+class AddExpenseFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private lateinit var listOfResourceId: IntArray
     private lateinit var listOfResourceName: Array<String>
@@ -54,14 +57,16 @@ class AddExpenseFragment : Fragment(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_save -> {
-                toast("Save expense")
-                if (!isInvalidateInput()) {
+                if (!isValidTransfer()) {
+                    toast("Received resource & Send resource must be different")
+                } else if (isInvalidateInput()) {
+                    toast("Invalid input")
+                } else {
+                    toast("Save expense")
                     onSaved()
                     hideKeyboard()
                     findNavController().popBackStack()
                     true
-                } else {
-                    toast("Invalid input")
                 }
             }
             android.R.id.home -> {
@@ -83,6 +88,27 @@ class AddExpenseFragment : Fragment(),
                 listOfResourceName
             )
         spinner_resource.adapter = adapter
+
+        rgr_type.setOnCheckedChangeListener { rgr, id ->
+            run {
+                when (id) {
+                    R.id.rdb_transfer -> {
+                        spinner_transfer_to_resource.visibility = View.VISIBLE
+                        tv_label_received.visibility = View.VISIBLE
+                        val text = getString(R.string.transfer) + " " + edt_purpose.text.toString().trim()
+                        edt_purpose.setText(text)
+                    }
+                    else -> {
+                        spinner_transfer_to_resource.visibility = View.GONE
+                        tv_label_received.visibility = View.GONE
+                        val text = edt_purpose.text.toString()
+                        edt_purpose.setText(text.substringAfter(getString(R.string.transfer)))
+                    }
+                }
+            }
+        }
+
+        spinner_transfer_to_resource.adapter = adapter
     }
 
     private fun initCreatedTime() {
@@ -107,15 +133,29 @@ class AddExpenseFragment : Fragment(),
     private fun isInvalidateInput() =
         edt_money_amount.text!!.isEmpty() || edt_purpose.text!!.isEmpty()
 
+    private fun isValidTransfer() = rgr_type.checkedRadioButtonId != R.id.rdb_transfer ||
+            (rgr_type.checkedRadioButtonId == R.id.rdb_transfer &&
+                    spinner_resource.selectedItemPosition != spinner_transfer_to_resource.selectedItemPosition)
+
     private fun getCreatedTime(): LocalDateTime {
         return createdDateTime
     }
 
     private fun getAddedExpense() = Expense(
-        if (rgr_type.checkedRadioButtonId == R.id.rdb_expense) "-" else "+",
+        if (rgr_type.checkedRadioButtonId == R.id.rdb_expense ||
+            rgr_type.checkedRadioButtonId == R.id.rdb_transfer
+        ) "-" else "+",
         edt_money_amount.text.toString().toInt(),
         edt_purpose.text.toString(),
         listOfResourceId[spinner_resource.selectedItemPosition],
+        getCreatedTime()
+    )
+
+    private fun getTransferExpense() = Expense(
+        "+",
+        edt_money_amount.text.toString().toInt(),
+        edt_purpose.text.toString(),
+        listOfResourceId[spinner_transfer_to_resource.selectedItemPosition],
         getCreatedTime()
     )
 
@@ -146,6 +186,12 @@ class AddExpenseFragment : Fragment(),
 
     private fun onSaved() {
         homeViewModel.addedExpense.postValue(getAddedExpense())
+        if (rgr_type.checkedRadioButtonId == R.id.rdb_transfer)
+            CoroutineScope(Dispatchers.IO).launch {
+                val expense = getTransferExpense()
+                delay(50)
+                homeViewModel.addedExpense.postValue(expense)
+            }
     }
 }
 

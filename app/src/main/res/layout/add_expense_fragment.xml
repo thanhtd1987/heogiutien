@@ -1,119 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adding_layout"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/adding_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/gap_small">
+
+    <TextView
+        android:id="@+id/tv_label_used"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Used money resource"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner_resource"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:padding="@dimen/gap_small">
+        android:layout_height="@dimen/actionbar_height"
+        android:padding="@dimen/gap_small"
+        android:spinnerMode="dropdown"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_used" />
 
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/spinner_resource"
-            style="@style/Widget.AppCompat.Spinner.Underlined"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/actionbar_height"
-            android:padding="@dimen/gap_small"
-            android:spinnerMode="dropdown"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <RadioGroup
+        android:id="@+id/rgr_type"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="@dimen/gap_normal"
+        android:background="@drawable/rect_corner_border_pri"
+        android:checkedButton="@id/rdb_expense"
+        android:orientation="horizontal"
+        android:padding="@dimen/gap_normal"
+        android:weightSum="3"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_resource">
 
-        <RadioGroup
-            android:id="@+id/rgr_type"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="@dimen/gap_normal"
-            android:background="@drawable/rect_corner_border_pri"
-            android:checkedButton="@id/rdb_expense"
-            android:orientation="horizontal"
-            android:padding="@dimen/gap_normal"
-            android:weightSum="2"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_resource">
-
-            <RadioButton
-                android:id="@+id/rdb_expense"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/expense" />
-
-            <RadioButton
-                android:id="@+id/rdb_deposit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/deposit" />
-        </RadioGroup>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_amount"
-            style="@style/Widget.Design.TextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/gap_normal"
-            android:hint="@string/expense_money_amount"
-            app:layout_constraintTop_toBottomOf="@+id/rgr_type">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_money_amount"
-                style="@style/Widget.AppCompat.EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:nextFocusDown="@id/edt_purpose"
-                android:textSize="@dimen/text_size_xlarge" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_purpose"
-            style="@style/Widget.Design.TextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/gap_normal"
-            android:hint="@string/expense_purpose"
-            app:layout_constraintTop_toBottomOf="@+id/til_amount">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_purpose"
-                style="@style/Widget.AppCompat.EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_xlarge" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/title_created"
+        <RadioButton
+            android:id="@+id/rdb_expense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/gap_normal"
-            android:text="@string/expense_created_time"
-            android:textSize="@dimen/text_size_big"
-            app:layout_constraintStart_toStartOf="@+id/til_purpose"
-            app:layout_constraintTop_toBottomOf="@+id/til_purpose" />
+            android:layout_weight="1"
+            android:text="@string/expense" />
 
-        <LinearLayout
-            android:id="@+id/ll_time"
+        <RadioButton
+            android:id="@+id/rdb_deposit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/deposit" />
+
+        <RadioButton
+            android:id="@+id/rdb_transfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/transfer" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_label_received"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gap_normal"
+        android:text="Received money resource"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/rgr_type" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner_transfer_to_resource"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+
+        android:padding="@dimen/gap_small"
+        android:spinnerMode="dropdown"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_received" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/grp_received"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="spinner_transfer_to_resource, tv_label_received"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_amount"
+        style="@style/Widget.Design.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gap_normal"
+        android:hint="@string/expense_money_amount"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_transfer_to_resource">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_money_amount"
+            style="@style/Widget.AppCompat.EditText"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:orientation="horizontal"
-            android:weightSum="5"
-            app:layout_constraintTop_toBottomOf="@+id/title_created">
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:nextFocusDown="@id/edt_purpose"
+            android:textSize="@dimen/text_size_xlarge" />
 
-            <TextView
-                android:id="@+id/tv_created_date"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:textSize="@dimen/text_size_large" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tv_created_time"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:textSize="@dimen/text_size_large" />
-        </LinearLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_purpose"
+        style="@style/Widget.Design.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gap_normal"
+        android:hint="@string/expense_purpose"
+        app:layout_constraintTop_toBottomOf="@+id/til_amount">
 
-    </android.support.constraint.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_purpose"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_xlarge" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/title_created"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gap_normal"
+        android:text="@string/expense_created_time"
+        android:textSize="@dimen/text_size_big"
+        app:layout_constraintStart_toStartOf="@+id/til_purpose"
+        app:layout_constraintTop_toBottomOf="@+id/til_purpose" />
+
+    <LinearLayout
+        android:id="@+id/ll_time"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        app:layout_constraintTop_toBottomOf="@+id/title_created">
+
+        <TextView
+            android:id="@+id/tv_created_date"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:textSize="@dimen/text_size_large" />
+
+        <TextView
+            android:id="@+id/tv_created_time"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:textSize="@dimen/text_size_large" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

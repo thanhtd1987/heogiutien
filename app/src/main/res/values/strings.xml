@@ -11,6 +11,7 @@
     <string name="resource">Money Resource</string>
     <string name="expense_pattern">Expense Pattern</string>
     <string name="deposit">Deposit</string>
+    <string name="transfer">Transfer</string>
     <string name="current_balance">Số dư hiện tại.</string>
 
     <string name="title_add_expense">Adding Expense</string>
